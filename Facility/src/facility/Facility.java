@@ -16,7 +16,7 @@ public class Facility {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        //DD
+        System.out.println("Hello, world!");
     }
 
 }
