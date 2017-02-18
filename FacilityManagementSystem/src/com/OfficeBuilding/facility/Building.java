@@ -72,4 +72,8 @@ public class Building implements IFacility {
         domain.scheduleMaintenance(this);
     }
 
+    public String getProblem(){
+        //gets the problem from the view
+    }
+
 }

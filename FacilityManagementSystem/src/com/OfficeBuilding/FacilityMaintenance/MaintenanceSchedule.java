@@ -15,8 +15,11 @@ public class MaintenanceSchedule {
 
     private Date timeOfMaintenance;
 
-    public MaintenanceSchedule(String timeOfMaintenance) {
+    private MaintenanceRequest request;
+
+    public MaintenanceSchedule(String timeOfMaintenance, MaintenanceRequest request) {
         this.timeOfMaintenance = new Date(timeOfMaintenance);
+        this.request = request;
     }
 
     public void setTimeOfMaintenance(Date value) {

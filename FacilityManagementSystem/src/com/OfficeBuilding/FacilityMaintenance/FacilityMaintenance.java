@@ -18,6 +18,14 @@ public class FacilityMaintenance implements IFacilityMaintenance {
 
     MaintenanceLog log;
 
+    public MaintenanceLog getLog() {
+        return log;
+    }
+
+    public void addOrderToLog(MaintenanceOrder or){
+        log.addToLog(or);
+    }
+
     public FacilityMaintenance(MaintenanceLog log){
         this.log = log;
 
@@ -41,7 +49,9 @@ public class FacilityMaintenance implements IFacilityMaintenance {
     @Override
     public MaintenanceRequest getMaintenanceRequest() {
         if (requestQueue.size() != 0){
-            return requestQueue.get(0);
+             MaintenanceRequest mr = requestQueue.get(0);
+             requestQueue.remove(mr);
+            return mr;
         }
         return null;
     }
@@ -56,7 +66,7 @@ public class FacilityMaintenance implements IFacilityMaintenance {
     }
 
     @Override
-    public void calcFacilityProblemRate() {
+    public double calcFacilityProblemRate() {
         List<String> problems = new ArrayList<>();
         for (MaintenanceRequest mr : requestQueue){
             problems.add(mr.getProblem());

@@ -10,15 +10,23 @@ package com.OfficeBuilding.Inspection;
  * @author nickpredey
  */
 public class FacilityInspection implements IFacilityInspection {
+    List<InspectionForm> forms;
+    InspectionLog log;
 
+    public FacilityInspection(){
+        forms = new ArrayList<>();
+
+
+    }
     @Override
     public void inspect() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        log.addForm(forms.remove(0));
+
     }
 
     @Override
     public void addInspectionToLog() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        log.addForm(forms.remove(0));
     }
 
 }

@@ -19,20 +19,44 @@ public class Staff implements IFacilityDomain {
         this.staffName = staffName;
 
     }
+    private String getTimeofMaintenance(){
+        //get time from view;
+        return 12;
+    }
+    private getMaintenanceCost(){
+        return new MaintenanceCost(10.0);//to be changed
+    }
     @Override
     public void scheduleMaintenance(IFacility facility) {
         FacilityMaintenance maintain = facility.getMaintenance();
-        maintain.getMaintenanceRequest();
-        //create a Maintenance Schedule object
+        MaintenanceRequest mr = maintain.getMaintenanceRequest();
+        MaintenanceSchedule ms = new MaintenanceSchedule(getTimeofMaintenance(),mr);
+        maintain.scheduleRequest(ms);
 
-        //add the maintenance Request object
+        getMaintenanceCost()
 
+        MaintenanceOrder order = new MaintenanceOrder(getMaintenanceCost(),mr);
+        maintain.addOrderToLog(order);
+
+
+    }
+    private String getProblem() {
+        //get problem from view
+        return "Pipe Problem";
+    }
+    private int getMaintenancePeriod(){
+        //get Period from view
+        return 12;
     }
 
     @Override
     public void makeMaintenanceRequest(IFacility facility) {
-        //createa a Maintenance request object
-        //add the maintenance request object into the requests list
+
+
+        MaintenanceRequesst request = new MaintenanceRequest(getMaintenancePeriod(),staffName,getProblem());
+        facility.addMaintenanceRequest(request);
+
+
 
     }
 

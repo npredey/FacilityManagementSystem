@@ -11,13 +11,13 @@ package com.OfficeBuilding.FacilityUse;
  */
 public interface IFacilityUse {
 
-    public void getUsageRate();
+    public double getUsageRate();
 
-    public void getActualUsage();
+    public int getActualUsage();
 
     public void getInspections();
 
     public void vacateFacility();
 
-    public void addUserToFacility();
+    public void addUserToFacility(FacilityUser user);
 }

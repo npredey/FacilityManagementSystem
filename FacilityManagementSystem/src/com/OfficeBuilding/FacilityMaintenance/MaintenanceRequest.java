@@ -42,7 +42,5 @@ public class MaintenanceRequest {
         return maintenanceRequester;
     }
 
-    public String getProblem() {
-        return problem;
-    }
+
 }

@@ -23,7 +23,11 @@ public class InspectionLog {
         inspections = value;
     }
 
-    public ArrayList<InspectionForm> setInspections() {
+    public ArrayList<InspectionForm> getInspections() {
         return inspections;
+    }
+
+    public void addForm(InspectionForm form){
+        inspections.add(form);
     }
 }

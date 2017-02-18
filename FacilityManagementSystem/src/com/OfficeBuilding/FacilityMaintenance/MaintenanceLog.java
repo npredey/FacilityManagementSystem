@@ -21,10 +21,10 @@ public class MaintenanceLog {
 }
 
     public List<MaintenanceOrder> getLogs() {
-        return logs;
+        return orders;
     }
 
     public void addToLog(MaintenanceOrder order){
-        logs.add(order);
+        orders.add(order);
 
     }

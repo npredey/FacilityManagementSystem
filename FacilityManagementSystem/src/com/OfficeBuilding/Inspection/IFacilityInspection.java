@@ -11,7 +11,8 @@ package com.OfficeBuilding.Inspection;
  */
 public interface IFacilityInspection {
 
-    public void inspect();
+    void inspect();
 
-    public void addInspectionToLog();
+    void addInspectionToLog();
+    void accept(InspectorVisitor inspectionVisitor);
 }

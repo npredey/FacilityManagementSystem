@@ -25,5 +25,5 @@ public interface IFacilityMaintenance {
 
     void getFacillityDownTime();
 
-    void scheduleRequest(MaintenanceRequest mr);
+    void scheduleRequest(MaintenanceSchedule ms);
 }
