@@ -13,9 +13,18 @@ import java.util.ArrayList;
  */
 public class MaintenanceLog {
 
-    public ArrayList<MaintenanceOrder> orders;
+    public List<MaintenanceOrder> orders;
 
     public MaintenanceLog() {
         this.orders = new ArrayList<>();
     }
 }
+
+    public List<MaintenanceOrder> getLogs() {
+        return logs;
+    }
+
+    public void addToLog(MaintenanceOrder order){
+        logs.add(order);
+
+    }

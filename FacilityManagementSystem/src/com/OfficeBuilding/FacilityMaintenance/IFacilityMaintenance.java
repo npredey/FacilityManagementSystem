@@ -11,17 +11,19 @@ package com.OfficeBuilding.FacilityMaintenance;
  */
 public interface IFacilityMaintenance {
 
-    public void addMaintenanceRequest();
+    void addMaintenanceRequest(MaintenanceRequest request);
 
-    public void createMaintenanceSchedule();
+    void createMaintenanceSchedule();
 
-    public void getMaintenanceCost();
+    void getMaintenanceCost();
 
-    public void getMaintenanceRequests();
+    MaintenanceRequest getMaintenanceRequest();
 
-    public void getFacilityProblems(); //pass in a request object
+    List<String> getFacilityProblems(); //pass in a request object
 
-    public void calcFacilityProblemRate();
+    double calcFacilityProblemRate();
 
-    public void getFacillityDownTime();
+    void getFacillityDownTime();
+
+    void scheduleRequest(MaintenanceRequest mr);
 }

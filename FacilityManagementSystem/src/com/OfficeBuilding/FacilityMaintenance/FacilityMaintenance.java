@@ -10,10 +10,22 @@ package com.OfficeBuilding.FacilityMaintenance;
  * @author nickpredey
  */
 public class FacilityMaintenance implements IFacilityMaintenance {
+    private static double NUM_DAYS_PER_YEAR = 365.0;
+
+    private List<MaintenanceRequest> requestQueue = new ArrayList<>();
+    private List<MaintenanceOrder> orders = new ArrayList<>();
+    private List<MaintenanceSchedule> schedules = new ArrayList<>();
+
+    MaintenanceLog log;
+
+    public FacilityMaintenance(MaintenanceLog log){
+        this.log = log;
+
+    }
 
     @Override
-    public void addMaintenanceRequest() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void addMaintenanceRequest(MaintenanceRequest request) {
+        requestQueue.add(request);
     }
 
     @Override
@@ -27,23 +39,40 @@ public class FacilityMaintenance implements IFacilityMaintenance {
     }
 
     @Override
-    public void getMaintenanceRequests() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public MaintenanceRequest getMaintenanceRequest() {
+        if (requestQueue.size() != 0){
+            return requestQueue.get(0);
+        }
+        return null;
     }
 
     @Override
-    public void getFacilityProblems() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public List<String> getFacilityProblems() {
+        List<String> problems = new ArrayList<>();
+        for (MaintenanceRequest mr : requestQueue){
+            problems.add(mr.getProblem());
+        }
+        return problems;
     }
 
     @Override
     public void calcFacilityProblemRate() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        List<String> problems = new ArrayList<>();
+        for (MaintenanceRequest mr : requestQueue){
+            problems.add(mr.getProblem());
+        }
+        double problemRate = problems.size()/NUM_DAYS_PER_YEAR;
+        return problemRate;
     }
 
     @Override
     public void getFacillityDownTime() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    @Override
+    public void scheduleRequest(MaintenanceSchedule ms) {
+
+        schedules.add(ms);
     }
 
 }

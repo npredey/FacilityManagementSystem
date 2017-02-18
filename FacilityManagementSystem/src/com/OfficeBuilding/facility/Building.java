@@ -12,11 +12,23 @@ import com.OfficeBuilding.Inspection.InspectionLog;
  * @author nickpredey
  */
 public class Building implements IFacility {
+    FacilityMaintenance maintenance;
+    FacilityDetail detail;
+
+    List<IFacility> facilities;
 
     public InspectionLog inspectionLog;
 
+    public Building(){
+        facilities = new ArrayList<>();
+    }
+
+    public FacilityMaintenance getMaintenance() {
+        return maintenance;
+    }
+
     @Override
-    public void addFacility() {
+    public void addFacility(IFacility) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
@@ -43,6 +55,21 @@ public class Building implements IFacility {
     @Override
     public void addNewDetail() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public FacilityDetail getDetail() {
+        return detail;
+    }
+
+    @Override
+    public void acceptRequesterStaff(IFacilityDomain domain) {
+        domain.makeMaintenanceRequest(this);
+    }
+
+    @Override
+    public void acceptScheduler(IFacilityDomain domain) {
+
+        domain.scheduleMaintenance(this);
     }
 
 }

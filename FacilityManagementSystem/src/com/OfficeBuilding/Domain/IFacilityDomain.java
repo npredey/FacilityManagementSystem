@@ -11,8 +11,8 @@ package com.OfficeBuilding.Domain;
  */
 public interface IFacilityDomain {
 
-    public void scheduleMaintenance();
+    void scheduleMaintenance(IFacility facility);
 
-    public void makeMaintenanceRequest();
+    void makeMaintenanceRequest(IFacility facility);
 
 }

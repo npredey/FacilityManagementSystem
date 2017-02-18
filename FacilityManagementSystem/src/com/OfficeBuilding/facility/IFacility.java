@@ -22,4 +22,7 @@ public interface IFacility {
     public void getFacilityDetail();
 
     public void addNewDetail();
+    void acceptRequesterStaff(IFacilityDomain domain);
+    void acceptScheduler(IFacilityDomain domain);
+    FacilityMaintenance getMaintenance();
 }

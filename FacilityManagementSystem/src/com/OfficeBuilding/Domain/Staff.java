@@ -10,15 +10,30 @@ package com.OfficeBuilding.Domain;
  * @author nickpredey
  */
 public class Staff implements IFacilityDomain {
+    List<MaintenanceSchedule> schedules = new ArrayList<>();
+    FacilityMaintenance maintenance;
+    String  staffName;
 
+    public Staff(String staffName, FacilityMaintenance maintenance){
+        this.maintenance = maintenance;
+        this.staffName = staffName;
+
+    }
     @Override
-    public void scheduleMaintenance() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void scheduleMaintenance(IFacility facility) {
+        FacilityMaintenance maintain = facility.getMaintenance();
+        maintain.getMaintenanceRequest();
+        //create a Maintenance Schedule object
+
+        //add the maintenance Request object
+
     }
 
     @Override
-    public void makeMaintenanceRequest() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void makeMaintenanceRequest(IFacility facility) {
+        //createa a Maintenance request object
+        //add the maintenance request object into the requests list
+
     }
 
 }
