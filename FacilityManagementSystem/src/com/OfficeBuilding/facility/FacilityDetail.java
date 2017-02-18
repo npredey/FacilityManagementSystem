@@ -11,8 +11,48 @@ package com.OfficeBuilding.facility;
  */
 public class FacilityDetail {
 
-    public int facilityId;
-    public int capacity;
-    public FacilityBudget facilityBudget;
-    public Location address;
+    private int facilityID;
+    private int capacity;
+    private FacilityBudget facilityBudget;
+    private Location address;
+
+    public FacilityDetail(int facilityID, int facilityCapacity, FacilityBudget budget,
+            Location location) {
+        this.facilityID = facilityID;
+        this.capacity = facilityCapacity;
+        this.facilityBudget = budget;
+        this.address = location;
+    }
+
+    public void setAddress(Location value) {
+        address = value;
+    }
+
+    public void setCapacity(int value) {
+        capacity = value;
+    }
+
+    public void setFacilityBudget(FacilityBudget value) {
+        facilityBudget = value;
+    }
+
+    public void setFacilityID(int value) {
+        facilityID = value;
+    }
+
+    public Location getAddress() {
+        return address;
+    }
+
+    public int getCapacity() {
+        return capacity;
+    }
+
+    public FacilityBudget getFacilityBudget() {
+        return facilityBudget;
+    }
+
+    public int getFacilityID() {
+        return facilityID;
+    }
 }

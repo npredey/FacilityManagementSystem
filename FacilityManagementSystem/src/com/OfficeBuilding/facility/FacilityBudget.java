@@ -11,6 +11,27 @@ package com.OfficeBuilding.facility;
  */
 public class FacilityBudget {
 
-    public double savings;
-    public double operatingBudget;
+    private double savings;
+    private double operatingBudget;
+
+    public FacilityBudget(double savings, double operatingBudget) {
+        this.savings = savings;
+        this.operatingBudget = operatingBudget;
+    }
+
+    public void setOperatingBudget(double value) {
+        operatingBudget = value;
+    }
+
+    public void setSavings(double value) {
+        savings = value;
+    }
+
+    public double getOperatingBudget() {
+        return operatingBudget;
+    }
+
+    public double getSavings() {
+        return savings;
+    }
 }

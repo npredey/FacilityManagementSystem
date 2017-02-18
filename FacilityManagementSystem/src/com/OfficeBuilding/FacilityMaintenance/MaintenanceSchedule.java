@@ -13,5 +13,17 @@ import java.util.Date;
  */
 public class MaintenanceSchedule {
 
-    public Date timeOfMaintenance;
+    private Date timeOfMaintenance;
+
+    public MaintenanceSchedule(String timeOfMaintenance) {
+        this.timeOfMaintenance = new Date(timeOfMaintenance);
+    }
+
+    public void setTimeOfMaintenance(Date value) {
+        timeOfMaintenance = value;
+    }
+
+    public Date getTimeOfMaintenance() {
+        return timeOfMaintenance;
+    }
 }

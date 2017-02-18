@@ -14,4 +14,8 @@ import java.util.ArrayList;
 public class MaintenanceLog {
 
     public ArrayList<MaintenanceOrder> orders;
+
+    public MaintenanceLog() {
+        this.orders = new ArrayList<>();
+    }
 }

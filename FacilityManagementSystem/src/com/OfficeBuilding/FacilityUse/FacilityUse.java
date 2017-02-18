@@ -17,4 +17,10 @@ public class FacilityUse {
     public Date startTime;
     public Date endTime;
     ArrayList<FacilityUser> users;
+
+    public FacilityUse(String startTime, String endTime) {
+        this.startTime = new Date(startTime);
+        this.endTime = new Date(endTime);
+        this.users = new ArrayList<>();
+    }
 }

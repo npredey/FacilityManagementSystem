@@ -13,5 +13,17 @@ import java.util.ArrayList;
  */
 public class InspectionLog {
 
-    public ArrayList<InspectionForm> inspections;
+    private ArrayList<InspectionForm> inspections;
+
+    public InspectionLog() {
+        this.inspections = new ArrayList<>();
+    }
+
+    public void setInspections(ArrayList<InspectionForm> value) {
+        inspections = value;
+    }
+
+    public ArrayList<InspectionForm> setInspections() {
+        return inspections;
+    }
 }
