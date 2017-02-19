@@ -38,4 +38,10 @@ public class FacilityInspection implements IFacilityInspection {
 
     }
 
+    @Override
+    public InspectionLog getLog(){
+        return log;
+
+    }
+
 }

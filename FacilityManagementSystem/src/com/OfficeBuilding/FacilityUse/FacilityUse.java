@@ -18,13 +18,14 @@ public class FacilityUse implements IFacilityUse {
     private Date startTime;
     private Date endTime;
     private ArrayList<FacilityUser> users;
-    private int capacity;
-    private FacilityInspection inspection;
+    IFacility facility;
 
-    public FacilityUse(String startTime, String endTime) {
+
+    public FacilityUse(String startTime, String endTime, IFacility facility) {
         this.startTime = new Date(startTime);
         this.endTime = new Date(endTime);
         this.users = new ArrayList<>();
+        this.facility = facility;
     }
 
     @Override
@@ -40,8 +41,9 @@ public class FacilityUse implements IFacilityUse {
     }
 
     @Override
-    public void getInspections() {
-        //implement inspection first
+    public InspectionLog getInspections() {
+        return facility.getInspection().getLog();
+
 
     }
 
@@ -71,13 +73,9 @@ public class FacilityUse implements IFacilityUse {
         return users;
     }
 
-    public int getCapacity() {
-        return capacity;
-    }
 
-    public FacilityInspection getInspection() {
-        return inspection;
-    }
+
+
 
     public void setStartTime(Date startTime) {
         this.startTime = startTime;
@@ -91,12 +89,5 @@ public class FacilityUse implements IFacilityUse {
         this.users = users;
     }
 
-    public void setCapacity(int capacity) {
-        this.capacity = capacity;
-    }
-
-    public void setInspection(FacilityInspection inspection) {
-        this.inspection = inspection;
-    }
 
 }

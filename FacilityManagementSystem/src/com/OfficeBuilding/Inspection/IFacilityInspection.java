@@ -15,4 +15,5 @@ public interface IFacilityInspection {
 
     void addInspectionToLog();
     void accept(InspectorVisitor inspectionVisitor);
+    InspectionLog getLog();
 }

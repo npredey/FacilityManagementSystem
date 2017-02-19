@@ -33,4 +33,8 @@ public interface IFacility {
 
     FacilityMaintenance getMaintenance();
 
+    FacilityInspection getInspection();
+
+    List<IFacility> getFacilities();
+
 }

@@ -63,19 +63,7 @@ public class Staff implements IFacilityDomain {
         return new MaintenanceCost(10.0);//to be changed
     }
 
-    @Override
-    public void scheduleMaintenance(IFacility facility) {
-        FacilityMaintenance maintain = facility.getMaintenance();
-        MaintenanceRequest mr = maintain.getMaintenanceRequest();
-        MaintenanceSchedule ms = new MaintenanceSchedule(getTimeofMaintenance(), mr);
-        maintain.scheduleRequest(ms);
 
-        getMaintenanceCost();
-
-        MaintenanceOrder order = new MaintenanceOrder(getMaintenanceCost(), mr);
-        maintain.addOrderToLog(order);
-
-    }
 
     private String getProblem() {
         //get problem from view
@@ -88,10 +76,53 @@ public class Staff implements IFacilityDomain {
     }
 
     @Override
-    public void makeMaintenanceRequest(IFacility facility) {
-        FacilityMaintenance maintain = facility.getMaintenance();
+    public void scheduleMaintenanceBuilding(Building building) {
+
+        for(IFacility facility : building.getFacilities()){
+            FacilityMaintenance maintain = facility.getMaintenance();
+            MaintenanceRequest mr = maintain.getMaintenanceRequest();
+            MaintenanceSchedule ms = new MaintenanceSchedule(getTimeofMaintenance(), mr);
+            maintain.scheduleRequest(ms);
+
+            getMaintenanceCost();
+
+            MaintenanceOrder order = new MaintenanceOrder(getMaintenanceCost(), mr);
+            maintain.addOrderToLog(order);
+
+        }
+
+    }
+
+    @Override
+    public void scheduleMaintenanceUnit(Unit unit) {
+        FacilityMaintenance maintain = unit.getMaintenance();
+        MaintenanceRequest mr = maintain.getMaintenanceRequest();
+        MaintenanceSchedule ms = new MaintenanceSchedule(getTimeofMaintenance(), mr);
+        maintain.scheduleRequest(ms);
+
+        getMaintenanceCost();
+
+        MaintenanceOrder order = new MaintenanceOrder(getMaintenanceCost(), mr);
+        maintain.addOrderToLog(order);
+
+    }
+
+    @Override
+    public void makeMaintenanceRequestBuilding(Building unit) {
+        for(IFacility facility: unit.getFacilities()){
+            FacilityMaintenance maintain = facility.getMaintenance();
+            MaintenanceRequest request = new MaintenanceRequest(getMaintenancePeriod(), staffName, getProblem());
+            maintain.addMaintenanceRequest(request);
+        }
+
+    }
+
+    @Override
+    public void makeMaintenanceRequestUnit(Unit unit) {
+        FacilityMaintenance maintain = unit.getMaintenance();
         MaintenanceRequest request = new MaintenanceRequest(getMaintenancePeriod(), staffName, getProblem());
         maintain.addMaintenanceRequest(request);
+
     }
 
 }

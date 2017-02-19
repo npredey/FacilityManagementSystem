@@ -53,12 +53,12 @@ public class Unit implements IFacility {
 
     @Override
     public void acceptRequesterStaff(IFacilityDomain domain) {
-        domain.makeMaintenanceRequest(this);
+        domain.makeMaintenanceRequestUnit(this);
     }
 
     @Override
     public void acceptScheduler(IFacilityDomain domain) {
-        domain.scheduleMaintenance(this);
+        domain.scheduleMaintenanceUnit(this);
     }
 
     @Override

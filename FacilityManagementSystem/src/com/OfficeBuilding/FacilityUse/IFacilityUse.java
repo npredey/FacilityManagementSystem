@@ -15,7 +15,7 @@ public interface IFacilityUse {
 
     public int getActualUsage();
 
-    public void getInspections();
+    public InspectionLog getInspections();
 
     public void vacateFacility();
 

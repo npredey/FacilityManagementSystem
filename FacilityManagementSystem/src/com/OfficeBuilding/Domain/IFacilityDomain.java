@@ -13,8 +13,10 @@ import com.OfficeBuilding.facility.IFacility;
  */
 public interface IFacilityDomain {
 
-    void scheduleMaintenance(IFacility facility);
+    void scheduleMaintenanceBuilding(Building building);
+    void scheduleMaintenanceUnit(Unit unit)
 
-    void makeMaintenanceRequest(IFacility facility);
+    void makeMaintenanceRequestBuilding(Building unit);
+    void makeMaintenanceRequestUnit(Unit unit)
 
 }
