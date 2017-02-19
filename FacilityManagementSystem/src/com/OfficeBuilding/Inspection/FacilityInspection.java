@@ -22,7 +22,7 @@ public class FacilityInspection implements IFacilityInspection {
     }
 
     @Override
-    public void inspect() {
+    public void inspect(InspectionForm form) {
         forms.add(form);
 
     }
