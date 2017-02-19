@@ -109,18 +109,8 @@ public class Building implements IFacility {
     }
 
     @Override
-    public void acceptRequesterStaff(IFacilityDomain domain) {
-        domain.makeMaintenanceRequestBuilding(this);
-    }
-
-    @Override
-    public void acceptScheduler(IFacilityDomain domain) {
-        domain.scheduleMaintenanceBuilding(this);
-    }
-
-    public void acceptBuilding(InspectorVisitor inspectionVisitor) {
-        inspectionVisitor.inspectBuilding(this);
-
+    public void accept(IFacilityDomain domain){
+        domain.visitBuilding(this);
     }
 
     @Override

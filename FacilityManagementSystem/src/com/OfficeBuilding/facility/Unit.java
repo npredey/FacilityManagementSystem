@@ -62,18 +62,8 @@ public class Unit implements IFacility {
     }
 
     @Override
-    public void acceptRequesterStaff(IFacilityDomain domain) {
-        domain.makeMaintenanceRequestUnit(this);
-    }
-
-    @Override
-    public void acceptScheduler(IFacilityDomain domain) {
-        domain.scheduleMaintenanceUnit(this);
-    }
-
-    public void acceptUnit(InspectorVisitor inspectionVisitor) {
-        inspectionVisitor.inspectUnit(this);
-
+    public void accept(IFacilityDomain domain){
+        domain.visitUnit(this);
     }
 
     @Override
