@@ -9,6 +9,7 @@ import com.OfficeBuilding.Domain.IFacilityDomain;
 import com.OfficeBuilding.FacilityMaintenance.FacilityMaintenance;
 import com.OfficeBuilding.Inspection.FacilityInspection;
 import com.OfficeBuilding.Inspection.InspectionLog;
+import com.OfficeBuilding.Inspection.InspectorVisitor;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -104,6 +105,11 @@ public class Building implements IFacility {
     @Override
     public void acceptScheduler(IFacilityDomain domain) {
         domain.scheduleMaintenanceBuilding(this);
+    }
+
+    public void acceptBuilding(InspectorVisitor inspectionVisitor) {
+        inspectionVisitor.inspectBuilding(this);
+
     }
 
 }

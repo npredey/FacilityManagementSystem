@@ -33,13 +33,7 @@ public class FacilityInspection implements IFacilityInspection {
     }
 
     @Override
-    public void accept(InspectorVisitor inspectionVisitor) {
-        inspectionVisitor.inspect(this);
-
-    }
-
-    @Override
-    public InspectionLog getLog(){
+    public InspectionLog getLog() {
         return log;
 
     }

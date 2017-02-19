@@ -1,8 +1,7 @@
 package com.OfficeBuilding.Inspection;
 
-import com.OfficeBuilding.Inspection.FacilityInspection;
-import com.OfficeBuilding.Inspection.InspectorVisitor;
-import java.util.Date;
+import com.OfficeBuilding.facility.Building;
+import com.OfficeBuilding.facility.Unit;
 
 /**
  * Created by Nathnael on 2/18/2017.
@@ -16,15 +15,13 @@ public class Inspector implements InspectorVisitor {
     }
 
     @Override
-    public void inspect(Building build) {
-        for(IFacility f: build.getFacilities()){
+    public void inspectBuilding(Building build) {
+        build.getFacilities().stream().forEach((f) -> {
             String inspectionDate = getInspectionDate();
             String inspectionNote = getInspectionNote();
             InspectionForm form = new InspectionForm(inspectionDate, inspectorId, inspectionNote);
             f.getInspection().inspect(form);
-
-        }
-
+        });
 
     }
 
@@ -40,7 +37,10 @@ public class Inspector implements InspectorVisitor {
     }
 
     @Override
-    public void inspect(Building building) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void inspectUnit(Unit unit) {
+        String inspectionDate = getInspectionDate();
+        String inspectionNote = getInspectionNote();
+        InspectionForm form = new InspectionForm(inspectionDate, inspectorId, inspectionNote);
+        unit.getInspection().inspect(form);
     }
 }

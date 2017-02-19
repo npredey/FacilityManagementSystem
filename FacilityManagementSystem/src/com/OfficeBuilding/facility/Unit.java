@@ -8,6 +8,7 @@ package com.OfficeBuilding.facility;
 import com.OfficeBuilding.Domain.IFacilityDomain;
 import com.OfficeBuilding.FacilityMaintenance.FacilityMaintenance;
 import com.OfficeBuilding.Inspection.FacilityInspection;
+import com.OfficeBuilding.Inspection.InspectorVisitor;
 
 /**
  *
@@ -61,6 +62,11 @@ public class Unit implements IFacility {
     @Override
     public void acceptScheduler(IFacilityDomain domain) {
         domain.scheduleMaintenanceUnit(this);
+    }
+
+    public void acceptUnit(InspectorVisitor inspectionVisitor) {
+        inspectionVisitor.inspectUnit(this);
+
     }
 
     @Override

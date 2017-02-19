@@ -40,7 +40,7 @@ public class Staff implements IFacilityDomain {
         this.schedules = schedules;
     }
 
-    public FacilityMaintenance getMaintenance() {
+    public IFacilityMaintenance getMaintenance() {
         return maintenance;
     }
 
