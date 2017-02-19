@@ -7,6 +7,7 @@ package com.OfficeBuilding.facility;
 
 import com.OfficeBuilding.Domain.IFacilityDomain;
 import com.OfficeBuilding.FacilityMaintenance.FacilityMaintenance;
+import com.OfficeBuilding.Inspection.FacilityInspection;
 
 /**
  *
@@ -16,6 +17,7 @@ public class Unit implements IFacility {
 
     private FacilityDetail detail;
     private FacilityMaintenance maintenance;
+    private FacilityInspection inspection;
 
     private void addNewUnitDetail(FacilityDetail d) {
         detail = d;
@@ -74,4 +76,8 @@ public class Unit implements IFacility {
         this.detail = detail;
     }
 
+    @Override
+    public FacilityInspection getInspection() {
+        return inspection;
+    }
 }

@@ -6,6 +6,8 @@
 package com.OfficeBuilding.FacilityUse;
 
 import com.OfficeBuilding.Inspection.FacilityInspection;
+import com.OfficeBuilding.Inspection.InspectionLog;
+import com.OfficeBuilding.facility.IFacility;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -20,7 +22,6 @@ public class FacilityUse implements IFacilityUse {
     private ArrayList<FacilityUser> users;
     IFacility facility;
 
-
     public FacilityUse(String startTime, String endTime, IFacility facility) {
         this.startTime = new Date(startTime);
         this.endTime = new Date(endTime);
@@ -30,7 +31,7 @@ public class FacilityUse implements IFacilityUse {
 
     @Override
     public double getUsageRate() {
-        return users.size() / ((double) capacity);
+        return users.size() / ((double) facility.getCapacity()); //need to get the capacity
 
     }
 
@@ -43,7 +44,6 @@ public class FacilityUse implements IFacilityUse {
     @Override
     public InspectionLog getInspections() {
         return facility.getInspection().getLog();
-
 
     }
 
@@ -73,10 +73,6 @@ public class FacilityUse implements IFacilityUse {
         return users;
     }
 
-
-
-
-
     public void setStartTime(Date startTime) {
         this.startTime = startTime;
     }
@@ -88,6 +84,5 @@ public class FacilityUse implements IFacilityUse {
     public void setUsers(ArrayList<FacilityUser> users) {
         this.users = users;
     }
-
 
 }

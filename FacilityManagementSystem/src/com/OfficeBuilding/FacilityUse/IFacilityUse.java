@@ -5,6 +5,8 @@
  */
 package com.OfficeBuilding.FacilityUse;
 
+import com.OfficeBuilding.Inspection.InspectionLog;
+
 /**
  *
  * @author nickpredey

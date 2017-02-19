@@ -7,8 +7,10 @@ package com.OfficeBuilding.facility;
 
 import com.OfficeBuilding.Domain.IFacilityDomain;
 import com.OfficeBuilding.FacilityMaintenance.FacilityMaintenance;
+import com.OfficeBuilding.Inspection.FacilityInspection;
 import com.OfficeBuilding.Inspection.InspectionLog;
-import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -23,9 +25,10 @@ public class Building implements IFacility {
     public InspectionLog inspectionLog;
     private FacilityInspection inspection;
 
-
-
-
+    /**
+     *
+     * @param units
+     */
     public Building(final Unit... units) {
         facilities = Arrays.asList(units);
     }
@@ -34,80 +37,72 @@ public class Building implements IFacility {
         detail = d;
     }
 
+    @Override
     public FacilityMaintenance getMaintenance() {
         return maintenance;
     }
 
-    public List<IFacility> getFacilities(){
-        Collections.unmodifiableList(facilities);
+    public List<IFacility> getFacilities() {
+        return Collections.unmodifiableList(facilities);
     }
+
     @Override
     public void addFacility(IFacility anyFacility) {
         facilities.add(anyFacility);
     }
-
 
     @Override
     public void removeFacility(IFacility anyFacility) {
         facilities.remove(anyFacility);
     }
 
-
     @Override
     public int getSize() {
         //separate out to visitor
-        int size = 0
-        for(IFacility facility: facilities){
+        int size = 0;
+        for (IFacility facility : facilities) {
             size += facility.getSize();
         }
         return size;
     }
 
-
     @Override
     public int getCapacity() {
         //separate out into visitor
         int cap = 0;
-        for(IFacility facility: facilities){
+        for (IFacility facility : facilities) {
             cap += facility.getCapacity();
         }
 
         return cap;
     }
 
-
     @Override
     public FacilityDetail getFacilityDetail() {
         return detail;
     }
-
 
     @Override
     public FacilityInspection getInspection() {
         return inspection;
     }
 
-
     @Override
     public void addNewDetail(FacilityDetail anyDetail) {
         addNewFacilityDetail(anyDetail);
     }
 
-
     public FacilityDetail getDetail() {
         return detail;
     }
-
 
     @Override
     public void acceptRequesterStaff(IFacilityDomain domain) {
         domain.makeMaintenanceRequestBuilding(this);
     }
 
-
     @Override
     public void acceptScheduler(IFacilityDomain domain) {
-
         domain.scheduleMaintenanceBuilding(this);
     }
 

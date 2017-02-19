@@ -5,7 +5,9 @@
  */
 package com.OfficeBuilding.Domain;
 
+import com.OfficeBuilding.facility.Building;
 import com.OfficeBuilding.facility.IFacility;
+import com.OfficeBuilding.facility.Unit;
 
 /**
  *
@@ -14,9 +16,11 @@ import com.OfficeBuilding.facility.IFacility;
 public interface IFacilityDomain {
 
     void scheduleMaintenanceBuilding(Building building);
-    void scheduleMaintenanceUnit(Unit unit)
+
+    void scheduleMaintenanceUnit(Unit unit);
 
     void makeMaintenanceRequestBuilding(Building unit);
-    void makeMaintenanceRequestUnit(Unit unit)
+
+    void makeMaintenanceRequestUnit(Unit unit);
 
 }

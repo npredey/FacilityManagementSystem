@@ -10,7 +10,9 @@ import com.OfficeBuilding.FacilityMaintenance.MaintenanceCost;
 import com.OfficeBuilding.FacilityMaintenance.MaintenanceOrder;
 import com.OfficeBuilding.FacilityMaintenance.MaintenanceRequest;
 import com.OfficeBuilding.FacilityMaintenance.MaintenanceSchedule;
+import com.OfficeBuilding.facility.Building;
 import com.OfficeBuilding.facility.IFacility;
+import com.OfficeBuilding.facility.Unit;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -63,8 +65,6 @@ public class Staff implements IFacilityDomain {
         return new MaintenanceCost(10.0);//to be changed
     }
 
-
-
     private String getProblem() {
         //get problem from view
         return "Pipe Problem";
@@ -78,8 +78,7 @@ public class Staff implements IFacilityDomain {
     @Override
     public void scheduleMaintenanceBuilding(Building building) {
 
-        for(IFacility facility : building.getFacilities()){
-            FacilityMaintenance maintain = facility.getMaintenance();
+        building.getFacilities().stream().map((facility) -> facility.getMaintenance()).forEach((maintain) -> {
             MaintenanceRequest mr = maintain.getMaintenanceRequest();
             MaintenanceSchedule ms = new MaintenanceSchedule(getTimeofMaintenance(), mr);
             maintain.scheduleRequest(ms);
@@ -88,8 +87,7 @@ public class Staff implements IFacilityDomain {
 
             MaintenanceOrder order = new MaintenanceOrder(getMaintenanceCost(), mr);
             maintain.addOrderToLog(order);
-
-        }
+        });
 
     }
 
@@ -109,11 +107,10 @@ public class Staff implements IFacilityDomain {
 
     @Override
     public void makeMaintenanceRequestBuilding(Building unit) {
-        for(IFacility facility: unit.getFacilities()){
-            FacilityMaintenance maintain = facility.getMaintenance();
+        unit.getFacilities().stream().map((facility) -> facility.getMaintenance()).forEach((maintain) -> {
             MaintenanceRequest request = new MaintenanceRequest(getMaintenancePeriod(), staffName, getProblem());
             maintain.addMaintenanceRequest(request);
-        }
+        });
 
     }
 

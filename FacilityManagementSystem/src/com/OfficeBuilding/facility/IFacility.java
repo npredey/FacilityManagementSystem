@@ -8,6 +8,7 @@ package com.OfficeBuilding.facility;
 import com.OfficeBuilding.Domain.IFacilityDomain;
 import com.OfficeBuilding.FacilityMaintenance.FacilityMaintenance;
 import com.OfficeBuilding.FacilityMaintenance.MaintenanceRequest;
+import com.OfficeBuilding.Inspection.FacilityInspection;
 
 /**
  *
@@ -34,7 +35,5 @@ public interface IFacility {
     FacilityMaintenance getMaintenance();
 
     FacilityInspection getInspection();
-
-    List<IFacility> getFacilities();
 
 }
