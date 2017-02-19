@@ -15,10 +15,10 @@ public class InspectionForm {
 
     private Date inspectionDate;
     private int inspectorID;
-    private int facilityID;
+
     private String inspectionNotes;
 
-    public InspectionForm(String inspectionDate, int inspectorID, int facilityID,
+    public InspectionForm(String inspectionDate, int inspectorID,
             String inspectionNotes) {
         this.inspectionDate = new Date(inspectionDate);
         this.inspectorID = inspectorID;
@@ -26,9 +26,7 @@ public class InspectionForm {
         this.inspectionNotes = inspectionNotes;
     }
 
-    public void setfacilityID(int value) {
-        facilityID = value;
-    }
+
 
     public void setInspectionDate(Date value) {
         inspectionDate = value;
@@ -42,9 +40,7 @@ public class InspectionForm {
         inspectionNotes = value;
     }
 
-    public int getfacilityID() {
-        return facilityID;
-    }
+
 
     public Date getInspectionDate() {
         return inspectionDate;

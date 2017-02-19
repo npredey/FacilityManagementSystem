@@ -23,7 +23,7 @@ public class FacilityInspection implements IFacilityInspection {
 
     @Override
     public void inspect() {
-        log.addForm(forms.remove(0));
+        forms.add(form);
 
     }
 
@@ -34,7 +34,8 @@ public class FacilityInspection implements IFacilityInspection {
 
     @Override
     public void accept(InspectorVisitor inspectionVisitor) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        inspectionVisitor.inspect(this);
+
     }
 
 }
