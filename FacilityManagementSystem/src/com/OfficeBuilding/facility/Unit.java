@@ -9,6 +9,7 @@ import com.OfficeBuilding.Domain.IFacilityDomain;
 import com.OfficeBuilding.FacilityMaintenance.FacilityMaintenance;
 import com.OfficeBuilding.Inspection.FacilityInspection;
 import com.OfficeBuilding.Inspection.InspectorVisitor;
+import java.util.Objects;
 
 /**
  *
@@ -19,6 +20,12 @@ public class Unit implements IFacility {
     private FacilityDetail detail;
     private FacilityMaintenance maintenance;
     private FacilityInspection inspection;
+
+    public Unit(FacilityDetail detail, FacilityMaintenance maintenance, FacilityInspection inspection) {
+        this.detail = detail;
+        this.maintenance = maintenance;
+        this.inspection = inspection;
+    }
 
     private void addNewUnitDetail(FacilityDetail d) {
         detail = d;
@@ -86,4 +93,38 @@ public class Unit implements IFacility {
     public FacilityInspection getInspection() {
         return inspection;
     }
+
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 59 * hash + Objects.hashCode(this.detail);
+        hash = 59 * hash + Objects.hashCode(this.maintenance);
+        hash = 59 * hash + Objects.hashCode(this.inspection);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Unit other = (Unit) obj;
+        if (!Objects.equals(this.detail, other.detail)) {
+            return false;
+        }
+        if (!Objects.equals(this.maintenance, other.maintenance)) {
+            return false;
+        }
+        if (!Objects.equals(this.inspection, other.inspection)) {
+            return false;
+        }
+        return true;
+    }
+
 }

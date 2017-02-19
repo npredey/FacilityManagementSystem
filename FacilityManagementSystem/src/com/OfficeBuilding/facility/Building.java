@@ -21,7 +21,7 @@ import java.util.List;
 public class Building implements IFacility {
 
     private FacilityMaintenance maintenance;
-    FacilityDetail detail;
+    private FacilityDetail detail;
     public List<IFacility> facilities;
     public InspectionLog inspectionLog;
     private FacilityInspection inspection;
@@ -32,6 +32,14 @@ public class Building implements IFacility {
      */
     public Building(final Unit... units) {
         facilities = Arrays.asList(units);
+    }
+
+    public InspectionLog getInspectionLog() {
+        return inspectionLog;
+    }
+
+    public void setInspectionLog(InspectionLog inspectionLog) {
+        this.inspectionLog = inspectionLog;
     }
 
     private void addNewFacilityDetail(FacilityDetail d) {
