@@ -22,11 +22,8 @@ public class InspectionForm {
             String inspectionNotes) {
         this.inspectionDate = new Date(inspectionDate);
         this.inspectorID = inspectorID;
-        this.facilityID = facilityID;
         this.inspectionNotes = inspectionNotes;
     }
-
-
 
     public void setInspectionDate(Date value) {
         inspectionDate = value;
@@ -39,8 +36,6 @@ public class InspectionForm {
     public void setInspectionNotes(String value) {
         inspectionNotes = value;
     }
-
-
 
     public Date getInspectionDate() {
         return inspectionDate;
@@ -56,7 +51,8 @@ public class InspectionForm {
 
     @Override
     public String toString() {
-        return "InspectionForm{" + "inspectionDate=" + inspectionDate + ", inspectorID=" + inspectorID + ", facilityID=" + facilityID + ", inspectionNotes=" + inspectionNotes + '}';
+        return "InspectionForm{" + "inspectionDate=" + inspectionDate + ", "
+                + "inspectorID=" + inspectorID + ", inspectionNotes=" + inspectionNotes + '}';
     }
 
 }
