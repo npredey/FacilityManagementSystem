@@ -23,8 +23,7 @@ import java.util.List;
  */
 public class Staff implements IFacilityDomain {
 
-    private List<MaintenanceSchedule> schedules;
-    private IFacilityMaintenance maintenance;
+
     private String staffName;
 
     public Staff(String staffName) {
@@ -33,21 +32,9 @@ public class Staff implements IFacilityDomain {
         this.schedules = new ArrayList<>();
     }
 
-    public List<MaintenanceSchedule> getSchedules() {
-        return schedules;
-    }
 
-    public void setSchedules(List<MaintenanceSchedule> schedules) {
-        this.schedules = schedules;
-    }
 
-    public IFacilityMaintenance getMaintenance() {
-        return maintenance;
-    }
 
-    public void setMaintenance(FacilityMaintenance maintenance) {
-        this.maintenance = maintenance;
-    }
 
     public String getStaffName() {
         return staffName;
@@ -77,7 +64,7 @@ public class Staff implements IFacilityDomain {
     }
 
     @Override
-    public void scheduleMaintenanceBuilding(Building building) {
+    public void visitBuilding(Building building) {
 
         building.getFacilities().stream().map((facility) -> facility.getMaintenance()).forEach((maintain) -> {
             MaintenanceRequest mr = maintain.getMaintenanceRequest();
@@ -93,7 +80,7 @@ public class Staff implements IFacilityDomain {
     }
 
     @Override
-    public void scheduleMaintenanceUnit(Unit unit) {
+    public void visitUnit(Unit unit) {
         FacilityMaintenance maintain = unit.getMaintenance();
         MaintenanceRequest mr = maintain.getMaintenanceRequest();
         MaintenanceSchedule ms = new MaintenanceSchedule(getTimeofMaintenance(), mr);
@@ -106,21 +93,6 @@ public class Staff implements IFacilityDomain {
 
     }
 
-    @Override
-    public void makeMaintenanceRequestBuilding(Building unit) {
-        unit.getFacilities().stream().map((facility) -> facility.getMaintenance()).forEach((maintain) -> {
-            MaintenanceRequest request = new MaintenanceRequest(getMaintenancePeriod(), staffName, getProblem());
-            maintain.addMaintenanceRequest(request);
-        });
 
-    }
-
-    @Override
-    public void makeMaintenanceRequestUnit(Unit unit) {
-        FacilityMaintenance maintain = unit.getMaintenance();
-        MaintenanceRequest request = new MaintenanceRequest(getMaintenancePeriod(), staffName, getProblem());
-        maintain.addMaintenanceRequest(request);
-
-    }
 
 }

@@ -28,9 +28,7 @@ public interface IFacility {
 
     void addNewDetail(FacilityDetail anyDetail);
 
-    void acceptRequesterStaff(IFacilityDomain domain);
-
-    void acceptScheduler(IFacilityDomain domain);
+    void accept(IFacilityDomain domain)
 
     FacilityMaintenance getMaintenance();
 

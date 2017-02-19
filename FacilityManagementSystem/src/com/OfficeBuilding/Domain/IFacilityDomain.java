@@ -23,4 +23,8 @@ public interface IFacilityDomain {
 
     void makeMaintenanceRequestUnit(Unit unit);
 
+    void visitBuilding(Building building);
+
+    void visitUnit(Unit unit);
+
 }
