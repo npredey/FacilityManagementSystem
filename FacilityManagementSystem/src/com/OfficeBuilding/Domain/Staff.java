@@ -6,12 +6,12 @@
 package com.OfficeBuilding.Domain;
 
 import com.OfficeBuilding.FacilityMaintenance.FacilityMaintenance;
+import com.OfficeBuilding.FacilityMaintenance.IFacilityMaintenance;
 import com.OfficeBuilding.FacilityMaintenance.MaintenanceCost;
 import com.OfficeBuilding.FacilityMaintenance.MaintenanceOrder;
 import com.OfficeBuilding.FacilityMaintenance.MaintenanceRequest;
 import com.OfficeBuilding.FacilityMaintenance.MaintenanceSchedule;
 import com.OfficeBuilding.facility.Building;
-import com.OfficeBuilding.facility.IFacility;
 import com.OfficeBuilding.facility.Unit;
 import java.util.ArrayList;
 import java.util.List;
@@ -23,10 +23,10 @@ import java.util.List;
 public class Staff implements IFacilityDomain {
 
     private List<MaintenanceSchedule> schedules;
-    private FacilityMaintenance maintenance;
+    private IFacilityMaintenance maintenance;
     private String staffName;
 
-    public Staff(String staffName, FacilityMaintenance maintenance) {
+    public Staff(String staffName, IFacilityMaintenance maintenance) {
         this.maintenance = maintenance;
         this.staffName = staffName;
         this.schedules = new ArrayList<>();
