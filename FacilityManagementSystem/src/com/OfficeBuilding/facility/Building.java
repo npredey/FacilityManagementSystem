@@ -32,6 +32,9 @@ public class Building implements IFacility {
      */
     public Building(final Unit... units) {
         facilities = Arrays.asList(units);
+        this.detail = new FacilityDetail(-1, getCapacity(), null, null);
+        this.inspectionLog = new InspectionLog();
+
     }
 
     public InspectionLog getInspectionLog() {
@@ -76,7 +79,7 @@ public class Building implements IFacility {
     }
 
     @Override
-    public int getCapacity() {
+    public final int getCapacity() {
         //separate out into visitor
         int cap = 0;
         for (IFacility facility : facilities) {
@@ -118,6 +121,11 @@ public class Building implements IFacility {
     public void acceptBuilding(InspectorVisitor inspectionVisitor) {
         inspectionVisitor.inspectBuilding(this);
 
+    }
+
+    @Override
+    public String toString() {
+        return "Building{" + " detail=" + detail.toString() + '}';
     }
 
 }

@@ -8,6 +8,7 @@ package com.OfficeBuilding.Domain;
 import com.OfficeBuilding.FacilityMaintenance.FacilityMaintenance;
 import com.OfficeBuilding.FacilityMaintenance.IFacilityMaintenance;
 import com.OfficeBuilding.FacilityMaintenance.MaintenanceCost;
+import com.OfficeBuilding.FacilityMaintenance.MaintenanceLog;
 import com.OfficeBuilding.FacilityMaintenance.MaintenanceOrder;
 import com.OfficeBuilding.FacilityMaintenance.MaintenanceRequest;
 import com.OfficeBuilding.FacilityMaintenance.MaintenanceSchedule;
@@ -26,8 +27,8 @@ public class Staff implements IFacilityDomain {
     private IFacilityMaintenance maintenance;
     private String staffName;
 
-    public Staff(String staffName, IFacilityMaintenance maintenance) {
-        this.maintenance = maintenance;
+    public Staff(String staffName) {
+        this.maintenance = new FacilityMaintenance();
         this.staffName = staffName;
         this.schedules = new ArrayList<>();
     }

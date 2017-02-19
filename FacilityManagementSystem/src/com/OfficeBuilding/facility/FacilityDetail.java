@@ -55,4 +55,10 @@ public class FacilityDetail {
     public int getFacilityID() {
         return facilityID;
     }
+
+    @Override
+    public String toString() {
+        return "FacilityDetail{" + "facilityID=" + facilityID + ", capacity=" + capacity + ", facilityBudget=" + facilityBudget + ", address=" + address + '}';
+    }
+
 }

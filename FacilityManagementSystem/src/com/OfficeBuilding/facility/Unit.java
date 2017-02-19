@@ -21,10 +21,10 @@ public class Unit implements IFacility {
     private FacilityMaintenance maintenance;
     private FacilityInspection inspection;
 
-    public Unit(FacilityDetail detail, FacilityMaintenance maintenance, FacilityInspection inspection) {
+    public Unit(FacilityDetail detail) {
         this.detail = detail;
-        this.maintenance = maintenance;
-        this.inspection = inspection;
+        this.maintenance = new FacilityMaintenance();
+        this.inspection = new FacilityInspection();
     }
 
     private void addNewUnitDetail(FacilityDetail d) {

@@ -17,14 +17,14 @@ import java.util.Date;
  */
 public class FacilityUse implements IFacilityUse {
 
-    private Date startTime;
-    private Date endTime;
+    private String startTime;
+    private String endTime;
     private ArrayList<FacilityUser> users;
     IFacility facility;
 
     public FacilityUse(String startTime, String endTime, IFacility facility) {
-        this.startTime = new Date(startTime);
-        this.endTime = new Date(endTime);
+        this.startTime = startTime;
+        this.endTime = endTime;
         this.users = new ArrayList<>();
         this.facility = facility;
     }
@@ -61,11 +61,11 @@ public class FacilityUse implements IFacilityUse {
 
     }
 
-    public Date getStartTime() {
+    public String getStartTime() {
         return startTime;
     }
 
-    public Date getEndTime() {
+    public String getEndTime() {
         return endTime;
     }
 
@@ -73,11 +73,11 @@ public class FacilityUse implements IFacilityUse {
         return users;
     }
 
-    public void setStartTime(Date startTime) {
+    public void setStartTime(String startTime) {
         this.startTime = startTime;
     }
 
-    public void setEndTime(Date endTime) {
+    public void setEndTime(String endTime) {
         this.endTime = endTime;
     }
 

@@ -30,8 +30,8 @@ public class FacilityMaintenance implements IFacilityMaintenance {
         log.addToLog(or);
     }
 
-    public FacilityMaintenance(MaintenanceLog log) {
-        this.log = log;
+    public FacilityMaintenance() {
+        this.log = new MaintenanceLog();
         this.requestQueue = new ArrayList<>();
         this.orders = new ArrayList<>();
         this.schedules = new ArrayList<>();
