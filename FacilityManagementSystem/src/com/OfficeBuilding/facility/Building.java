@@ -5,22 +5,31 @@
  */
 package com.OfficeBuilding.facility;
 
+import com.OfficeBuilding.Domain.IFacilityDomain;
+import com.OfficeBuilding.FacilityMaintenance.FacilityMaintenance;
 import com.OfficeBuilding.Inspection.InspectionLog;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
  * @author nickpredey
  */
 public class Building implements IFacility {
-    FacilityMaintenance maintenance;
+
+    private FacilityMaintenance maintenance;
     FacilityDetail detail;
 
-    List<IFacility> facilities;
+    public List<IFacility> facilities;
 
     public InspectionLog inspectionLog;
 
-    public Building(){
+    public Building() {
         facilities = new ArrayList<>();
+    }
+
+    private void addNewFacilityDetail(FacilityDetail d) {
+        detail = d;
     }
 
     public FacilityMaintenance getMaintenance() {
@@ -28,33 +37,33 @@ public class Building implements IFacility {
     }
 
     @Override
-    public void addFacility(IFacility) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void addFacility(IFacility anyFacility) {
+        facilities.add(anyFacility);
     }
 
     @Override
-    public void removeFacility() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void removeFacility(IFacility anyFacility) {
+        facilities.remove(anyFacility);
     }
 
     @Override
-    public void getSize() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public int getSize() {
+        return facilities.size();
     }
 
     @Override
-    public void getCapacity() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public int getCapacity() {
+        return detail.getCapacity();
     }
 
     @Override
-    public void getFacilityDetail() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public FacilityDetail getFacilityDetail() {
+        return detail;
     }
 
     @Override
-    public void addNewDetail() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void addNewDetail(FacilityDetail anyDetail) {
+        addNewFacilityDetail(anyDetail);
     }
 
     public FacilityDetail getDetail() {
@@ -70,10 +79,6 @@ public class Building implements IFacility {
     public void acceptScheduler(IFacilityDomain domain) {
 
         domain.scheduleMaintenance(this);
-    }
-
-    public String getProblem(){
-        //gets the problem from the view
     }
 
 }

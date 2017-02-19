@@ -1,14 +1,22 @@
 package com.OfficeBuilding.FacilityMaintenance;
 
-import java.util.*;
-
 /**
-  * @author nathnael2
-  */
-public class MaintenanceCost{
-    double dollarAmount;
+ * @author nathnael2
+ */
+public class MaintenanceCost {
 
-    public MaintenanceCost(double dollarAmount){
+    private double dollarAmount;
+
+    public MaintenanceCost(double dollarAmount) {
         this.dollarAmount = dollarAmount;
     }
+
+    public double getDollarAmount() {
+        return dollarAmount;
+    }
+
+    public void setDollarAmount(double dollarAmount) {
+        this.dollarAmount = dollarAmount;
+    }
+
 }

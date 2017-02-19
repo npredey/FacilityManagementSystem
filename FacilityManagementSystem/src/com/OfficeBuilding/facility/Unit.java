@@ -5,40 +5,73 @@
  */
 package com.OfficeBuilding.facility;
 
+import com.OfficeBuilding.Domain.IFacilityDomain;
+import com.OfficeBuilding.FacilityMaintenance.FacilityMaintenance;
+
 /**
  *
  * @author nickpredey
  */
 public class Unit implements IFacility {
 
-    @Override
-    public void addFacility() {
+    private FacilityDetail detail;
+    private FacilityMaintenance maintenance;
 
+    private void addNewUnitDetail(FacilityDetail d) {
+        detail = d;
     }
 
     @Override
-    public void removeFacility() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void addFacility(IFacility anyFacility) {
+        anyFacility.addFacility(this);
     }
 
     @Override
-    public void getSize() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void removeFacility(IFacility anyFacility) {
+        anyFacility.removeFacility(this);
     }
 
     @Override
-    public void getCapacity() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public int getSize() {
+        return 1;
     }
 
     @Override
-    public void getFacilityDetail() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public int getCapacity() {
+        return detail.getCapacity();
     }
 
     @Override
-    public void addNewDetail() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public FacilityDetail getFacilityDetail() {
+        return detail;
+    }
+
+    @Override
+    public void addNewDetail(FacilityDetail anyDetail) {
+        addNewUnitDetail(detail);
+    }
+
+    @Override
+    public void acceptRequesterStaff(IFacilityDomain domain) {
+        domain.makeMaintenanceRequest(this);
+    }
+
+    @Override
+    public void acceptScheduler(IFacilityDomain domain) {
+        domain.scheduleMaintenance(this);
+    }
+
+    @Override
+    public FacilityMaintenance getMaintenance() {
+        return maintenance;
+    }
+
+    public FacilityDetail getDetail() {
+        return detail;
+    }
+
+    public void setDetail(FacilityDetail detail) {
+        this.detail = detail;
     }
 
 }

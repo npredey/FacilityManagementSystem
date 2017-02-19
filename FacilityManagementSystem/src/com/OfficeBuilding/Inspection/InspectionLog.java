@@ -27,7 +27,8 @@ public class InspectionLog {
         return inspections;
     }
 
-    public void addForm(InspectionForm form){
+    public void addForm(InspectionForm form) {
         inspections.add(form);
     }
+
 }

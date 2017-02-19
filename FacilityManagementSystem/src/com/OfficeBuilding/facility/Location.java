@@ -28,51 +28,52 @@ public class Location {
         this.country = country;
     }
 
-    public void setCity(String value) {
-        city = value;
-    }
-
-    public void setCountry(String value) {
-        country = value;
-    }
-
-    public void setState(String value) {
-        state = value;
-    }
-
-    public void setStreetName(String value) {
-        streetName = value;
-    }
-
-    public void setStreetNumber(String value) {
-        streetNumber = value;
-    }
-
-    public void setZipCode(int value) {
-        zipCode = value;
-    }
-
-    public String getCity(String value) {
-        return city;
-    }
-
-    public String getCountry(String value) {
-        return country;
-    }
-
-    public String getState(String value) {
-        return state;
-    }
-
-    public String getStreetName(String value) {
+    public String getStreetName() {
         return streetName;
     }
 
-    public String getStreetNumber(String value) {
+    public void setStreetName(String streetName) {
+        this.streetName = streetName;
+    }
+
+    public String getStreetNumber() {
         return streetNumber;
     }
 
-    public int getZipCode(int value) {
+    public void setStreetNumber(String streetNumber) {
+        this.streetNumber = streetNumber;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
+    }
+
+    public int getZipCode() {
         return zipCode;
     }
+
+    public void setZipCode(int zipCode) {
+        this.zipCode = zipCode;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
+
 }

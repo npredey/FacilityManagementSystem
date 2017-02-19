@@ -5,59 +5,93 @@
  */
 package com.OfficeBuilding.Domain;
 
+import com.OfficeBuilding.FacilityMaintenance.FacilityMaintenance;
+import com.OfficeBuilding.FacilityMaintenance.MaintenanceCost;
+import com.OfficeBuilding.FacilityMaintenance.MaintenanceOrder;
+import com.OfficeBuilding.FacilityMaintenance.MaintenanceRequest;
+import com.OfficeBuilding.FacilityMaintenance.MaintenanceSchedule;
+import com.OfficeBuilding.facility.IFacility;
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  *
  * @author nickpredey
  */
 public class Staff implements IFacilityDomain {
-    List<MaintenanceSchedule> schedules = new ArrayList<>();
-    FacilityMaintenance maintenance;
-    String  staffName;
 
-    public Staff(String staffName, FacilityMaintenance maintenance){
+    private List<MaintenanceSchedule> schedules;
+    private FacilityMaintenance maintenance;
+    private String staffName;
+
+    public Staff(String staffName, FacilityMaintenance maintenance) {
         this.maintenance = maintenance;
         this.staffName = staffName;
+        this.schedules = new ArrayList<>();
+    }
 
+    public List<MaintenanceSchedule> getSchedules() {
+        return schedules;
     }
-    private String getTimeofMaintenance(){
+
+    public void setSchedules(List<MaintenanceSchedule> schedules) {
+        this.schedules = schedules;
+    }
+
+    public FacilityMaintenance getMaintenance() {
+        return maintenance;
+    }
+
+    public void setMaintenance(FacilityMaintenance maintenance) {
+        this.maintenance = maintenance;
+    }
+
+    public String getStaffName() {
+        return staffName;
+    }
+
+    public void setStaffName(String staffName) {
+        this.staffName = staffName;
+    }
+
+    private String getTimeofMaintenance() {
         //get time from view;
-        return 12;
+        return Integer.toString(12);
     }
-    private getMaintenanceCost(){
+
+    private MaintenanceCost getMaintenanceCost() {
         return new MaintenanceCost(10.0);//to be changed
     }
+
     @Override
     public void scheduleMaintenance(IFacility facility) {
         FacilityMaintenance maintain = facility.getMaintenance();
         MaintenanceRequest mr = maintain.getMaintenanceRequest();
-        MaintenanceSchedule ms = new MaintenanceSchedule(getTimeofMaintenance(),mr);
+        MaintenanceSchedule ms = new MaintenanceSchedule(getTimeofMaintenance(), mr);
         maintain.scheduleRequest(ms);
 
-        getMaintenanceCost()
+        getMaintenanceCost();
 
-        MaintenanceOrder order = new MaintenanceOrder(getMaintenanceCost(),mr);
+        MaintenanceOrder order = new MaintenanceOrder(getMaintenanceCost(), mr);
         maintain.addOrderToLog(order);
 
-
     }
+
     private String getProblem() {
         //get problem from view
         return "Pipe Problem";
     }
-    private int getMaintenancePeriod(){
+
+    private int getMaintenancePeriod() {
         //get Period from view
         return 12;
     }
 
     @Override
     public void makeMaintenanceRequest(IFacility facility) {
-
-
-        MaintenanceRequesst request = new MaintenanceRequest(getMaintenancePeriod(),staffName,getProblem());
-        facility.addMaintenanceRequest(request);
-
-
-
+        FacilityMaintenance maintain = facility.getMaintenance();
+        MaintenanceRequest request = new MaintenanceRequest(getMaintenancePeriod(), staffName, getProblem());
+        maintain.addMaintenanceRequest(request);
     }
 
 }

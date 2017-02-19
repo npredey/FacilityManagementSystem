@@ -57,4 +57,10 @@ public class InspectionForm {
     public String getInspectionNotes() {
         return inspectionNotes;
     }
+
+    @Override
+    public String toString() {
+        return "InspectionForm{" + "inspectionDate=" + inspectionDate + ", inspectorID=" + inspectorID + ", facilityID=" + facilityID + ", inspectionNotes=" + inspectionNotes + '}';
+    }
+
 }

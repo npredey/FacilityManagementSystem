@@ -5,6 +5,8 @@
  */
 package com.OfficeBuilding.Domain;
 
+import com.OfficeBuilding.facility.IFacility;
+
 /**
  *
  * @author nickpredey

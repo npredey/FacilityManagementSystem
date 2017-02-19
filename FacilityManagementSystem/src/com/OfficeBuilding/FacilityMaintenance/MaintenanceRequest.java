@@ -42,5 +42,8 @@ public class MaintenanceRequest {
         return maintenanceRequester;
     }
 
+    String getProblem() {
+        return problem;
+    }
 
 }

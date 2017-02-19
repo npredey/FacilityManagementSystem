@@ -5,24 +5,32 @@
  */
 package com.OfficeBuilding.facility;
 
+import com.OfficeBuilding.Domain.IFacilityDomain;
+import com.OfficeBuilding.FacilityMaintenance.FacilityMaintenance;
+import com.OfficeBuilding.FacilityMaintenance.MaintenanceRequest;
+
 /**
  *
  * @author nickpredey
  */
 public interface IFacility {
 
-    public void addFacility();
+    void addFacility(IFacility anyFacility);
 
-    public void removeFacility();
+    void removeFacility(IFacility anyFacility);
 
-    public void getSize();
+    int getSize();
 
-    public void getCapacity();
+    int getCapacity();
 
-    public void getFacilityDetail();
+    FacilityDetail getFacilityDetail();
 
-    public void addNewDetail();
+    void addNewDetail(FacilityDetail anyDetail);
+
     void acceptRequesterStaff(IFacilityDomain domain);
+
     void acceptScheduler(IFacilityDomain domain);
+
     FacilityMaintenance getMaintenance();
+
 }

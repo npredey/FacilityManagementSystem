@@ -5,6 +5,7 @@
  */
 package com.OfficeBuilding.FacilityUse;
 
+import com.OfficeBuilding.Inspection.FacilityInspection;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -14,11 +15,11 @@ import java.util.Date;
  */
 public class FacilityUse implements IFacilityUse {
 
-    public Date startTime;
-    public Date endTime;
-    ArrayList<FacilityUser> users;
-    int capacity;
-    FacilityInspection inspection;
+    private Date startTime;
+    private Date endTime;
+    private ArrayList<FacilityUser> users;
+    private int capacity;
+    private FacilityInspection inspection;
 
     public FacilityUse(String startTime, String endTime) {
         this.startTime = new Date(startTime);
@@ -28,8 +29,7 @@ public class FacilityUse implements IFacilityUse {
 
     @Override
     public double getUsageRate() {
-        return users.size()/((double)capacity);
-
+        return users.size() / ((double) capacity);
 
     }
 
@@ -47,7 +47,7 @@ public class FacilityUse implements IFacilityUse {
 
     @Override
     public void vacateFacility() {
-        for(FacilityUser u: users){
+        for (FacilityUser u : users) {
             users.remove(u);
         }
 
@@ -58,4 +58,45 @@ public class FacilityUse implements IFacilityUse {
         users.add(user);
 
     }
+
+    public Date getStartTime() {
+        return startTime;
+    }
+
+    public Date getEndTime() {
+        return endTime;
+    }
+
+    public ArrayList<FacilityUser> getUsers() {
+        return users;
+    }
+
+    public int getCapacity() {
+        return capacity;
+    }
+
+    public FacilityInspection getInspection() {
+        return inspection;
+    }
+
+    public void setStartTime(Date startTime) {
+        this.startTime = startTime;
+    }
+
+    public void setEndTime(Date endTime) {
+        this.endTime = endTime;
+    }
+
+    public void setUsers(ArrayList<FacilityUser> users) {
+        this.users = users;
+    }
+
+    public void setCapacity(int capacity) {
+        this.capacity = capacity;
+    }
+
+    public void setInspection(FacilityInspection inspection) {
+        this.inspection = inspection;
+    }
+
 }

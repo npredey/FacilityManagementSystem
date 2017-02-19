@@ -6,6 +6,7 @@
 package com.OfficeBuilding.FacilityMaintenance;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -18,13 +19,12 @@ public class MaintenanceLog {
     public MaintenanceLog() {
         this.orders = new ArrayList<>();
     }
-}
 
     public List<MaintenanceOrder> getLogs() {
         return orders;
     }
 
-    public void addToLog(MaintenanceOrder order){
+    public void addToLog(MaintenanceOrder order) {
         orders.add(order);
-
     }
+}
