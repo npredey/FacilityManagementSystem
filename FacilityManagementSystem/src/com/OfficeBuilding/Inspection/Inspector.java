@@ -16,11 +16,15 @@ public class Inspector implements InspectorVisitor {
     }
 
     @Override
-    public void inspect(FacilityInspection fi) {
-        String inspectionDate = getInspectionDate();
-        String inspectionNote = getInspectionNote();
-        InspectionForm form = new InspectionForm(inspectionDate, inspectorId, inspectionNote);
-        fi.inspect(form);
+    public void inspect(Building build) {
+        for(IFacility f: build.getFacilities()){
+            String inspectionDate = getInspectionDate();
+            String inspectionNote = getInspectionNote();
+            InspectionForm form = new InspectionForm(inspectionDate, inspectorId, inspectionNote);
+            f.getInspection().inspect(form);
+
+        }
+
 
     }
 
