@@ -19,8 +19,8 @@ public class FacilityMaintenanceConcrete implements FacilityMaintenanceFacade {
     }
     @Override
     public void makeFacilityMaintRequest() {
-        IFacility scheduler = new Requester("Chong chong xi");
-        facility.accept(scheduler);
+        IFacility requester = new Requester("Chong chong xi");
+        facility.accept(requester);
 
     }
 

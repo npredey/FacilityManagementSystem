@@ -71,5 +71,71 @@ public class FacilityManagementDemo {
         //create an inspector object
         //create a FacilityUse Object
         //Call the methods in the interface
+
+
+        //test for inspection class
+        FacilityManagementFacade maintenance = new FacilityManagementConcrete(facility);
+        //request maintenance *7
+        maintenance.makeFacilityMaintRequest();
+        maintenance.makeFacilityMaintRequest();
+        maintenance.makeFacilityMaintRequest();
+        maintenance.makeFacilityMaintRequest();
+        maintenance.makeFacilityMaintRequest();
+        maintenance.makeFacilityMaintRequest();
+        maintenance.makeFacilityMaintRequest();
+
+
+        maintenance.scheduleMaintenance;//*4
+        maintenance.scheduleMaintenance;
+        maintenance.scheduleMaintenance;
+        maintenance.scheduleMaintenance;
+
+        System.out.println("Total maintenance cost: " + maintenance.calculateMaintenanceCostForFacility());
+        System.out.println("Problem rate: " + maintenance.calcProblemRateForFacility());
+        System.out.println("Downtime: " + maintenance.calcDownTimeForFacility());
+
+        System.out.println("Maintenance Requests: ");
+        System.out.println(maintenance.listMaintRequests());
+
+        System.out.println("\n List of Maintenances: \n");
+        System.out.println(maintenance.listMaintenance());
+
+        System.out.println("\n List of Problems: \n");
+        System.out.println(maintenance.listFacilityProblems());
+
+
+        //check inspection
+        IFacilityDomain inspector = new Inspector(12);
+        facility.accept(inspector);
+        facility.accept(inspector);
+        facility.accept(inspector);
+
+        for(InspectionForm il : facility.getInspections().getInspections()){
+            System.out.println("Inspector ID: " + il.getInspectorID());
+        }
+
+
+
+
+
+        //call the rest of the methods
+
+
+        //test for facility use
+
+        IFacilityUse use = new FacilityUse("0800","1700");
+
+        use.addUserToFacility(new FacilityUser(800,1,"jorge"));
+        use.addUserToFacility(new FacilityUser(800,2,"james"));
+        use.addUserToFacility(new FacilityUser(800,3,"lee lee"));
+        use.addUserToFacility(new FacilityUser(800,4,"ho kai chiang"));
+        use.addUserToFacility(new FacilityUser(800,5,"jian liu"));
+
+        System.out.println("Actual usage: "+use.getActualUsage());
+        System.out.println("Actual usage: "+use.getUsageRate());
+        use.vacateFacility();
+
+        System.out.println("Actual usage after vacating facility: "+use.getActualUsage());
+
     }
 }

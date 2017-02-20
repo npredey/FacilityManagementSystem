@@ -18,7 +18,7 @@ public class InspectionForm {
 
     private String inspectionNotes;
 
-    public InspectionForm(String inspectionDate, int inspectorID,
+    public InspectionForm(int inspectionDate, int inspectorID,
             String inspectionNotes) {
         this.inspectionDate = new Date(inspectionDate);
         this.inspectorID = inspectorID;
