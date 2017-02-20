@@ -20,13 +20,12 @@ public class FacilityUse implements IFacilityUse {
     private String startTime;
     private String endTime;
     private ArrayList<FacilityUser> users;
-    IFacility facility;
 
-    public FacilityUse(String startTime, String endTime, IFacility facility) {
+
+    public FacilityUse(String startTime, String endTime) {
         this.startTime = startTime;
         this.endTime = endTime;
         this.users = new ArrayList<>();
-        this.facility = facility;
     }
 
     @Override
@@ -41,11 +40,7 @@ public class FacilityUse implements IFacilityUse {
 
     }
 
-    @Override
-    public InspectionLog getInspections() {
-        return facility.getInspection().getLog();
 
-    }
 
     @Override
     public void vacateFacility() {
@@ -83,6 +78,17 @@ public class FacilityUse implements IFacilityUse {
 
     public void setUsers(ArrayList<FacilityUser> users) {
         this.users = users;
+    }
+
+    @Override
+    public boolean isInUseDuringInterval(String time1, String time2){
+        for(FacilityUser u : users){
+            if(u.getEntryTime().before(new Date(time1)) && u.getExitTime().after(new Date(time2))){
+                return true;
+            }
+        }
+        return false;
+
     }
 
 }

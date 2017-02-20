@@ -20,11 +20,13 @@ public class Unit implements IFacility {
     private FacilityDetail detail;
     private FacilityMaintenance maintenance;
     private FacilityInspection inspection;
+    private IfacilityUse usage;
 
     public Unit(FacilityDetail detail) {
         this.detail = detail;
         this.maintenance = new FacilityMaintenance();
         this.inspection = new FacilityInspection();
+        usage = new FacilityUse("8:00", "5:00");
     }
 
     private void addNewUnitDetail(FacilityDetail d) {
@@ -115,6 +117,38 @@ public class Unit implements IFacility {
             return false;
         }
         return true;
+    }
+
+    @Override
+    public InspectionLog getInspections() {
+        return facility.getInspection().getLog();
+
+    }
+    public int getUserNumber(){
+        int size = usage.getActualUsage();
+
+        return size;
+    }
+
+    @Override
+    public int requestAvailableCapacity(){
+        int availableCapacity = getCapacity() - getUserNumber();
+        return availableCapacity;
+    }
+
+    @Override
+    public FacilityDetail getFacilityInformation() {
+        return detail;
+    }
+
+    @Override
+    public String listFacilities() {
+        String f = "";
+
+            f+= "Facility id: "detail.getFacilityID() + " ||| Capacity:  "+detail.getCapacity();
+            f+="\n";
+
+        return f;
     }
 
 }

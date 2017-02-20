@@ -43,13 +43,18 @@ public class FacilityMaintenance implements IFacilityMaintenance {
     }
 
     @Override
-    public void createMaintenanceSchedule() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void ScheduleMaintenanceRequest() {
+
     }
 
     @Override
     public void getMaintenanceCost() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        int cost = 0;
+        for(MaintenanceOrder l: orders){
+            cost+=l.getCost().getDollarAmout();
+
+        }
+        return cost;
     }
 
     @Override
@@ -82,8 +87,13 @@ public class FacilityMaintenance implements IFacilityMaintenance {
     }
 
     @Override
-    public void getFacillityDownTime() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public int getFacilityDownTime() {
+        int time = 0;
+        for(MaintenanceOrder : orders){
+            time += orders.getRequest().getMaintenancePeriod();
+        }
+        return time;
+
     }
 
     @Override
@@ -115,4 +125,48 @@ public class FacilityMaintenance implements IFacilityMaintenance {
         this.schedules = schedules;
     }
 
+    @Override
+    public String listMaintenance(){
+        String output = "";
+        for(MaintenanceOrder l: log.getLogs){
+            s+=  "A problem of  " + l.getRequest().getProblem() + " requested by " + l.getRequest().getMaintenanceRequester() + " costs " + l.getDollarAmount();
+            s+= "\n";
+
+        }
+        return output;
+
+    }
+
+    @Override
+    public String listMaintenanceRequests(){
+        String output = "";
+        for(MaintenanceRequest l: requestQueue){
+            s+=  "A problem of  " + l.getProblem() + " requested by " + l.getMaintenanceRequester() + " is under review";
+            s+= "\n";
+
+        }
+        return output;
+
+    }
+
+    @Override
+    public String listFacilityProblems(){
+        HashMap<String,Integer> problemOccurences = new HashMap<>();
+        for(MaintenanceOrder l: log.getLogs){
+            if(problemOccurences.containsKey(l.getRequest().getProblem())){
+                problemOccurences.put(l.getRequest().getProblem(),problemOccurences.get(l.getRequest().getProblem())++);
+            }else{
+                problemOccurences.put(l.getRequest().getProblem(),1);
+            }
+
+        }
+        String output = "";
+        for(String keys : problemOccurences.keySet()){
+            output+= "Problem: " + keys + " ||| Occurences: " + problemOccurences.get(keys);
+            output+="\n";
+
+        }
+        return output;
+
+    }
 }

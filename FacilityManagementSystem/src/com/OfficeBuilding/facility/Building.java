@@ -24,7 +24,13 @@ public class Building implements IFacility {
     private FacilityDetail detail;
     public List<IFacility> facilities;
     public InspectionLog inspectionLog;
+
+    public IfacilityUse getUsage() {
+        return usage;
+    }
+
     private FacilityInspection inspection;
+    private IfacilityUse usage;
 
     /**
      *
@@ -34,6 +40,7 @@ public class Building implements IFacility {
         facilities = Arrays.asList(units);
         this.detail = new FacilityDetail(-1, getCapacity(), null, null);
         this.inspectionLog = new InspectionLog();
+        usage = new FacilityUse("8:00", "5:00");
 
     }
 
@@ -117,5 +124,42 @@ public class Building implements IFacility {
     public String toString() {
         return "Building{" + " detail=" + detail.toString() + '}';
     }
+
+    @Override
+    public InspectionLog getInspections() {
+        return facility.getInspection().getLog();
+
+    }
+
+    @Override
+    public int getUserNumber(){
+        int size = 0
+        for(IFacility facility : facilities){
+            size += facility.getUsage().getActualUsage();
+        }
+        return size;
+    }
+
+    @Override
+    public int requestAvailableCapacity(){
+        int availableCapacity = getCapacity() - getUserNumber();
+        return availableCapacity;
+    }
+
+    @Override
+    public FacilityDetail getFacilityInformation() {
+        return detail;
+    }
+
+    @Override
+    public String listFacilities() {
+        String f = "";
+        for(IFacility fs : facilities){
+            f+= "Facility id: "fs.getFacilityDetail().getFacilityID() + " ||| Capacity:  "+fs.getFacilityDetail().getCapacity();
+            f+="\n";
+        }
+        return f;
+    }
+
 
 }

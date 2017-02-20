@@ -33,5 +33,10 @@ public interface IFacility {
     FacilityMaintenance getMaintenance();
 
     FacilityInspection getInspection();
+    InspectionLog getInspections();
+    int getUserNumber();
+    int requestAvailableCapacity();
+    FacilityDetail getFacilityInformation();
+    String listFacilities();
 
 }

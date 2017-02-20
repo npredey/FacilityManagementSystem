@@ -25,7 +25,13 @@ public interface IFacilityMaintenance {
 
     double calcFacilityProblemRate();
 
-    void getFacillityDownTime();
+    int getFacilityDownTime();
 
     void scheduleRequest(MaintenanceSchedule ms);
+    MaintenanceLog getLog();
+    List<MaintenanceRequest> getRequestQueue();
+
+    String listMaintenance();
+    String listMaintenanceRequests();
+    String listFacilityProblems();
 }
