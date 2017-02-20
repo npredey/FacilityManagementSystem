@@ -46,6 +46,11 @@ public class Staff implements IFacilityDomain {
         return new MaintenanceCost(10.0);//to be changed
     }
 
+    /**
+     * Gets the maintenance log as a staff member
+     *
+     * @param building
+     */
     @Override
     public void visitBuilding(Building building) {
 
@@ -63,6 +68,11 @@ public class Staff implements IFacilityDomain {
 
     }
 
+    /**
+     * Visits a unit to get the maintenance log.
+     *
+     * @param unit
+     */
     @Override
     public void visitUnit(Unit unit) {
         FacilityMaintenance maintain = unit.getMaintenance();

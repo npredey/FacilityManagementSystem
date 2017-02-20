@@ -132,6 +132,7 @@ public class FacilityManagementDemo {
         System.out.println("Removing unit from building... (current facility size is: " + facility.getSize() + ")");
         facility.removeFacility(units[0]);
         System.out.println("...unit removed (current facility size is: " + facility.getSize() + ")");
+        System.out.println("Is facility in use during the open hours? (8am to 5pm)? " + use.isInUseDuringInterval(800, 1700));
         System.out.println("-----------------------DONE-----------------------");
     }
 }

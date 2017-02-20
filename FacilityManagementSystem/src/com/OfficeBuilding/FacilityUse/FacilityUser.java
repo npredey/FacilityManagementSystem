@@ -5,9 +5,12 @@
  */
 package com.OfficeBuilding.FacilityUse;
 
-import java.text.DateFormat;
+import com.OfficeBuilding.facility.Building;
 import java.text.ParseException;
 import java.util.Date;
+import java.lang.Exception;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -15,22 +18,31 @@ import java.util.Date;
  */
 public class FacilityUser {
 
-    private Date entryTime;
-    private Date exitTime;
+    private int entryTime;
+    private int exitTime;
     private int userID;
     private String name;
 
     public FacilityUser(int entryTime, int userId, String userName) throws ParseException {
-        this.entryTime = new Date(entryTime);
+        if (entryTime > 0 || entryTime <= 2400) {
+            this.entryTime = entryTime;
+        } else {
+            try {
+                this.entryTime = -1;
+                throw new java.lang.Exception("That time does not exist: user entry time incorrect");
+            } catch (Exception ex) {
+                Logger.getLogger(Building.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
         this.userID = userId;
         this.name = userName;
     }
 
-    public void setEntryTime(Date value) {
+    public void setEntryTime(int value) {
         entryTime = value;
     }
 
-    public void setExitTime(Date value) {
+    public void setExitTime(int value) {
         exitTime = value;
     }
 
@@ -42,11 +54,11 @@ public class FacilityUser {
         userID = value;
     }
 
-    public Date getEntryTime() {
+    public int getEntryTime() {
         return entryTime;
     }
 
-    public Date getExitTime() {
+    public int getExitTime() {
         return exitTime;
     }
 

@@ -10,7 +10,7 @@ import com.OfficeBuilding.FacilityMaintenance.MaintenanceRequest;
 import java.util.HashMap;
 
 /**
- * Created by Nathnael on 2/19/2017.
+ * Created by Nathnael on 2/19/2017. Concrete maintenance class
  */
 public class FacilityMaintenanceConcrete implements FacilityMaintenanceFacade {
 

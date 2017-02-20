@@ -5,16 +5,26 @@ import com.OfficeBuilding.facility.Building;
 import com.OfficeBuilding.facility.Unit;
 
 /**
- * Created by Nathnael on 2/18/2017.
+ * Created by Nathnael on 2/18/2017. The inspector visitor concrete class
  */
 public class Inspector implements IFacilityDomain {
 
     int inspectorId;
 
+    /**
+     * Creates an inspector object with a unique ID.
+     *
+     * @param inspectorId
+     */
     public Inspector(int inspectorId) {
         this.inspectorId = inspectorId;
     }
 
+    /**
+     * Visits a building to perform an inspection
+     *
+     * @param build
+     */
     @Override
     public void visitBuilding(Building build) {
         build.getFacilities().stream().forEach((f) -> {
@@ -33,11 +43,15 @@ public class Inspector implements IFacilityDomain {
     }
 
     private int getInspectionDate() {
-
         return 600;
 
     }
 
+    /**
+     * Visits a unit to perform an inspection.
+     *
+     * @param unit
+     */
     @Override
     public void visitUnit(Unit unit) {
         int inspectionDate = getInspectionDate();

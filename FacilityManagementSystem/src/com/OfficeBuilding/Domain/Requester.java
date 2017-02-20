@@ -40,17 +40,27 @@ public class Requester implements IFacilityDomain {
         return 12;
     }
 
+    /**
+     * Visits a building to request maintenance
+     *
+     * @param building
+     */
     @Override
     public void visitBuilding(Building building) {
         building.getFacilities().stream().map((facility) -> facility.getMaintenance()).forEach((maintain) -> {
             MaintenanceRequest request = new MaintenanceRequest(getMaintenancePeriod(), staffName, getProblem());
             maintain.addMaintenanceRequest(request);
             building.getMaintenance().addMaintenanceRequest(request);
-            System.out.println("Made request");
+            System.out.println("Made request from requester: " + staffName);
         });
-        System.out.println("Visiting Building");
+        System.out.println("Visiting Building....");
     }
 
+    /**
+     * Visits a unit to request maintenance.
+     *
+     * @param unit
+     */
     @Override
     public void visitUnit(Unit unit) {
         FacilityMaintenance maintain = unit.getMaintenance();

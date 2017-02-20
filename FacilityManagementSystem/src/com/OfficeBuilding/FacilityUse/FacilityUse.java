@@ -73,16 +73,19 @@ public class FacilityUse implements IFacilityUse {
         this.users = users;
     }
 
+    /**
+     * Checks if there are any users in the facility during a time period. Time
+     * is in military time (0001-2400)
+     *
+     * @param time1
+     * @param time2
+     * @return
+     */
     @Override
     public boolean isInUseDuringInterval(int time1, int time2) {
-        Date t1 = new Date(time1);
-        Date t2 = new Date(time2);
-        for (FacilityUser u : users) {
-            if (u.getEntryTime().before(t1) && u.getExitTime().after(t2)) {
-                return true;
-            }
-        }
-        return false;
+        return users.stream().map((u) -> {
+            return u;
+        }).anyMatch((u) -> (u.getEntryTime() >= time1 && u.getEntryTime() <= time2));
 
     }
 }

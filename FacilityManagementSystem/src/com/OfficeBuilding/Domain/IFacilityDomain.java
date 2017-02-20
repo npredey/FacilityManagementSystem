@@ -6,15 +6,14 @@
 package com.OfficeBuilding.Domain;
 
 import com.OfficeBuilding.facility.Building;
-import com.OfficeBuilding.facility.IFacility;
 import com.OfficeBuilding.facility.Unit;
 
 /**
+ * The domain for the Facility interface
  *
  * @author nickpredey
  */
 public interface IFacilityDomain {
-
 
     void visitBuilding(Building building);
 
