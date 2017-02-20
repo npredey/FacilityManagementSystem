@@ -20,7 +20,7 @@ public class FacilityUser {
     private int userID;
     private String name;
 
-    public FacilityUser(String entryTime, int userId, String userName) throws ParseException {
+    public FacilityUser(int entryTime, int userId, String userName) throws ParseException {
         this.entryTime = new Date(entryTime);
         this.userID = userId;
         this.name = userName;

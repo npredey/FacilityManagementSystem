@@ -8,7 +8,9 @@ package com.OfficeBuilding.facility;
 import com.OfficeBuilding.Domain.IFacilityDomain;
 import com.OfficeBuilding.FacilityMaintenance.FacilityMaintenance;
 import com.OfficeBuilding.FacilityMaintenance.MaintenanceRequest;
+import com.OfficeBuilding.FacilityUse.IFacilityUse;
 import com.OfficeBuilding.Inspection.FacilityInspection;
+import com.OfficeBuilding.Inspection.InspectionLog;
 
 /**
  *
@@ -28,15 +30,22 @@ public interface IFacility {
 
     void addNewDetail(FacilityDetail anyDetail);
 
-    void accept(IFacilityDomain domain)
+    void accept(IFacilityDomain domain);
 
     FacilityMaintenance getMaintenance();
 
     FacilityInspection getInspection();
+
     InspectionLog getInspections();
+
     int getUserNumber();
+
+    public IFacilityUse getUsage();
+
     int requestAvailableCapacity();
+
     FacilityDetail getFacilityInformation();
+
     String listFacilities();
 
 }

@@ -6,6 +6,7 @@
 package com.OfficeBuilding.FacilityMaintenance;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -43,15 +44,10 @@ public class FacilityMaintenance implements IFacilityMaintenance {
     }
 
     @Override
-    public void ScheduleMaintenanceRequest() {
-
-    }
-
-    @Override
     public void getMaintenanceCost() {
         int cost = 0;
-        for(MaintenanceOrder l: orders){
-            cost+=l.getCost().getDollarAmout();
+        for (MaintenanceOrder l : orders) {
+            cost += l.getCost().getDollarAmout();
 
         }
         return cost;
@@ -89,7 +85,7 @@ public class FacilityMaintenance implements IFacilityMaintenance {
     @Override
     public int getFacilityDownTime() {
         int time = 0;
-        for(MaintenanceOrder : orders){
+        for (MaintenanceOrder mO : orders) {
             time += orders.getRequest().getMaintenancePeriod();
         }
         return time;
@@ -126,11 +122,12 @@ public class FacilityMaintenance implements IFacilityMaintenance {
     }
 
     @Override
-    public String listMaintenance(){
+    public String listMaintenance() {
         String output = "";
-        for(MaintenanceOrder l: log.getLogs){
-            s+=  "A problem of  " + l.getRequest().getProblem() + " requested by " + l.getRequest().getMaintenanceRequester() + " costs " + l.getDollarAmount();
-            s+= "\n";
+        for (MaintenanceOrder l : log.getLogs()) {
+            //no get dollar amount method
+            output += "A problem of  " + l.getRequest().getProblem() + " requested by " + l.getRequest().getMaintenanceRequester() + " costs " + l.getDollarAmount();
+            s += "\n";
 
         }
         return output;
@@ -138,11 +135,11 @@ public class FacilityMaintenance implements IFacilityMaintenance {
     }
 
     @Override
-    public String listMaintenanceRequests(){
+    public String listMaintenanceRequests() {
         String output = "";
-        for(MaintenanceRequest l: requestQueue){
-            s+=  "A problem of  " + l.getProblem() + " requested by " + l.getMaintenanceRequester() + " is under review";
-            s+= "\n";
+        for (MaintenanceRequest l : requestQueue) {
+            s += "A problem of  " + l.getProblem() + " requested by " + l.getMaintenanceRequester() + " is under review";
+            s += "\n";
 
         }
         return output;
@@ -150,23 +147,28 @@ public class FacilityMaintenance implements IFacilityMaintenance {
     }
 
     @Override
-    public String listFacilityProblems(){
-        HashMap<String,Integer> problemOccurences = new HashMap<>();
-        for(MaintenanceOrder l: log.getLogs){
-            if(problemOccurences.containsKey(l.getRequest().getProblem())){
-                problemOccurences.put(l.getRequest().getProblem(),problemOccurences.get(l.getRequest().getProblem())++);
-            }else{
-                problemOccurences.put(l.getRequest().getProblem(),1);
+    public String listFacilityProblems() {
+        HashMap<String, Integer> problemOccurences = new HashMap<>();
+        for (MaintenanceOrder l : log.getLogs()) {
+            if (problemOccurences.containsKey(l.getRequest().getProblem())) {
+                problemOccurences.put(l.getRequest().getProblem(), problemOccurences.get(l.getRequest().getProblem())++);
+            } else {
+                problemOccurences.put(l.getRequest().getProblem(), 1);
             }
 
         }
         String output = "";
-        for(String keys : problemOccurences.keySet()){
-            output+= "Problem: " + keys + " ||| Occurences: " + problemOccurences.get(keys);
-            output+="\n";
+        for (String keys : problemOccurences.keySet()) {
+            output += "Problem: " + keys + " ||| Occurences: " + problemOccurences.get(keys);
+            output += "\n";
 
         }
         return output;
 
+    }
+
+    @Override
+    public void createMaintenanceSchedule() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }
