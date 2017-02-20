@@ -58,7 +58,7 @@ public class FacilityDetail {
 
     @Override
     public String toString() {
-        return "FacilityDetail{" + "facilityID=" + facilityID + ", capacity=" + capacity + ", facilityBudget=" + facilityBudget + ", address=" + address + '}';
+        return "FacilityDetail{" + "facilityID=" + facilityID + ", capacity=" + capacity + ", facilityBudget=" + facilityBudget.toString() + ", address=" + address.toString() + '}';
     }
 
 }

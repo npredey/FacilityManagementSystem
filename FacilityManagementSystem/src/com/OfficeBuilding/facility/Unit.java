@@ -13,6 +13,7 @@ import com.OfficeBuilding.FacilityUse.IFacilityUse;
 import com.OfficeBuilding.Inspection.FacilityInspection;
 import com.OfficeBuilding.Inspection.InspectionLog;
 import com.OfficeBuilding.Inspection.InspectorVisitor;
+import java.util.List;
 import java.util.Objects;
 
 /**
@@ -31,7 +32,7 @@ public class Unit implements IFacility {
         this.detail = detail;
         this.maintenance = new FacilityMaintenance();
         this.inspection = new FacilityInspection();
-        usage = new FacilityUse("8:00", "5:00");
+        usage = new FacilityUse(800, 1700);
     }
 
     @Override

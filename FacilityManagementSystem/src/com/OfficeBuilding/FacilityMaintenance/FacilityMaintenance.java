@@ -40,14 +40,17 @@ public class FacilityMaintenance implements IFacilityMaintenance {
 
     @Override
     public void addMaintenanceRequest(MaintenanceRequest request) {
+        System.out.println("Request queue before added request: " + requestQueue.size());
         requestQueue.add(request);
+        System.out.println("Request queue after added request: " + requestQueue.size());
+
     }
 
     @Override
-    public void getMaintenanceCost() {
+    public int getMaintenanceCost() {
         int cost = 0;
-        for (MaintenanceOrder l : orders) {
-            cost += l.getCost().getDollarAmout();
+        for (MaintenanceOrder l : log.getLogs()) {
+            cost += l.getCost().getDollarAmount();
 
         }
         return cost;
@@ -85,8 +88,8 @@ public class FacilityMaintenance implements IFacilityMaintenance {
     @Override
     public int getFacilityDownTime() {
         int time = 0;
-        for (MaintenanceOrder mO : orders) {
-            time += orders.getRequest().getMaintenancePeriod();
+        for (MaintenanceOrder mO : log.getLogs()) {
+            time += mO.getRequest().getMaintenancePeriod();
         }
         return time;
 
@@ -126,8 +129,8 @@ public class FacilityMaintenance implements IFacilityMaintenance {
         String output = "";
         for (MaintenanceOrder l : log.getLogs()) {
             //no get dollar amount method
-            output += "A problem of  " + l.getRequest().getProblem() + " requested by " + l.getRequest().getMaintenanceRequester() + " costs " + l.getDollarAmount();
-            s += "\n";
+            output += "A problem of  " + l.getRequest().getProblem() + " requested by " + l.getRequest().getMaintenanceRequester() + " costs " + l.getCost().getDollarAmount();
+            output += "\n";
 
         }
         return output;
@@ -138,8 +141,8 @@ public class FacilityMaintenance implements IFacilityMaintenance {
     public String listMaintenanceRequests() {
         String output = "";
         for (MaintenanceRequest l : requestQueue) {
-            s += "A problem of  " + l.getProblem() + " requested by " + l.getMaintenanceRequester() + " is under review";
-            s += "\n";
+            output += "A problem of  " + l.getProblem() + " requested by " + l.getMaintenanceRequester() + " is under review";
+            output += "\n";
 
         }
         return output;
@@ -151,7 +154,7 @@ public class FacilityMaintenance implements IFacilityMaintenance {
         HashMap<String, Integer> problemOccurences = new HashMap<>();
         for (MaintenanceOrder l : log.getLogs()) {
             if (problemOccurences.containsKey(l.getRequest().getProblem())) {
-                problemOccurences.put(l.getRequest().getProblem(), problemOccurences.get(l.getRequest().getProblem())++);
+                problemOccurences.put(l.getRequest().getProblem(), problemOccurences.get(l.getRequest().getProblem()) + 1);
             } else {
                 problemOccurences.put(l.getRequest().getProblem(), 1);
             }

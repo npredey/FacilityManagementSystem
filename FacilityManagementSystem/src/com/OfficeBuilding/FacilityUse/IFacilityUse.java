@@ -17,9 +17,9 @@ public interface IFacilityUse {
 
     public int getActualUsage();
 
-
     public void vacateFacility();
 
     public void addUserToFacility(FacilityUser user);
-    boolean isInUseDuringInterval();
+
+    boolean isInUseDuringInterval(int time1, int time2);
 }

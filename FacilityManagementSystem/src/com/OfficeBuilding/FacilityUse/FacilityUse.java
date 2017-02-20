@@ -5,9 +5,6 @@
  */
 package com.OfficeBuilding.FacilityUse;
 
-import com.OfficeBuilding.Inspection.FacilityInspection;
-import com.OfficeBuilding.Inspection.InspectionLog;
-import com.OfficeBuilding.facility.IFacility;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -17,11 +14,11 @@ import java.util.Date;
  */
 public class FacilityUse implements IFacilityUse {
 
-    private String startTime;
-    private String endTime;
+    private int startTime;
+    private int endTime;
     private ArrayList<FacilityUser> users;
 
-    public FacilityUse(String startTime, String endTime) {
+    public FacilityUse(int startTime, int endTime) {
         this.startTime = startTime;
         this.endTime = endTime;
         this.users = new ArrayList<>();
@@ -29,7 +26,7 @@ public class FacilityUse implements IFacilityUse {
 
     @Override
     public double getUsageRate() {
-        return users.size() / ((double) facility.getCapacity()); //need to get the capacity
+        return users.size() / 24.0; //number of people per hour
 
     }
 
@@ -41,10 +38,9 @@ public class FacilityUse implements IFacilityUse {
 
     @Override
     public void vacateFacility() {
-        for (FacilityUser u : users) {
-            users.remove(u);
+        for (int i = 0; i < users.size(); i++) {
+            users.remove(0);
         }
-
     }
 
     @Override
@@ -53,11 +49,11 @@ public class FacilityUse implements IFacilityUse {
 
     }
 
-    public String getStartTime() {
+    public int getStartTime() {
         return startTime;
     }
 
-    public String getEndTime() {
+    public int getEndTime() {
         return endTime;
     }
 
@@ -65,11 +61,11 @@ public class FacilityUse implements IFacilityUse {
         return users;
     }
 
-    public void setStartTime(String startTime) {
+    public void setStartTime(int startTime) {
         this.startTime = startTime;
     }
 
-    public void setEndTime(String endTime) {
+    public void setEndTime(int endTime) {
         this.endTime = endTime;
     }
 
@@ -89,10 +85,4 @@ public class FacilityUse implements IFacilityUse {
         return false;
 
     }
-
-    @Override
-    public boolean isInUseDuringInterval() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
 }

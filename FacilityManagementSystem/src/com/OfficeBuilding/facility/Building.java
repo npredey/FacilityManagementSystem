@@ -12,9 +12,12 @@ import com.OfficeBuilding.FacilityUse.IFacilityUse;
 import com.OfficeBuilding.Inspection.FacilityInspection;
 import com.OfficeBuilding.Inspection.InspectionLog;
 import com.OfficeBuilding.Inspection.InspectorVisitor;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -26,6 +29,14 @@ public class Building implements IFacility {
     private FacilityDetail detail;
     public List<IFacility> facilities;
     public InspectionLog inspectionLog;
+
+    public List<IFacility> getFacilities() {
+        return facilities;
+    }
+
+    public void setFacilities(List<IFacility> facilities) {
+        this.facilities = facilities;
+    }
 
     @Override
     public IFacilityUse getUsage() {
@@ -40,10 +51,13 @@ public class Building implements IFacility {
      * @param units
      */
     public Building(final Unit... units) {
-        facilities = Arrays.asList(units);
-        this.detail = new FacilityDetail(-1, getCapacity(), null, null);
+        facilities = new ArrayList<>(Arrays.asList(units));
+        this.detail = new FacilityDetail(-1, 0, null, null);
+        getCapacity();
         this.inspectionLog = new InspectionLog();
-        usage = new FacilityUse("8:00", "5:00");
+        this.maintenance = new FacilityMaintenance();
+        this.inspection = new FacilityInspection();
+        usage = new FacilityUse(800, 1700);
 
     }
 
@@ -64,13 +78,19 @@ public class Building implements IFacility {
         return maintenance;
     }
 
-    public List<IFacility> getFacilities() {
-        return Collections.unmodifiableList(facilities);
-    }
-
     @Override
     public void addFacility(IFacility anyFacility) {
-        facilities.add(anyFacility);
+        if ((anyFacility.getCapacity() + getCapacity()) > getCapacity()) {
+            try {
+                throw new java.lang.Exception("New unit cannot be added due to not enough capacity. "
+                        + "We apologize for the inconvenience");
+            } catch (Exception ex) {
+                Logger.getLogger(Building.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } else {
+            facilities.add(anyFacility);
+        }
+
     }
 
     @Override
@@ -94,8 +114,9 @@ public class Building implements IFacility {
         int cap = 0;
         for (IFacility facility : facilities) {
             cap += facility.getCapacity();
-        }
 
+        }
+        getFacilityDetail().setCapacity(cap);
         return cap;
     }
 

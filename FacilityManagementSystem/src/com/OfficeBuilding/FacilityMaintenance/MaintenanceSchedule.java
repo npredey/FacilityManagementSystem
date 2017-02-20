@@ -17,7 +17,7 @@ public class MaintenanceSchedule {
 
     private MaintenanceRequest request;
 
-    public MaintenanceSchedule(String timeOfMaintenance, MaintenanceRequest request) {
+    public MaintenanceSchedule(int timeOfMaintenance, MaintenanceRequest request) {
         this.timeOfMaintenance = new Date(timeOfMaintenance);
         this.request = request;
     }

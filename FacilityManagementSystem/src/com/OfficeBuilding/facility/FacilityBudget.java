@@ -34,4 +34,10 @@ public class FacilityBudget {
     public double getSavings() {
         return savings;
     }
+
+    @Override
+    public String toString() {
+        return "FacilityBudget{" + "savings=" + savings + ", operatingBudget=" + operatingBudget + '}';
+    }
+
 }

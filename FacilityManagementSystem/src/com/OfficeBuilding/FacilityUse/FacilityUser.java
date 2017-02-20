@@ -42,19 +42,19 @@ public class FacilityUser {
         userID = value;
     }
 
-    public Date getEntryTime(Date value) {
+    public Date getEntryTime() {
         return entryTime;
     }
 
-    public Date getExitTime(Date value) {
+    public Date getExitTime() {
         return exitTime;
     }
 
-    public String getName(String value) {
+    public String getName() {
         return name;
     }
 
-    public int getUserID(int value) {
+    public int getUserID() {
         return userID;
     }
 }

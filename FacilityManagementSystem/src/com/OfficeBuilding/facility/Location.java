@@ -76,4 +76,9 @@ public class Location {
         this.country = country;
     }
 
+    @Override
+    public String toString() {
+        return "Location{" + "streetName=" + streetName + ", streetNumber=" + streetNumber + ", city=" + city + ", state=" + state + ", zipCode=" + zipCode + ", country=" + country + '}';
+    }
+
 }

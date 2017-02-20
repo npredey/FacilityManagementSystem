@@ -17,7 +17,7 @@ public class Inspector implements InspectorVisitor {
     @Override
     public void inspectBuilding(Building build) {
         build.getFacilities().stream().forEach((f) -> {
-            String inspectionDate = getInspectionDate();
+            int inspectionDate = getInspectionDate();
             String inspectionNote = getInspectionNote();
             InspectionForm form = new InspectionForm(inspectionDate, inspectorId, inspectionNote);
             f.getInspection().inspect(form);
@@ -30,15 +30,15 @@ public class Inspector implements InspectorVisitor {
         return "good!";
     }
 
-    private String getInspectionDate() {
+    private int getInspectionDate() {
 
-        return "2/4/2016";
+        return 500;
 
     }
 
     @Override
     public void inspectUnit(Unit unit) {
-        String inspectionDate = getInspectionDate();
+        int inspectionDate = getInspectionDate();
         String inspectionNote = getInspectionNote();
         InspectionForm form = new InspectionForm(inspectionDate, inspectorId, inspectionNote);
         unit.getInspection().inspect(form);

@@ -17,7 +17,7 @@ public interface IFacilityMaintenance {
 
     void createMaintenanceSchedule();
 
-    void getMaintenanceCost();
+    int getMaintenanceCost();
 
     MaintenanceRequest getMaintenanceRequest();
 
@@ -28,10 +28,14 @@ public interface IFacilityMaintenance {
     int getFacilityDownTime();
 
     void scheduleRequest(MaintenanceSchedule ms);
+
     MaintenanceLog getLog();
+
     List<MaintenanceRequest> getRequestQueue();
 
     String listMaintenance();
+
     String listMaintenanceRequests();
+
     String listFacilityProblems();
 }

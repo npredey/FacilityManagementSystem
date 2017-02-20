@@ -37,9 +37,9 @@ public class Staff implements IFacilityDomain {
         this.staffName = staffName;
     }
 
-    private String getTimeofMaintenance() {
+    private int getTimeofMaintenance() {
         //get time from view;
-        return Integer.toString(12);
+        return 1200;
     }
 
     private MaintenanceCost getMaintenanceCost() {
@@ -53,11 +53,12 @@ public class Staff implements IFacilityDomain {
             MaintenanceRequest mr = maintain.getMaintenanceRequest();
             MaintenanceSchedule ms = new MaintenanceSchedule(getTimeofMaintenance(), mr);
             maintain.scheduleRequest(ms);
-
+            building.getMaintenance().scheduleRequest(ms);
             getMaintenanceCost();
 
             MaintenanceOrder order = new MaintenanceOrder(getMaintenanceCost(), mr);
             maintain.addOrderToLog(order);
+            building.getMaintenance().addOrderToLog(order);
         });
 
     }

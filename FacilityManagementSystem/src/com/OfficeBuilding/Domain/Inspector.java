@@ -18,10 +18,11 @@ public class Inspector implements IFacilityDomain {
     @Override
     public void visitBuilding(Building build) {
         build.getFacilities().stream().forEach((f) -> {
-            String inspectionDate = getInspectionDate();
+            int inspectionDate = getInspectionDate();
             String inspectionNote = getInspectionNote();
             InspectionForm form = new InspectionForm(inspectionDate, inspectorId, inspectionNote);
             f.getInspection().inspect(form);
+            build.getInspection().inspect(form); //inspect the building
         });
 
     }
@@ -44,5 +45,5 @@ public class Inspector implements IFacilityDomain {
         InspectionForm form = new InspectionForm(inspectionDate, inspectorId, inspectionNote);
         unit.getInspection().inspect(form);
     }
-    
+
 }

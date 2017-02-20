@@ -6,16 +6,9 @@
 package com.OfficeBuilding.Domain;
 
 import com.OfficeBuilding.FacilityMaintenance.FacilityMaintenance;
-import com.OfficeBuilding.FacilityMaintenance.IFacilityMaintenance;
-import com.OfficeBuilding.FacilityMaintenance.MaintenanceCost;
-import com.OfficeBuilding.FacilityMaintenance.MaintenanceLog;
-import com.OfficeBuilding.FacilityMaintenance.MaintenanceOrder;
 import com.OfficeBuilding.FacilityMaintenance.MaintenanceRequest;
-import com.OfficeBuilding.FacilityMaintenance.MaintenanceSchedule;
 import com.OfficeBuilding.facility.Building;
 import com.OfficeBuilding.facility.Unit;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  *
@@ -52,8 +45,10 @@ public class Requester implements IFacilityDomain {
         building.getFacilities().stream().map((facility) -> facility.getMaintenance()).forEach((maintain) -> {
             MaintenanceRequest request = new MaintenanceRequest(getMaintenancePeriod(), staffName, getProblem());
             maintain.addMaintenanceRequest(request);
+            building.getMaintenance().addMaintenanceRequest(request);
+            System.out.println("Made request");
         });
-
+        System.out.println("Visiting Building");
     }
 
     @Override

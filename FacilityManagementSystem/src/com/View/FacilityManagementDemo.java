@@ -1,16 +1,22 @@
 package com.View;
 
 import com.OfficeBuilding.Domain.IFacilityDomain;
+import com.OfficeBuilding.Domain.Inspector;
 import com.OfficeBuilding.Domain.Staff;
+import com.OfficeBuilding.Facade.FacilityMaintenanceConcrete;
+import com.OfficeBuilding.Facade.FacilityMaintenanceFacade;
 import com.OfficeBuilding.FacilityMaintenance.MaintenanceLog;
 import com.OfficeBuilding.FacilityUse.FacilityUse;
+import com.OfficeBuilding.FacilityUse.FacilityUser;
 import com.OfficeBuilding.FacilityUse.IFacilityUse;
+import com.OfficeBuilding.Inspection.InspectionForm;
 import com.OfficeBuilding.facility.Building;
 import com.OfficeBuilding.facility.FacilityBudget;
 import com.OfficeBuilding.facility.FacilityDetail;
 import com.OfficeBuilding.facility.IFacility;
 import com.OfficeBuilding.facility.Location;
 import com.OfficeBuilding.facility.Unit;
+import java.text.ParseException;
 
 public class FacilityManagementDemo {
 
@@ -40,7 +46,7 @@ public class FacilityManagementDemo {
     public static int capacityUnit2 = 150;
     public static int capacityUnit3 = 300;
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws ParseException {
         MaintenanceLog maintenanceLog = new MaintenanceLog();
         Location facilityLocation = new Location(testStreetName, testStreetNumber,
                 testCity, testState, testZipCode, testCountry);
@@ -59,37 +65,31 @@ public class FacilityManagementDemo {
         IFacility facility = new Building(units);
         facility.addNewDetail(detailDemoBuilding);
         System.out.println("Initial capacity (should be 250): " + facility.getCapacity());
+        System.out.println("Requesting available capacity...: " + facility.requestAvailableCapacity());
+        System.out.println("Printing facility information: " + facility.getFacilityInformation());
+        System.out.println("List of facilities: \n" + facility.listFacilities());
 
         IFacilityDomain staff = new Staff(testStaffName);
-        IFacilityUse facilityUse = new FacilityUse("9:00:00", "19:00:00", facility);
+        IFacilityUse facilityUse = new FacilityUse(900, 1900);
 
         IFacility newUnit = new Unit(detailTestNewUnit);
         facility.addFacility(newUnit);
-        System.out.println("Capacity after new unit (should be 550): " + facility.getCapacity());
-        System.out.println("-----------------------DONE-----------------------");
+        System.out.println("Capacity after new unit (new unit cannot be added): " + facility.getCapacity());
+
         //create a Facility Domain
         //create an inspector object
         //create a FacilityUse Object
         //Call the methods in the interface
-
-
         //test for inspection class
-        FacilityManagementFacade maintenance = new FacilityManagementConcrete(facility);
+        FacilityMaintenanceFacade maintenance = new FacilityMaintenanceConcrete(facility);
         //request maintenance *7
-        maintenance.makeFacilityMaintRequest();
-        maintenance.makeFacilityMaintRequest();
-        maintenance.makeFacilityMaintRequest();
-        maintenance.makeFacilityMaintRequest();
-        maintenance.makeFacilityMaintRequest();
-        maintenance.makeFacilityMaintRequest();
-        maintenance.makeFacilityMaintRequest();
-
-
-        maintenance.scheduleMaintenance;//*4
-        maintenance.scheduleMaintenance;
-        maintenance.scheduleMaintenance;
-        maintenance.scheduleMaintenance;
-
+        for (int i = 0; i < 7; i++) {
+            maintenance.makeFacilityMaintRequest();
+        }
+        for (int i = 0; i < 4; i++) {
+            maintenance.scheduleMaintenance();
+        }
+        System.out.println("Building request queue size: " + facility.getMaintenance().getRequestQueue().size());
         System.out.println("Total maintenance cost: " + maintenance.calculateMaintenanceCostForFacility());
         System.out.println("Problem rate: " + maintenance.calcProblemRateForFacility());
         System.out.println("Downtime: " + maintenance.calcDownTimeForFacility());
@@ -103,39 +103,35 @@ public class FacilityManagementDemo {
         System.out.println("\n List of Problems: \n");
         System.out.println(maintenance.listFacilityProblems());
 
-
         //check inspection
         IFacilityDomain inspector = new Inspector(12);
         facility.accept(inspector);
         facility.accept(inspector);
         facility.accept(inspector);
 
-        for(InspectionForm il : facility.getInspections().getInspections()){
+        for (InspectionForm il : facility.getInspections().getInspections()) {
             System.out.println("Inspector ID: " + il.getInspectorID());
         }
 
-
-
-
-
         //call the rest of the methods
-
-
         //test for facility use
+        IFacilityUse use = new FacilityUse(800, 1700);
 
-        IFacilityUse use = new FacilityUse("0800","1700");
+        use.addUserToFacility(new FacilityUser(800, 1, "jorge castro"));
+        use.addUserToFacility(new FacilityUser(800, 2, "james miller"));
+        use.addUserToFacility(new FacilityUser(800, 3, "Yi Lee"));
+        use.addUserToFacility(new FacilityUser(800, 4, "ho kai chiang"));
+        use.addUserToFacility(new FacilityUser(800, 5, "jian liu"));
 
-        use.addUserToFacility(new FacilityUser(800,1,"jorge"));
-        use.addUserToFacility(new FacilityUser(800,2,"james"));
-        use.addUserToFacility(new FacilityUser(800,3,"lee lee"));
-        use.addUserToFacility(new FacilityUser(800,4,"ho kai chiang"));
-        use.addUserToFacility(new FacilityUser(800,5,"jian liu"));
-
-        System.out.println("Actual usage: "+use.getActualUsage());
-        System.out.println("Actual usage: "+use.getUsageRate());
+        System.out.println("Actual usage: " + use.getActualUsage());
+        System.out.println("Actual usage: " + use.getUsageRate());
         use.vacateFacility();
 
-        System.out.println("Actual usage after vacating facility: "+use.getActualUsage());
+        System.out.println("Actual usage after vacating facility: " + use.getActualUsage());
 
+        System.out.println("Removing unit from building... (current facility size is: " + facility.getSize() + ")");
+        facility.removeFacility(units[0]);
+        System.out.println("...unit removed (current facility size is: " + facility.getSize() + ")");
+        System.out.println("-----------------------DONE-----------------------");
     }
 }

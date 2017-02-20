@@ -10,10 +10,19 @@ package com.OfficeBuilding.FacilityMaintenance;
  * @author nickpredey
  */
 public class MaintenanceOrder {
+
     private MaintenanceCost cost;
     private MaintenanceRequest request;
 
-    public MaintenanceOrder(MaintenanceCost cost, MaintenanceRequest request){
+    public void setCost(MaintenanceCost cost) {
+        this.cost = cost;
+    }
+
+    public void setRequest(MaintenanceRequest request) {
+        this.request = request;
+    }
+
+    public MaintenanceOrder(MaintenanceCost cost, MaintenanceRequest request) {
         this.cost = cost;
         this.request = request;
     }
