@@ -15,13 +15,6 @@ import com.OfficeBuilding.facility.Unit;
  */
 public interface IFacilityDomain {
 
-    void scheduleMaintenanceBuilding(Building building);
-
-    void scheduleMaintenanceUnit(Unit unit);
-
-    void makeMaintenanceRequestBuilding(Building unit);
-
-    void makeMaintenanceRequestUnit(Unit unit);
 
     void visitBuilding(Building building);
 
