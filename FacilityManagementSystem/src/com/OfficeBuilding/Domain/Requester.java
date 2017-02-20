@@ -23,18 +23,11 @@ import java.util.List;
  */
 public class Requester implements IFacilityDomain {
 
-
     private String staffName;
 
     public Requester(String staffName) {
-        this.maintenance = new FacilityMaintenance();
         this.staffName = staffName;
-        this.schedules = new ArrayList<>();
     }
-
-
-
-
 
     public String getStaffName() {
         return staffName;
@@ -42,15 +35,6 @@ public class Requester implements IFacilityDomain {
 
     public void setStaffName(String staffName) {
         this.staffName = staffName;
-    }
-
-    private String getTimeofMaintenance() {
-        //get time from view;
-        return Integer.toString(12);
-    }
-
-    private MaintenanceCost getMaintenanceCost() {
-        return new MaintenanceCost(10.0);//to be changed
     }
 
     private String getProblem() {
@@ -62,8 +46,6 @@ public class Requester implements IFacilityDomain {
         //get Period from view
         return 12;
     }
-
-
 
     @Override
     public void visitBuilding(Building building) {
@@ -80,6 +62,26 @@ public class Requester implements IFacilityDomain {
         MaintenanceRequest request = new MaintenanceRequest(getMaintenancePeriod(), staffName, getProblem());
         maintain.addMaintenanceRequest(request);
 
+    }
+
+    @Override
+    public void scheduleMaintenanceBuilding(Building building) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void scheduleMaintenanceUnit(Unit unit) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void makeMaintenanceRequestBuilding(Building unit) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void makeMaintenanceRequestUnit(Unit unit) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }

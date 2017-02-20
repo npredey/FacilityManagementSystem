@@ -7,7 +7,11 @@ package com.OfficeBuilding.facility;
 
 import com.OfficeBuilding.Domain.IFacilityDomain;
 import com.OfficeBuilding.FacilityMaintenance.FacilityMaintenance;
+import com.OfficeBuilding.FacilityMaintenance.MaintenanceLog;
+import com.OfficeBuilding.FacilityUse.FacilityUse;
+import com.OfficeBuilding.FacilityUse.IFacilityUse;
 import com.OfficeBuilding.Inspection.FacilityInspection;
+import com.OfficeBuilding.Inspection.InspectionLog;
 import com.OfficeBuilding.Inspection.InspectorVisitor;
 import java.util.Objects;
 
@@ -20,13 +24,31 @@ public class Unit implements IFacility {
     private FacilityDetail detail;
     private FacilityMaintenance maintenance;
     private FacilityInspection inspection;
-    private IfacilityUse usage;
+    private IFacilityUse usage;
+    private InspectionLog inspectionLog;
 
     public Unit(FacilityDetail detail) {
         this.detail = detail;
         this.maintenance = new FacilityMaintenance();
         this.inspection = new FacilityInspection();
         usage = new FacilityUse("8:00", "5:00");
+    }
+
+    @Override
+    public IFacilityUse getUsage() {
+        return usage;
+    }
+
+    public void setUsage(IFacilityUse usage) {
+        this.usage = usage;
+    }
+
+    public InspectionLog getInspectionLog() {
+        return inspectionLog;
+    }
+
+    public void setInspectionLog(InspectionLog inspectionLog) {
+        this.inspectionLog = inspectionLog;
     }
 
     private void addNewUnitDetail(FacilityDetail d) {
@@ -64,7 +86,7 @@ public class Unit implements IFacility {
     }
 
     @Override
-    public void accept(IFacilityDomain domain){
+    public void accept(IFacilityDomain domain) {
         domain.visitUnit(this);
     }
 
@@ -121,17 +143,18 @@ public class Unit implements IFacility {
 
     @Override
     public InspectionLog getInspections() {
-        return facility.getInspection().getLog();
+        return inspectionLog;
 
     }
-    public int getUserNumber(){
+
+    public int getUserNumber() {
         int size = usage.getActualUsage();
 
         return size;
     }
 
     @Override
-    public int requestAvailableCapacity(){
+    public int requestAvailableCapacity() {
         int availableCapacity = getCapacity() - getUserNumber();
         return availableCapacity;
     }
@@ -145,8 +168,8 @@ public class Unit implements IFacility {
     public String listFacilities() {
         String f = "";
 
-            f+= "Facility id: "detail.getFacilityID() + " ||| Capacity:  "+detail.getCapacity();
-            f+="\n";
+        f += "Facility id: " + detail.getFacilityID() + " ||| Capacity:  " + detail.getCapacity();
+        f += "\n";
 
         return f;
     }

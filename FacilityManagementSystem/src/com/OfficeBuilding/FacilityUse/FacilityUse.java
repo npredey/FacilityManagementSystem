@@ -21,7 +21,6 @@ public class FacilityUse implements IFacilityUse {
     private String endTime;
     private ArrayList<FacilityUser> users;
 
-
     public FacilityUse(String startTime, String endTime) {
         this.startTime = startTime;
         this.endTime = endTime;
@@ -39,8 +38,6 @@ public class FacilityUse implements IFacilityUse {
         return users.size();
 
     }
-
-
 
     @Override
     public void vacateFacility() {
@@ -81,14 +78,21 @@ public class FacilityUse implements IFacilityUse {
     }
 
     @Override
-    public boolean isInUseDuringInterval(String time1, String time2){
-        for(FacilityUser u : users){
-            if(u.getEntryTime().before(new Date(time1)) && u.getExitTime().after(new Date(time2))){
+    public boolean isInUseDuringInterval(int time1, int time2) {
+        Date t1 = new Date(time1);
+        Date t2 = new Date(time2);
+        for (FacilityUser u : users) {
+            if (u.getEntryTime().before(t1) && u.getExitTime().after(t2)) {
                 return true;
             }
         }
         return false;
 
+    }
+
+    @Override
+    public boolean isInUseDuringInterval() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }

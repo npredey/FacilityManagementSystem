@@ -1,5 +1,6 @@
 package com.OfficeBuilding.Domain;
 
+import com.OfficeBuilding.Inspection.InspectionForm;
 import com.OfficeBuilding.facility.Building;
 import com.OfficeBuilding.facility.Unit;
 
@@ -42,5 +43,25 @@ public class Inspector implements IFacilityDomain {
         String inspectionNote = getInspectionNote();
         InspectionForm form = new InspectionForm(inspectionDate, inspectorId, inspectionNote);
         unit.getInspection().inspect(form);
+    }
+
+    @Override
+    public void scheduleMaintenanceBuilding(Building building) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void scheduleMaintenanceUnit(Unit unit) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void makeMaintenanceRequestBuilding(Building unit) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void makeMaintenanceRequestUnit(Unit unit) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

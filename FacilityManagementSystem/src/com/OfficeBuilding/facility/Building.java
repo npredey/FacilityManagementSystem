@@ -7,6 +7,8 @@ package com.OfficeBuilding.facility;
 
 import com.OfficeBuilding.Domain.IFacilityDomain;
 import com.OfficeBuilding.FacilityMaintenance.FacilityMaintenance;
+import com.OfficeBuilding.FacilityUse.FacilityUse;
+import com.OfficeBuilding.FacilityUse.IFacilityUse;
 import com.OfficeBuilding.Inspection.FacilityInspection;
 import com.OfficeBuilding.Inspection.InspectionLog;
 import com.OfficeBuilding.Inspection.InspectorVisitor;
@@ -25,12 +27,13 @@ public class Building implements IFacility {
     public List<IFacility> facilities;
     public InspectionLog inspectionLog;
 
-    public IfacilityUse getUsage() {
+    @Override
+    public IFacilityUse getUsage() {
         return usage;
     }
 
     private FacilityInspection inspection;
-    private IfacilityUse usage;
+    private IFacilityUse usage;
 
     /**
      *
@@ -116,7 +119,7 @@ public class Building implements IFacility {
     }
 
     @Override
-    public void accept(IFacilityDomain domain){
+    public void accept(IFacilityDomain domain) {
         domain.visitBuilding(this);
     }
 
@@ -127,21 +130,21 @@ public class Building implements IFacility {
 
     @Override
     public InspectionLog getInspections() {
-        return facility.getInspection().getLog();
+        return inspectionLog;
 
     }
 
     @Override
-    public int getUserNumber(){
-        int size = 0
-        for(IFacility facility : facilities){
+    public int getUserNumber() {
+        int size = 0;
+        for (IFacility facility : facilities) {
             size += facility.getUsage().getActualUsage();
         }
         return size;
     }
 
     @Override
-    public int requestAvailableCapacity(){
+    public int requestAvailableCapacity() {
         int availableCapacity = getCapacity() - getUserNumber();
         return availableCapacity;
     }
@@ -154,12 +157,11 @@ public class Building implements IFacility {
     @Override
     public String listFacilities() {
         String f = "";
-        for(IFacility fs : facilities){
-            f+= "Facility id: "fs.getFacilityDetail().getFacilityID() + " ||| Capacity:  "+fs.getFacilityDetail().getCapacity();
-            f+="\n";
+        for (IFacility fs : facilities) {
+            f += "Facility id: " + fs.getFacilityDetail().getFacilityID() + " ||| Capacity:  " + fs.getFacilityDetail().getCapacity();
+            f += "\n";
         }
         return f;
     }
-
 
 }
