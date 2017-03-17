@@ -85,7 +85,7 @@ public class FacilityUse implements IFacilityUse {
     public boolean isInUseDuringInterval(int time1, int time2) {
         return users.stream().map((u) -> {
             return u;
-        }).anyMatch((u) -> (u.getEntryTime() > time1 && u.getEntryTime() < time2));
+        }).anyMatch((u) -> (u.getEntryTime() >= time1 && u.getEntryTime() <= time2));
 
     }
 }
