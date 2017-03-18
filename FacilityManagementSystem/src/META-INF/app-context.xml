@@ -9,15 +9,74 @@
 
 	<context:component-scan base-package="com" />
         
-        <bean id="inspector" class="com.OfficeBuilding.Domain.Inspector" scope="prototype"/>
+        <!--Domain Package-->
+        <bean id="inspectorDomain" class="com.OfficeBuilding.Domain.Inspector" scope="prototype"/>
         <bean id="requester" class="com.OfficeBuilding.Domain.Requester" scope="prototype"/>
         <bean id="staff" class="com.OfficeBuilding.Domain.Staff" scope="prototype"/>
         
-        <bean id="facilityMaintenanceConcrete" class="com.OfficeBuilding.Facade.FacilityMaintenanceConcrete"
-                scope="prototype"/>
+        <!---Facade Package-->
+        <bean id="facilityMaintenanceConcrete" 
+              class="com.OfficeBuilding.Facade.FacilityMaintenanceConcrete"
+              scope="prototype"/>
         
+        <!--FacilityMaintenance Package-->
+        <bean id="facilityMaintenance" 
+              class="com.OfficeBuilding.FacilityMaintenance.FacilityMaintenance" 
+              scope="prototype"/>
+        <bean id="maintenanceCost" 
+              class="com.OfficeBuilding.FacilityMaintenance.MaintenanceCost" 
+              scope="prototype"/>
+        <bean id="maintenanceLog" 
+              class="com.OfficeBuilding.FacilityMaintenance.MaintenanceLog" 
+              scope="prototype"/>
+        <bean id="maintenanceOrder" 
+              class="com.OfficeBuilding.FacilityMaintenance.MaintenanceOrder" 
+              scope="prototype"/>
+        <bean id="maintenanceRequest" 
+              class="com.OfficeBuilding.FacilityMaintenance.MaintenanceRequest" 
+              scope="prototype"/>
+        <bean id="maintenanceSchedule" 
+              class="com.OfficeBuilding.FacilityMaintenance.MaintenanceSchedule" 
+              scope="prototype"/>
         
+        <!--FacilityUse Package-->
+        <bean id="facilityUse" 
+              class="com.OfficeBuilding.FacilityUse.FacilityUse" 
+              scope="prototype"/>
+        <bean id="facilityUser" 
+              class="com.OfficeBuilding.FacilityUse.FacilityUser" 
+              scope="prototype"/>
         
+        <!--Inspection Package-->
+        <bean id="facilityInspection" 
+              class="com.OfficeBuilding.Inspection.FacilityInspection" 
+              scope="prototype"/> 
+        <bean id="inspectionForm" 
+              class="com.OfficeBuilding.Inspection.InspectionForm" 
+              scope="prototype"/>
+        <bean id="inspectionLog" 
+              class="com.OfficeBuilding.Inspection.InspectionLog" 
+              scope="prototype"/>
+        <bean id="inspector" 
+              class="com.OfficeBuilding.Inspection.Inspector" 
+              scope="prototype"/>
+        
+        <!--Facility Package-->
+        <bean id="building" 
+              class="com.OfficeBuilding.facility.Building" 
+              scope="prototype"/>
+        <bean id="facilityBudget" 
+              class="com.OfficeBuilding.facility.FacilityBudget" 
+              scope="prototype"/>
+        <bean id="facilityDetail" 
+              class="com.OfficeBuilding.facility.FacilityDetail" 
+              scope="prototype"/>
+        <bean id="location" 
+              class="com.OfficeBuilding.facility.Location" 
+              scope="prototype"/>
+        <bean id="unit" 
+              class="com.OfficeBuilding.facility.Unit" 
+              scope="prototype"/>
         
 	<bean id="billingAddress" class="com.online.bookstore.model.customer.AddressImpl" scope="prototype"/>
 	<bean id="shippingAddress" class="com.online.bookstore.model.customer.AddressImpl" scope="prototype"/>
