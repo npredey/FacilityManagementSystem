@@ -29,6 +29,8 @@ public class Building implements IFacility {
     private IfacilityDetail detail;
     private List<IFacility> facilities;
     private InspectionLogInterface inspectionLog;
+    private IFacilityInspection inspection;
+    private IFacilityUse usage;
 
     public List<IFacility> getFacilities() {
         return facilities;
@@ -42,9 +44,6 @@ public class Building implements IFacility {
     public IFacilityUse getUsage() {
         return usage;
     }
-
-    private IFacilityInspection inspection;
-    private IFacilityUse usage;
 
     public Building() {
 //        facilities = new ArrayList<>();

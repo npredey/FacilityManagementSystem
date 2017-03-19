@@ -11,8 +11,7 @@
         
         <!--Domain Package-->
         <bean id="inspector" class="com.OfficeBuilding.Domain.Inspector" scope="prototype">
-        </bean>
-        
+        </bean> 
         <bean id="requester" class="com.OfficeBuilding.Domain.Requester" scope="prototype">
         </bean>
         <bean id="staff" class="com.OfficeBuilding.Domain.Staff" scope="prototype">
@@ -23,7 +22,7 @@
               class="com.OfficeBuilding.Facade.FacilityMaintenanceConcrete"
               scope="prototype">
             <property name="problemOccurences">
-			<list/>
+			<map/>
             </property>
         </bean>
         
@@ -46,7 +45,7 @@
 			<list/>
              </property>
              <property name="problemOccurences">
-			<list/>
+			<map/>
              </property>
             
         </bean>
@@ -127,6 +126,8 @@
             <property name="facilities">
                           <list/>   
             </property>
+            <property name="usage" ref="facilityUse" />
+            <property name="inspection" ref="facilityInspection" />
         </bean>
         <bean id="facilityBudget" 
               class="com.OfficeBuilding.facility.FacilityBudget" 

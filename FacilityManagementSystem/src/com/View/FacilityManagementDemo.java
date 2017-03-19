@@ -101,7 +101,7 @@ public class FacilityManagementDemo {
         unit1.addNewDetail(detailDemoUnit1);
         unit2.addNewDetail(detailDemoUnit2);
         //Unit[] units = {unit1,unit2 /*new Unit(detailDemoUnit2)*/};
-        IFacility facility = (IFacility) context.getBean("facility");
+        IFacility facility = (IFacility) context.getBean("building");
         facility.addFacility(unit1);//new Building(units);
         facility.addFacility(unit2);
         facility.addNewDetail(detailDemoBuilding);
@@ -152,7 +152,7 @@ public class FacilityManagementDemo {
         System.out.println(maintenance.listFacilityProblems());
 
         //check inspection
-        IFacilityDomain inspector = (IFacilityDomain) context.getBean("inspectorDomain");
+        IFacilityDomain inspector = (IFacilityDomain) context.getBean("inspector");
         inspector.setStaffName("Mr. X");// new Inspector(12);
         facility.accept(inspector);
         facility.accept(inspector);
@@ -172,21 +172,21 @@ public class FacilityManagementDemo {
         user1.setEntryTime(800);
 
         IFacilityUser user2 = (IFacilityUser) context.getBean("facilityUser");
-        user1.setUserID(2);
-        user1.setName("james miller");
-        user1.setEntryTime(800);
+        user2.setUserID(2);
+        user2.setName("james miller");
+        user2.setEntryTime(800);
         IFacilityUser user3 = (IFacilityUser) context.getBean("facilityUser");
-        user1.setUserID(3);
-        user1.setName("Yi Lee");
-        user1.setEntryTime(800);
+        user3.setUserID(3);
+        user3.setName("Yi Lee");
+        user3.setEntryTime(800);
         IFacilityUser user4 = (IFacilityUser) context.getBean("facilityUser");
-        user1.setUserID(4);
-        user1.setName("ho kai chiang");
-        user1.setEntryTime(800);
+        user4.setUserID(4);
+        user4.setName("ho kai chiang");
+        user4.setEntryTime(800);
         IFacilityUser user5 = (IFacilityUser) context.getBean("facilityUser");
-        user1.setUserID(5);
-        user1.setName("jian liu");
-        user1.setEntryTime(800);
+        user5.setUserID(5);
+        user5.setName("jian liu");
+        user5.setEntryTime(800);
 
         use.addUserToFacility(user1);
         use.addUserToFacility(user2);

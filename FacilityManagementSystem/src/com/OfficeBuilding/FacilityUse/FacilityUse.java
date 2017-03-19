@@ -5,7 +5,6 @@
  */
 package com.OfficeBuilding.FacilityUse;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -86,9 +85,14 @@ public class FacilityUse implements IFacilityUse {
      */
     @Override
     public boolean isInUseDuringInterval(int time1, int time2) {
-        return users.stream().map((u) -> {
-            return u;
-        }).anyMatch((u) -> (u.getEntryTime() >= time1 && u.getEntryTime() <= time2));
+        for (IFacilityUser f : users) {
+            System.out.println("Name of user: " + f.getName());
+            System.out.println("Entry time: " + f.getEntryTime());
+            if (f.getEntryTime() >= time1 && f.getEntryTime() <= time2) {
+                return true;
+            }
+        }
+        return false;
 
     }
 
