@@ -14,7 +14,7 @@ import java.util.List;
  */
 public class MaintenanceLog implements IMaintenanceLog {
 
-    public List<MaintenanceOrder> orders;
+    public List<IMaintenanceOrder> orders;
 
     public MaintenanceLog() {
         this.orders = new ArrayList<>();
@@ -26,7 +26,7 @@ public class MaintenanceLog implements IMaintenanceLog {
      * @return
      */
     @Override
-    public List<MaintenanceOrder> getLogs() {
+    public List<IMaintenanceOrder> getLogs() {
         return orders;
     }
 
@@ -36,7 +36,7 @@ public class MaintenanceLog implements IMaintenanceLog {
      * @param order
      */
     @Override
-    public void addToLog(MaintenanceOrder order) {
+    public void addToLog(IMaintenanceOrder order) {
         orders.add(order);
     }
 }

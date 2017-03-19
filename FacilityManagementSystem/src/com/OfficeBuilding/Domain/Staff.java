@@ -7,6 +7,9 @@ package com.OfficeBuilding.Domain;
 
 import com.OfficeBuilding.FacilityMaintenance.FacilityMaintenance;
 import com.OfficeBuilding.FacilityMaintenance.IFacilityMaintenance;
+import com.OfficeBuilding.FacilityMaintenance.IMaintenanceOrder;
+import com.OfficeBuilding.FacilityMaintenance.IMaintenanceRequest;
+import com.OfficeBuilding.FacilityMaintenance.IMaintenanceSchedule;
 import com.OfficeBuilding.FacilityMaintenance.MaintenanceCost;
 import com.OfficeBuilding.FacilityMaintenance.MaintenanceLog;
 import com.OfficeBuilding.FacilityMaintenance.MaintenanceOrder;
@@ -55,13 +58,13 @@ public class Staff implements IFacilityDomain {
     public void visitBuilding(Building building) {
 
         building.getFacilities().stream().map((facility) -> facility.getMaintenance()).forEach((maintain) -> {
-            MaintenanceRequest mr = maintain.getMaintenanceRequest();
+            IMaintenanceRequest mr = maintain.getMaintenanceRequest();
             MaintenanceSchedule ms = new MaintenanceSchedule(getTimeofMaintenance(), mr);
             maintain.scheduleRequest(ms);
             building.getMaintenance().scheduleRequest(ms);
             getMaintenanceCost();
 
-            MaintenanceOrder order = new MaintenanceOrder(getMaintenanceCost(), mr);
+            IMaintenanceOrder order = new MaintenanceOrder(getMaintenanceCost(), mr);
             maintain.addOrderToLog(order);
             building.getMaintenance().addOrderToLog(order);
         });
@@ -76,8 +79,8 @@ public class Staff implements IFacilityDomain {
     @Override
     public void visitUnit(Unit unit) {
         FacilityMaintenance maintain = unit.getMaintenance();
-        MaintenanceRequest mr = maintain.getMaintenanceRequest();
-        MaintenanceSchedule ms = new MaintenanceSchedule(getTimeofMaintenance(), mr);
+        IMaintenanceRequest mr = maintain.getMaintenanceRequest();
+        IMaintenanceSchedule ms = new MaintenanceSchedule(getTimeofMaintenance(), mr);
         maintain.scheduleRequest(ms);
 
         getMaintenanceCost();

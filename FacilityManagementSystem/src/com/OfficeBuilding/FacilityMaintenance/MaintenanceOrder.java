@@ -11,10 +11,10 @@ package com.OfficeBuilding.FacilityMaintenance;
  */
 public class MaintenanceOrder implements IMaintenanceOrder {
 
-    private MaintenanceCost cost;
-    private MaintenanceRequest request;
+    private IMaintenanceCost cost;
+    private IMaintenanceRequest request;
 
-    public MaintenanceOrder(MaintenanceCost cost, MaintenanceRequest request) {
+    public MaintenanceOrder(IMaintenanceCost cost, IMaintenanceRequest request) {
         this.cost = cost;
         this.request = request;
     }
@@ -25,7 +25,7 @@ public class MaintenanceOrder implements IMaintenanceOrder {
      * @param cost
      */
     @Override
-    public void setCost(MaintenanceCost cost) {
+    public void setCost(IMaintenanceCost cost) {
         this.cost = cost;
     }
 
@@ -35,7 +35,7 @@ public class MaintenanceOrder implements IMaintenanceOrder {
      * @param request
      */
     @Override
-    public void setRequest(MaintenanceRequest request) {
+    public void setRequest(IMaintenanceRequest request) {
         this.request = request;
     }
 
@@ -45,7 +45,7 @@ public class MaintenanceOrder implements IMaintenanceOrder {
      * @return
      */
     @Override
-    public MaintenanceCost getCost() {
+    public IMaintenanceCost getCost() {
         return cost;
     }
 
@@ -55,7 +55,7 @@ public class MaintenanceOrder implements IMaintenanceOrder {
      * @return
      */
     @Override
-    public MaintenanceRequest getRequest() {
+    public IMaintenanceRequest getRequest() {
         return request;
     }
 }

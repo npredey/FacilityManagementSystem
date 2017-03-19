@@ -13,7 +13,7 @@ import java.util.List;
  */
 public interface IMaintenanceLog {
 
-    List<MaintenanceOrder> getLogs();
+    List<IMaintenanceOrder> getLogs();
 
-    void addToLog(MaintenanceOrder order);
+    void addToLog(IMaintenanceOrder order);
 }

@@ -11,11 +11,11 @@ package com.OfficeBuilding.FacilityMaintenance;
  */
 public interface IMaintenanceOrder {
 
-    void setCost(MaintenanceCost cost);
+    void setCost(IMaintenanceCost cost);
 
-    void setRequest(MaintenanceRequest request);
+    void setRequest(IMaintenanceRequest request);
 
-    MaintenanceCost getCost();
+    IMaintenanceCost getCost();
 
-    MaintenanceRequest getRequest();
+    IMaintenanceRequest getRequest();
 }

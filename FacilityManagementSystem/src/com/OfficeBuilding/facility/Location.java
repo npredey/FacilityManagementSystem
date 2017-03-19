@@ -9,7 +9,7 @@ package com.OfficeBuilding.facility;
  *
  * @author nickpredey
  */
-public class Location implements ILocation{
+public class Location implements ILocation {
 
     private String streetName;
     private String streetNumber;
@@ -28,50 +28,62 @@ public class Location implements ILocation{
         this.country = country;
     }
 
+    @Override
     public String getStreetName() {
         return streetName;
     }
 
+    @Override
     public void setStreetName(String streetName) {
         this.streetName = streetName;
     }
 
+    @Override
     public String getStreetNumber() {
         return streetNumber;
     }
 
+    @Override
     public void setStreetNumber(String streetNumber) {
         this.streetNumber = streetNumber;
     }
 
+    @Override
     public String getCity() {
         return city;
     }
 
+    @Override
     public void setCity(String city) {
         this.city = city;
     }
 
+    @Override
     public String getState() {
         return state;
     }
 
+    @Override
     public void setState(String state) {
         this.state = state;
     }
 
+    @Override
     public int getZipCode() {
         return zipCode;
     }
 
+    @Override
     public void setZipCode(int zipCode) {
         this.zipCode = zipCode;
     }
 
+    @Override
     public String getCountry() {
         return country;
     }
 
+    @Override
     public void setCountry(String country) {
         this.country = country;
     }

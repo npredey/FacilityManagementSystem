@@ -10,7 +10,8 @@ package com.OfficeBuilding.facility;
  * @author Nathnael
  */
 public interface IfacilityDetail {
-    public void setAddress(Location value);
+
+    public void setAddress(ILocation value);
 
     public void setCapacity(int value);
 
@@ -28,5 +29,5 @@ public interface IfacilityDetail {
 
     @Override
     public String toString();
-    
+
 }

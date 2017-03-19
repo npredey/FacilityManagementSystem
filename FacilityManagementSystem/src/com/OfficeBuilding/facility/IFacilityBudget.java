@@ -10,15 +10,15 @@ package com.OfficeBuilding.facility;
  * @author Nathnael
  */
 public interface IFacilityBudget {
-    public void setOperatingBudget(double value);
 
-    public void setSavings(double value);
+    void setOperatingBudget(double value);
 
-    public double getOperatingBudget();
+    void setSavings(double value);
 
-    public double getSavings();
+    double getOperatingBudget();
 
-    
-    public String toString();
-    
+    double getSavings();
+
+    String toString();
+
 }

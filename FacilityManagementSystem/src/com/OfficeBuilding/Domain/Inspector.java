@@ -9,14 +9,15 @@ import com.OfficeBuilding.facility.Unit;
  */
 public class Inspector implements IFacilityDomain {
 
-    int inspectorId;
+    private int inspectorId;
 
     /**
      * Creates an inspector object with a unique ID.
      *
      * @param inspectorId
      */
-    public Inspector() {}
+    public Inspector() {
+    }
 
     /**
      * Visits a building to perform an inspection
@@ -35,8 +36,8 @@ public class Inspector implements IFacilityDomain {
         });
 
     }
-    
-    public void setInspectorID(int inspectorId){
+
+    public void setInspectorID(int inspectorId) {
         this.inspectorId = inspectorId;
     }
 

@@ -9,7 +9,7 @@ package com.OfficeBuilding.facility;
  *
  * @author nickpredey
  */
-public class FacilityDetail implements IfacilityDetail{
+public class FacilityDetail implements IfacilityDetail {
 
     private int facilityID;
     private int capacity;
@@ -23,30 +23,37 @@ public class FacilityDetail implements IfacilityDetail{
         address = value;
     }
 
+    @Override
     public void setCapacity(int value) {
         capacity = value;
     }
 
+    @Override
     public void setFacilityBudget(IFacilityBudget value) {
         facilityBudget = value;
     }
 
+    @Override
     public void setFacilityID(int value) {
         facilityID = value;
     }
 
+    @Override
     public ILocation getAddress() {
         return address;
     }
 
+    @Override
     public int getCapacity() {
         return capacity;
     }
 
+    @Override
     public IFacilityBudget getFacilityBudget() {
         return facilityBudget;
     }
 
+    @Override
     public int getFacilityID() {
         return facilityID;
     }

@@ -133,7 +133,7 @@ public class FacilityMaintenance implements IFacilityMaintenance {
     @Override
     public String listMaintenance() {
         String output = "";
-        for (MaintenanceOrder l : log.getLogs()) {
+        for (IMaintenanceOrder l : log.getLogs()) {
             //no get dollar amount method
             output += "A problem of  " + l.getRequest().getProblem() + " requested by " + l.getRequest().getMaintenanceRequester() + " costs " + l.getCost().getDollarAmount();
             output += "\n";

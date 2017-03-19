@@ -3,6 +3,8 @@ package com.OfficeBuilding.Facade;
 import com.OfficeBuilding.Domain.IFacilityDomain;
 import com.OfficeBuilding.Domain.Requester;
 import com.OfficeBuilding.Domain.Staff;
+import com.OfficeBuilding.FacilityMaintenance.IMaintenanceOrder;
+import com.OfficeBuilding.FacilityMaintenance.IMaintenanceRequest;
 import com.OfficeBuilding.facility.IFacility;
 import com.OfficeBuilding.FacilityMaintenance.MaintenanceOrder;
 import com.OfficeBuilding.FacilityMaintenance.MaintenanceRequest;
@@ -54,7 +56,7 @@ public class FacilityMaintenanceConcrete implements FacilityMaintenanceFacade {
     @Override
     public String listMaintRequests() {
         String output = "";
-        for (MaintenanceRequest l : facility.getMaintenance().getRequestQueue()) {
+        for (IMaintenanceRequest l : facility.getMaintenance().getRequestQueue()) {
             output += "A problem of  " + l.getProblem() + " requested by " + l.getMaintenanceRequester() + " is under review";
             output += "\n";
 
@@ -66,7 +68,7 @@ public class FacilityMaintenanceConcrete implements FacilityMaintenanceFacade {
     @Override
     public String listMaintenance() {
         String output = "";
-        for (MaintenanceOrder l : facility.getMaintenance().getLog().getLogs()) {
+        for (IMaintenanceOrder l : facility.getMaintenance().getLog().getLogs()) {
             output += "A problem of  " + l.getRequest().getProblem() + " requested by " + l.getRequest().getMaintenanceRequester() + " costs " + l.getCost().getDollarAmount();
             output += "\n";
 
@@ -77,7 +79,7 @@ public class FacilityMaintenanceConcrete implements FacilityMaintenanceFacade {
     @Override
     public String listFacilityProblems() {
         HashMap<String, Integer> problemOccurences = new HashMap<>();
-        for (MaintenanceOrder l : facility.getMaintenance().getLog().getLogs()) {
+        for (IMaintenanceOrder l : facility.getMaintenance().getLog().getLogs()) {
             if (problemOccurences.containsKey(l.getRequest().getProblem())) {
                 problemOccurences.put(l.getRequest().getProblem(), problemOccurences.get(l.getRequest().getProblem()) + 1);
             } else {

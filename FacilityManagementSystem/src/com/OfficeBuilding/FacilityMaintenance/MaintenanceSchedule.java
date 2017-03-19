@@ -15,9 +15,9 @@ public class MaintenanceSchedule implements IMaintenanceSchedule {
 
     private Date timeOfMaintenance;
 
-    private MaintenanceRequest request;
+    private IMaintenanceRequest request;
 
-    public MaintenanceSchedule(int timeOfMaintenance, MaintenanceRequest request) {
+    public MaintenanceSchedule(int timeOfMaintenance, IMaintenanceRequest request) {
         this.timeOfMaintenance = new Date(timeOfMaintenance);
         this.request = request;
     }
