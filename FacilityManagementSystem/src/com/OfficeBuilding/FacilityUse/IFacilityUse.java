@@ -22,4 +22,7 @@ public interface IFacilityUse {
     public void addUserToFacility(IFacilityUser user);
 
     boolean isInUseDuringInterval(int time1, int time2);
+    
+    void setStartTime(int startTime);
+    void setEndTime(int endTime);
 }

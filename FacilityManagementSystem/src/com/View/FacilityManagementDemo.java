@@ -17,6 +17,10 @@ import com.OfficeBuilding.facility.IFacility;
 import com.OfficeBuilding.facility.Location;
 import com.OfficeBuilding.facility.Unit;
 import java.text.ParseException;
+import UtilityFunctions.UtilFunctions;
+import com.OfficeBuilding.facility.IFacilityBudget;
+import com.OfficeBuilding.facility.ILocation;
+import com.OfficeBuilding.facility.IfacilityDetail;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -50,31 +54,81 @@ public class FacilityManagementDemo {
 
     public static void main(String[] args) throws ParseException {
         MaintenanceLog maintenanceLog = new MaintenanceLog();
-        Location facilityLocation = new Location(testStreetName, testStreetNumber,
-                testCity, testState, testZipCode, testCountry);
+        ApplicationContext context = UtilFunctions.getApplicationContext();
+        
+        ILocation facilityLocation = (ILocation)context.getBean("location");
+        facilityLocation.setCity(testCity);
+        facilityLocation.setCountry(testCountry);
+        facilityLocation.setState(testState);
+        facilityLocation.setStreetName(testStreetName);
+        facilityLocation.setStreetNumber(testStreetNumber);
+        facilityLocation.setZipCode(testZipCode);
+        
+        
 
-        ApplicationContext context = new ClassPathXmlApplicationContext("META-INF/app-context.xml");
+        IFacilityBudget facilityBudgetBuilding = (IFacilityBudget)context.getBean("facilityBudget");
+        facilityBudgetBuilding.setOperatingBudget(testOperatingBudget0);
+        facilityBudgetBuilding.setSavings(testSavings0);
+        //new FacilityBudget(testSavings0, testOperatingBudget0);
+        
+        IFacilityBudget facilityBudgetUnit1 = (IFacilityBudget)context.getBean("facilityBudget");
+        facilityBudgetBuilding.setOperatingBudget(testOperatingBudget1);
+        facilityBudgetBuilding.setSavings(testSavings1);
+        
+        IFacilityBudget facilityBudgetUnit2 = (IFacilityBudget)context.getBean("facilityBudget");
+        facilityBudgetBuilding.setOperatingBudget(testOperatingBudget2);
+        facilityBudgetBuilding.setSavings(testSavings2);
+        
+        IFacilityBudget facilityBudgetNewUnit = (IFacilityBudget)context.getBean("facilityBudget");
+        facilityBudgetBuilding.setOperatingBudget(testOperatingBudget3);
+        facilityBudgetBuilding.setSavings(testSavings3);
+        
 
-        FacilityBudget facilityBudgetBuilding = new FacilityBudget(testSavings0, testOperatingBudget0);
-        FacilityBudget facilityBudgetUnit1 = new FacilityBudget(testSavings1, testOperatingBudget1);
-        FacilityBudget facilityBudgetUnit2 = new FacilityBudget(testSavings2, testOperatingBudget2);
-        FacilityBudget facilityBudgetNewUnit = new FacilityBudget(testSavings3, testOperatingBudget3);
+        
+        IfacilityDetail detailDemoBuilding = (IfacilityDetail)context.getBean("facilityDetail");
+        detailDemoBuilding.setAddress(facilityLocation);
+        detailDemoBuilding.setCapacity(-1);
+        detailDemoBuilding.setFacilityBudget(facilityBudgetBuilding);
+        detailDemoBuilding.setFacilityID(0);
+        
+        IfacilityDetail detailDemoUnit1 = (IfacilityDetail)context.getBean("facilityDetail");
+        detailDemoBuilding.setAddress(facilityLocation);
+        detailDemoBuilding.setCapacity(capacityUnit1);
+        detailDemoBuilding.setFacilityBudget(facilityBudgetUnit1);
+        detailDemoBuilding.setFacilityID(1);
+        
+        IfacilityDetail detailDemoUnit2 = (IfacilityDetail)context.getBean("facilityDetail");
+        detailDemoBuilding.setAddress(facilityLocation);
+        detailDemoBuilding.setCapacity(capacityUnit2);
+        detailDemoBuilding.setFacilityBudget(facilityBudgetUnit2);
+        detailDemoBuilding.setFacilityID(2);
+        
+        
+        IfacilityDetail detailTestNewUnit = (IfacilityDetail)context.getBean("facilityDetail");
+        detailDemoBuilding.setAddress(facilityLocation);
+        detailDemoBuilding.setCapacity(capacityUnit3);
+        detailDemoBuilding.setFacilityBudget(facilityBudgetNewUnit);
+        detailDemoBuilding.setFacilityID(3);
+        //FacilityDetail detailTestNewUnit = new FacilityDetail(3, capacityUnit3, facilityBudgetNewUnit, facilityLocation);
 
-        FacilityDetail detailDemoBuilding = new FacilityDetail(0, -1, facilityBudgetBuilding, facilityLocation);
-        FacilityDetail detailDemoUnit1 = new FacilityDetail(1, capacityUnit1, facilityBudgetUnit1, facilityLocation);
-        FacilityDetail detailDemoUnit2 = new FacilityDetail(2, capacityUnit2, facilityBudgetUnit2, facilityLocation);
-        FacilityDetail detailTestNewUnit = new FacilityDetail(3, capacityUnit3, facilityBudgetNewUnit, facilityLocation);
-
-        Unit[] units = {new Unit(detailDemoUnit1), new Unit(detailDemoUnit2)};
-        IFacility facility = new Building(units);
+        Unit unit1 = ((Unit)context.getBean("unit"));
+        Unit unit2 = (Unit)context.getBean("unit");
+        unit1.addNewDetail(detailDemoUnit1);
+        unit2.addNewDetail(detailDemoUnit2);
+        //Unit[] units = {unit1,unit2 /*new Unit(detailDemoUnit2)*/};
+        IFacility facility = (IFacility)context.getBean("facility");
+        facility.addFacility(unit1);//new Building(units);
+        facility.addFacility(unit2);
         facility.addNewDetail(detailDemoBuilding);
+        
         System.out.println("Initial capacity (should be 250): " + facility.getCapacity());
         System.out.println("Requesting available capacity...: " + facility.requestAvailableCapacity());
         System.out.println("Printing facility information: " + facility.getFacilityInformation());
         System.out.println("List of facilities: \n" + facility.listFacilities());
 
         IFacilityDomain staff = new Staff(testStaffName);
-        IFacilityUse facilityUse = new FacilityUse(900, 1900);
+        IFacilityUse facilityUse = facility.getUsage();
+        facilityUse.//new FacilityUse(900, 1900);
 
         IFacility newUnit = new Unit(detailTestNewUnit);
         facility.addFacility(newUnit);
