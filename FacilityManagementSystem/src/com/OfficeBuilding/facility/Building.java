@@ -6,13 +6,9 @@
 package com.OfficeBuilding.facility;
 
 import com.OfficeBuilding.Domain.IFacilityDomain;
-import com.OfficeBuilding.FacilityMaintenance.FacilityMaintenance;
 import com.OfficeBuilding.FacilityMaintenance.IFacilityMaintenance;
-import com.OfficeBuilding.FacilityUse.FacilityUse;
 import com.OfficeBuilding.FacilityUse.IFacilityUse;
-import com.OfficeBuilding.Inspection.FacilityInspection;
 import com.OfficeBuilding.Inspection.IFacilityInspection;
-import com.OfficeBuilding.Inspection.InspectionLog;
 import com.OfficeBuilding.Inspection.InspectionLogInterface;
 import java.util.List;
 import java.util.Objects;

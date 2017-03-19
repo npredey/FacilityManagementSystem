@@ -6,10 +6,8 @@
 package com.OfficeBuilding.Domain;
 
 import static UtilityFunctions.UtilFunctions.getApplicationContext;
-import com.OfficeBuilding.FacilityMaintenance.FacilityMaintenance;
 import com.OfficeBuilding.FacilityMaintenance.IFacilityMaintenance;
 import com.OfficeBuilding.FacilityMaintenance.IMaintenanceRequest;
-import com.OfficeBuilding.FacilityMaintenance.MaintenanceRequest;
 import com.OfficeBuilding.facility.Building;
 import com.OfficeBuilding.facility.Unit;
 import java.util.Objects;

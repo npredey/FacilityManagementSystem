@@ -1,13 +1,11 @@
 package com.OfficeBuilding.Domain;
 
 import static UtilityFunctions.UtilFunctions.getApplicationContext;
-import com.OfficeBuilding.Inspection.InspectionForm;
 import com.OfficeBuilding.Inspection.InspectionFormInterface;
 import com.OfficeBuilding.facility.Building;
 import com.OfficeBuilding.facility.Unit;
 import java.util.Objects;
 import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 /**
  * Created by Nathnael on 2/18/2017. The inspector visitor concrete class
