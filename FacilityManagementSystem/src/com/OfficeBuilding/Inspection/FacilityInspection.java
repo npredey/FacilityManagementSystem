@@ -14,15 +14,15 @@ import java.util.List;
  */
 public class FacilityInspection implements IFacilityInspection {
 
-    List<InspectionForm> forms;
-    InspectionLog log;
+    List<InspectionFormInterface> forms;
+    InspectionLogInterface log;
 
     public FacilityInspection() {
         forms = new ArrayList<>();
     }
 
     @Override
-    public void inspect(InspectionForm form) {
+    public void inspect(InspectionFormInterface form) {
         forms.add(form);
 
     }
@@ -33,7 +33,7 @@ public class FacilityInspection implements IFacilityInspection {
     }
 
     @Override
-    public InspectionLog getLog() {
+    public InspectionLogInterface getLog() {
         return log;
 
     }

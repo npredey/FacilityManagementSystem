@@ -16,7 +16,7 @@ public class FacilityUse implements IFacilityUse {
 
     private int startTime;
     private int endTime;
-    private ArrayList<FacilityUser> users;
+    private ArrayList<IFacilityUser> users;
 
     public FacilityUse(int startTime, int endTime) {
         this.startTime = startTime;
@@ -44,7 +44,7 @@ public class FacilityUse implements IFacilityUse {
     }
 
     @Override
-    public void addUserToFacility(FacilityUser user) {
+    public void addUserToFacility(IFacilityUser user) {
         users.add(user);
 
     }
@@ -57,7 +57,7 @@ public class FacilityUse implements IFacilityUse {
         return endTime;
     }
 
-    public ArrayList<FacilityUser> getUsers() {
+    public ArrayList<IFacilityUser> getUsers() {
         return users;
     }
 
@@ -69,7 +69,7 @@ public class FacilityUse implements IFacilityUse {
         this.endTime = endTime;
     }
 
-    public void setUsers(ArrayList<FacilityUser> users) {
+    public void setUsers(ArrayList<IFacilityUser> users) {
         this.users = users;
     }
 

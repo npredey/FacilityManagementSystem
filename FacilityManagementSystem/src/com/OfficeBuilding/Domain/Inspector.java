@@ -16,9 +16,7 @@ public class Inspector implements IFacilityDomain {
      *
      * @param inspectorId
      */
-    public Inspector(int inspectorId) {
-        this.inspectorId = inspectorId;
-    }
+    public Inspector() {}
 
     /**
      * Visits a building to perform an inspection
@@ -31,10 +29,15 @@ public class Inspector implements IFacilityDomain {
             int inspectionDate = getInspectionDate();
             String inspectionNote = getInspectionNote();
             InspectionForm form = new InspectionForm(inspectionDate, inspectorId, inspectionNote);
+            //set the inspectorId,InspectorNote and inspectionDate Separately
             f.getInspection().inspect(form);
             build.getInspection().inspect(form); //inspect the building
         });
 
+    }
+    
+    public void setInspectorID(int inspectorId){
+        this.inspectorId = inspectorId;
     }
 
     private String getInspectionNote() {

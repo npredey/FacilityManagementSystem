@@ -11,12 +11,14 @@ import java.util.Date;
  *
  * @author nickpredey
  */
-public class InspectionForm {
+public class InspectionForm implements InspectionFormInterface{
 
     private Date inspectionDate;
     private int inspectorID;
 
     private String inspectionNotes;
+    public InspectionForm(){}
+    
 
     public InspectionForm(int inspectionDate, int inspectorID,
             String inspectionNotes) {

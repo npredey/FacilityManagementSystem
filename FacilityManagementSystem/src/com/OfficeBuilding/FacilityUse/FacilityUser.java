@@ -16,7 +16,7 @@ import java.util.logging.Logger;
  *
  * @author nickpredey
  */
-public class FacilityUser {
+public class FacilityUser implements IFacilityUser{
 
     private int entryTime;
     private int exitTime;

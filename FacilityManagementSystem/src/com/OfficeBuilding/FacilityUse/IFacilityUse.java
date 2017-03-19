@@ -19,7 +19,7 @@ public interface IFacilityUse {
 
     public void vacateFacility();
 
-    public void addUserToFacility(FacilityUser user);
+    public void addUserToFacility(IFacilityUser user);
 
     boolean isInUseDuringInterval(int time1, int time2);
 }

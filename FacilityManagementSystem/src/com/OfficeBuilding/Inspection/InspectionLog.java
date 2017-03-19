@@ -11,23 +11,23 @@ import java.util.ArrayList;
  *
  * @author nickpredey
  */
-public class InspectionLog {
+public class InspectionLog implements InspectionLogInterface{
 
-    private ArrayList<InspectionForm> inspections;
+    private ArrayList<InspectionFormInterface> inspections;
 
     public InspectionLog() {
         this.inspections = new ArrayList<>();
     }
 
-    public void setInspections(ArrayList<InspectionForm> value) {
+    public void setInspections(ArrayList<InspectionFormInterface> value) {
         inspections = value;
     }
 
-    public ArrayList<InspectionForm> getInspections() {
+    public ArrayList<InspectionFormInterface> getInspections() {
         return inspections;
     }
 
-    public void addForm(InspectionForm form) {
+    public void addForm(InspectionFormInterface form) {
         inspections.add(form);
     }
 
