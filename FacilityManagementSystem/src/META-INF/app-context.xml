@@ -11,11 +11,11 @@
         
         <!--Domain Package-->
         <bean id="inspector" class="com.OfficeBuilding.Domain.Inspector" scope="prototype">
-            <property>name="form" ref="inspectionForm"</property>
+            <property name="form" ref="inspectionForm"/>
         </bean>
         
         <bean id="requester" class="com.OfficeBuilding.Domain.Requester" scope="prototype">
-            <property>name="request" ref="maintenanceRequest"</property>
+            <property name="request" ref="maintenanceRequest"/>
         </bean>
         <bean id="staff" class="com.OfficeBuilding.Domain.Staff" scope="prototype">
         <property name="">
@@ -24,27 +24,59 @@
         <!---Facade Package-->
         <bean id="facilityMaintenanceConcrete" 
               class="com.OfficeBuilding.Facade.FacilityMaintenanceConcrete"
-              scope="prototype"/>
+              scope="prototype">
+            <property name="problemOccurences">
+			<list/>
+            </property>
+        </bean>
         
         <!--FacilityMaintenance Package-->
         <bean id="facilityMaintenance" 
               class="com.OfficeBuilding.FacilityMaintenance.FacilityMaintenance" 
-              scope="prototype"/>
+              scope="prototype">
+            <property name="log" ref="maintenanceLog" />
+           
+            <property name="requestQueue">
+			<list/>
+            </property>
+             <property name="orders">
+			<list/>
+             </property>
+             <property name="schedules">
+			<list/> 
+             </property>
+             <property name="problems">
+			<list/>
+             </property>
+             <property name="problemOccurences">
+			<list/>
+             </property>
+            
+        </bean>
         <bean id="maintenanceCost" 
               class="com.OfficeBuilding.FacilityMaintenance.MaintenanceCost" 
               scope="prototype"/>
         <bean id="maintenanceLog" 
               class="com.OfficeBuilding.FacilityMaintenance.MaintenanceLog" 
-              scope="prototype"/>
+              scope="prototype">
+            <property name="orders">
+			<list/>
+            </property>
+        </bean>
         <bean id="maintenanceOrder" 
               class="com.OfficeBuilding.FacilityMaintenance.MaintenanceOrder" 
-              scope="prototype"/>
+              scope="prototype">
+            <property name="cost" ref="maintenanceCost" />
+            <property name="request" ref="maintenanceRequest" />
+        </bean>
         <bean id="maintenanceRequest" 
               class="com.OfficeBuilding.FacilityMaintenance.MaintenanceRequest" 
               scope="prototype"/>
         <bean id="maintenanceSchedule" 
               class="com.OfficeBuilding.FacilityMaintenance.MaintenanceSchedule" 
-              scope="prototype"/>
+              scope="prototype">
+            <property name="request" ref="maintenanceRequest" />
+        </bean>
         
         <!--FacilityUse Package-->
         <bean id="facilityUse" 
@@ -52,6 +84,8 @@
               scope="prototype">
             <property name="users">
 			<list/>
+            </property>
+            
             
             
             
@@ -67,6 +101,7 @@
             <property name="log" ref="inspectionLog" />
             <property name="forms">
 			<list/>
+            </property>
                        
                         
             
@@ -80,6 +115,7 @@
             
             <property name="inspections">
                           <list/>    
+            </property>
             
             
         </bean>
@@ -93,6 +129,7 @@
             <property name="inspectionLog" ref="inspectionLog" />
             <property name="facilities">
                           <list/>   
+            </property>
         </bean>
         <bean id="facilityBudget" 
               class="com.OfficeBuilding.facility.FacilityBudget" 
