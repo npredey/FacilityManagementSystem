@@ -1,5 +1,7 @@
 package com.OfficeBuilding.Facade;
 
+import com.OfficeBuilding.facility.IFacility;
+
 /**
  * Created by Nathnael on 2/19/2017. Maintenance facade interface so that the
  * maintenance can be performed on the facilities
@@ -32,4 +34,8 @@ public interface FacilityMaintenanceFacade {
     String listMaintenance();
 
     String listFacilityProblems();
+    
+    IFacility getFacility();
+    
+    void setFacility(IFacility facility);
 }

@@ -18,6 +18,8 @@ import com.OfficeBuilding.facility.Location;
 import com.OfficeBuilding.facility.Unit;
 import java.text.ParseException;
 import UtilityFunctions.UtilFunctions;
+import com.OfficeBuilding.FacilityUse.IFacilityUser;
+import com.OfficeBuilding.Inspection.InspectionFormInterface;
 import com.OfficeBuilding.facility.IFacilityBudget;
 import com.OfficeBuilding.facility.ILocation;
 import com.OfficeBuilding.facility.IfacilityDetail;
@@ -126,11 +128,14 @@ public class FacilityManagementDemo {
         System.out.println("Printing facility information: " + facility.getFacilityInformation());
         System.out.println("List of facilities: \n" + facility.listFacilities());
 
-        IFacilityDomain staff = new Staff(testStaffName);
+        IFacilityDomain staff = (IFacilityDomain)context.getBean("staff");
+        staff.setStaffName(testStaffName);//;new Staff(testStaffName);
         IFacilityUse facilityUse = facility.getUsage();
-        facilityUse.//new FacilityUse(900, 1900);
+        facilityUse.setStartTime(900);
+        facilityUse.setEndTime(1900);//new FacilityUse(900, 1900);
 
-        IFacility newUnit = new Unit(detailTestNewUnit);
+        IFacility newUnit = (IFacility)context.getBean("unit");
+        newUnit.addNewDetail(detailTestNewUnit);//;new Unit(detailTestNewUnit);
         facility.addFacility(newUnit);
         System.out.println("Capacity after new unit (new unit cannot be added): " + facility.getCapacity());
 
@@ -139,7 +144,9 @@ public class FacilityManagementDemo {
         //create a FacilityUse Object
         //Call the methods in the interface
         //test for inspection class
-        FacilityMaintenanceFacade maintenance = new FacilityMaintenanceConcrete(facility);
+        FacilityMaintenanceFacade maintenance = (FacilityMaintenanceFacade) context.getBean("facilityMaintenanceConcrete");
+        maintenance.setFacility(facility);
+        //new FacilityMaintenanceConcrete(facility);
         //request maintenance *7
         for (int i = 0; i < 7; i++) {
             maintenance.makeFacilityMaintRequest();
@@ -162,24 +169,48 @@ public class FacilityManagementDemo {
         System.out.println(maintenance.listFacilityProblems());
 
         //check inspection
-        IFacilityDomain inspector = new Inspector(12);
+        IFacilityDomain inspector = (IFacilityDomain)context.getBean("inspectorDomain");
+        inspector.setStaffName("Mr. X");// new Inspector(12);
         facility.accept(inspector);
         facility.accept(inspector);
         facility.accept(inspector);
 
-        for (InspectionForm il : facility.getInspections().getInspections()) {
+        for (InspectionFormInterface il : facility.getInspections().getInspections()) {
             System.out.println("Inspector ID: " + il.getInspectorID());
         }
 
         //call the rest of the methods
         //test for facility use
-        IFacilityUse use = new FacilityUse(800, 1700);
+        IFacilityUse use = facility.getUsage();//new FacilityUse(800, 1700);
+        
+        IFacilityUser user1 = (IFacilityUser)context.getBean("facilityUser");
+        user1.setUserID(1);
+        user1.setName("jorge castro");
+        user1.setEntryTime(800);
+        
+        IFacilityUser user2 = (IFacilityUser)context.getBean("facilityUser");
+        user1.setUserID(2);
+        user1.setName("james miller");
+        user1.setEntryTime(800);
+        IFacilityUser user3 = (IFacilityUser)context.getBean("facilityUser");
+        user1.setUserID(3);
+        user1.setName("Yi Lee");
+        user1.setEntryTime(800);
+        IFacilityUser user4 = (IFacilityUser)context.getBean("facilityUser");
+        user1.setUserID(4);
+        user1.setName("ho kai chiang");
+        user1.setEntryTime(800);
+        IFacilityUser user5 = (IFacilityUser)context.getBean("facilityUser");
+        user1.setUserID(5);
+        user1.setName("jian liu");
+        user1.setEntryTime(800);
+        
 
-        use.addUserToFacility(new FacilityUser(800, 1, "jorge castro"));
-        use.addUserToFacility(new FacilityUser(800, 2, "james miller"));
-        use.addUserToFacility(new FacilityUser(800, 3, "Yi Lee"));
-        use.addUserToFacility(new FacilityUser(800, 4, "ho kai chiang"));
-        use.addUserToFacility(new FacilityUser(800, 5, "jian liu"));
+        use.addUserToFacility(user1);
+        use.addUserToFacility(user2);
+        use.addUserToFacility(user3);
+        use.addUserToFacility(user4);
+        use.addUserToFacility(user5);
 
         System.out.println("Actual usage: " + use.getActualUsage());
         System.out.println("Actual usage: " + use.getUsageRate());
@@ -188,7 +219,7 @@ public class FacilityManagementDemo {
         System.out.println("Actual usage after vacating facility: " + use.getActualUsage());
 
         System.out.println("Removing unit from building... (current facility size is: " + facility.getSize() + ")");
-        facility.removeFacility(units[0]);
+        facility.removeFacility(unit1);
         System.out.println("...unit removed (current facility size is: " + facility.getSize() + ")");
         System.out.println("Is facility in use during the open hours? (8am to 5pm)? " + use.isInUseDuringInterval(800, 1700));
         System.out.println("-----------------------DONE-----------------------");

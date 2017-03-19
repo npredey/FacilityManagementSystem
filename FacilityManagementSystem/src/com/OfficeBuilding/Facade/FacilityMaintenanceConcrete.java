@@ -25,6 +25,13 @@ public class FacilityMaintenanceConcrete implements FacilityMaintenanceFacade {
         //this.facility = facility;
         //provide input
     }
+    public IFacility getFacility(){
+        return facility;
+    }
+    
+    public void setFacility(IFacility facility){
+        this.facility = facility;
+    }
 
     @Override
     public void makeFacilityMaintRequest() {
