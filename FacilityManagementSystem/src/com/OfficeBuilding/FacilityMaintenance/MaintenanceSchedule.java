@@ -11,7 +11,7 @@ import java.util.Date;
  *
  * @author nickpredey
  */
-public class MaintenanceSchedule {
+public class MaintenanceSchedule implements IMaintenanceSchedule {
 
     private Date timeOfMaintenance;
 
@@ -22,10 +22,22 @@ public class MaintenanceSchedule {
         this.request = request;
     }
 
+    /**
+     * Sets the time that this maintenance is scheduled.
+     *
+     * @param value
+     */
+    @Override
     public void setTimeOfMaintenance(Date value) {
         timeOfMaintenance = value;
     }
 
+    /**
+     * Gets the time that this maintenance is scheduled.
+     *
+     * @return
+     */
+    @Override
     public Date getTimeOfMaintenance() {
         return timeOfMaintenance;
     }
