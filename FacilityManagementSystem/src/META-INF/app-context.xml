@@ -49,7 +49,13 @@
         <!--FacilityUse Package-->
         <bean id="facilityUse" 
               class="com.OfficeBuilding.FacilityUse.FacilityUse" 
-              scope="prototype"/>
+              scope="prototype">
+            <property name="users">
+			<list/>
+            
+            
+            
+        </bean>
         <bean id="facilityUser" 
               class="com.OfficeBuilding.FacilityUse.FacilityUser" 
               scope="prototype"/>
@@ -57,81 +63,59 @@
         <!--Inspection Package-->
         <bean id="facilityInspection" 
               class="com.OfficeBuilding.Inspection.FacilityInspection" 
-              scope="prototype"/> 
+              scope="prototype">
+            <property name="log" ref="inspectionLog" />
+            <property name="forms">
+			<list/>
+                       
+                        
+            
+        </bean> 
         <bean id="inspectionForm" 
               class="com.OfficeBuilding.Inspection.InspectionForm" 
               scope="prototype"/>
         <bean id="inspectionLog" 
               class="com.OfficeBuilding.Inspection.InspectionLog" 
-              scope="prototype"/>
+              scope="prototype">
+            
+            <property name="inspections">
+                          <list/>    
+            
+            
+        </bean>
         
         <!--Facility Package-->
         <bean id="building" 
               class="com.OfficeBuilding.facility.Building" 
-              scope="prototype"/>
+              scope="prototype">
+            <property name="maintenance" ref="facilityMaintenance" />
+            <property name="detail" ref="facilityDetail" />
+            <property name="inspectionLog" ref="inspectionLog" />
+            <property name="facilities">
+                          <list/>   
+        </bean>
         <bean id="facilityBudget" 
               class="com.OfficeBuilding.facility.FacilityBudget" 
               scope="prototype"/>
         <bean id="facilityDetail" 
               class="com.OfficeBuilding.facility.FacilityDetail" 
-              scope="prototype"/>
+              scope="prototype">
+            <property name="facilityBudget" ref="facilityBudget" />
+            <property name="address" ref="location" />
+            
+        </bean>
         <bean id="location" 
               class="com.OfficeBuilding.facility.Location" 
               scope="prototype"/>
         <bean id="unit" 
               class="com.OfficeBuilding.facility.Unit" 
-              scope="prototype"/>
-        
-	<bean id="billingAddress" class="com.online.bookstore.model.customer.AddressImpl" scope="prototype"/>
-	<bean id="shippingAddress" class="com.online.bookstore.model.customer.AddressImpl" scope="prototype"/>
-	<bean id="book" class="com.online.bookstore.model.product.Book" scope="prototype"/>
-
-	<bean id="orderDetail" class="com.online.bookstore.model.order.OrderDetailImpl" scope="prototype">
-		<property name="book" ref="book" />
-		<property name="quantity" >
-			<value>0</value>
-		</property>
-	</bean>
-
-	<bean id="order" class="com.online.bookstore.model.order.OrderImpl" scope="prototype">	
-		<property name="orderDetails">
-			<list/>
-        	<!-- 
-         	<list>
-             	<ref bean="orderDetail" />
-            </list>
-            -->
-         </property>
-         <property name="paymentForm" ref="payment"/>
-	</bean>
-        <bean id="payment" class="com.online.bookstore.model.order.PaymentImpl" scope="prototype">	
-		<property name="paymentType" >
-			<value>Credit</value>
-		</property>
-                <property name="paymentAmount" >
-			<value>0</value>
-		</property>
-                <property name="isPaymentActive" >
-			<value>true</value>
-		</property>
-	</bean>
-	
-	<bean id="customer" class="com.online.bookstore.model.customer.CustomerImpl" scope="prototype">
-		<property name="billingAddress" ref="billingAddress" />
-		<property name="shippingAddress" ref="shippingAddress" />
-		<!-- Inject the Order List -->
-        <property name="orders">
-        	<list/>
-        	<!-- 
-        	<list>
-            	<ref bean="order" />
-            </list>
-             -->
-         </property>
-	</bean>
-	
-	<bean id="customerService" class="com.online.bookstore.model.service.CustomerService" scope="prototype">
-		<property name="customer" ref="customer" />
-	</bean>
+              scope="prototype">
+            <property name="detail" ref="facilityDetail" />
+            <property name="maintenance" ref="facilityMaintenance" />
+            <property name="inspection" ref="facilityInspection" />
+            <property name="usage" ref="facilityUse" />
+            <property name="inspectionLog" ref="inspectionLog" />
+            
+        </bean>
 	
 </beans>

@@ -6,6 +6,7 @@
 package com.OfficeBuilding.FacilityUse;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -15,7 +16,7 @@ public class FacilityUse implements IFacilityUse {
 
     private int startTime;
     private int endTime;
-    private ArrayList<IFacilityUser> users;
+    private List<IFacilityUser> users;
 
     public FacilityUse() {
 //        this.startTime = startTime;
@@ -56,7 +57,7 @@ public class FacilityUse implements IFacilityUse {
         return endTime;
     }
 
-    public ArrayList<IFacilityUser> getUsers() {
+    public List<IFacilityUser> getUsers() {
         return users;
     }
 
@@ -68,7 +69,7 @@ public class FacilityUse implements IFacilityUse {
         this.endTime = endTime;
     }
 
-    public void setUsers(ArrayList<IFacilityUser> users) {
+    public void setUsers(List<IFacilityUser> users) {
         this.users = users;
     }
 

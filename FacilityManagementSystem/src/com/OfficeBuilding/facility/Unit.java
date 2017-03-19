@@ -7,10 +7,12 @@ package com.OfficeBuilding.facility;
 
 import com.OfficeBuilding.Domain.IFacilityDomain;
 import com.OfficeBuilding.FacilityMaintenance.FacilityMaintenance;
+import com.OfficeBuilding.FacilityMaintenance.IFacilityMaintenance;
 import com.OfficeBuilding.FacilityMaintenance.MaintenanceLog;
 import com.OfficeBuilding.FacilityUse.FacilityUse;
 import com.OfficeBuilding.FacilityUse.IFacilityUse;
 import com.OfficeBuilding.Inspection.FacilityInspection;
+import com.OfficeBuilding.Inspection.IFacilityInspection;
 import com.OfficeBuilding.Inspection.InspectionLog;
 import com.OfficeBuilding.Inspection.InspectionLogInterface;
 import java.util.List;
@@ -22,11 +24,11 @@ import java.util.Objects;
  */
 public class Unit implements IFacility {
 
-    private FacilityDetail detail;
-    private FacilityMaintenance maintenance;
-    private FacilityInspection inspection;
+    private IfacilityDetail detail;
+    private IFacilityMaintenance maintenance;
+    private IFacilityInspection inspection;
     private IFacilityUse usage;
-    private InspectionLog inspectionLog;
+    private InspectionLogInterface inspectionLog;
 
     public Unit() {
 //        this.detail = detail;
@@ -44,15 +46,15 @@ public class Unit implements IFacility {
         this.usage = usage;
     }
 
-    public InspectionLog getInspectionLog() {
+    public InspectionLogInterface getInspectionLog() {
         return inspectionLog;
     }
 
-    public void setInspectionLog(InspectionLog inspectionLog) {
+    public void setInspectionLog(InspectionLogInterface inspectionLog) {
         this.inspectionLog = inspectionLog;
     }
 
-    private void addNewUnitDetail(FacilityDetail d) {
+    private void addNewUnitDetail(IfacilityDetail d) {
         detail = d;
     }
 
@@ -77,7 +79,7 @@ public class Unit implements IFacility {
     }
 
     @Override
-    public FacilityDetail getFacilityDetail() {
+    public IfacilityDetail getFacilityDetail() {
         return detail;
     }
 
@@ -92,7 +94,7 @@ public class Unit implements IFacility {
     }
 
     @Override
-    public FacilityMaintenance getMaintenance() {
+    public IFacilityMaintenance getMaintenance() {
         return maintenance;
     }
 
@@ -100,12 +102,12 @@ public class Unit implements IFacility {
         return detail;
     }
 
-    public void setDetail(FacilityDetail detail) {
+    public void setDetail(IfacilityDetail detail) {
         this.detail = detail;
     }
 
     @Override
-    public FacilityInspection getInspection() {
+    public IFacilityInspection getInspection() {
         return inspection;
     }
 
