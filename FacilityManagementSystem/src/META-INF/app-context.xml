@@ -11,14 +11,11 @@
         
         <!--Domain Package-->
         <bean id="inspector" class="com.OfficeBuilding.Domain.Inspector" scope="prototype">
-            <property name="form" ref="inspectionForm"/>
         </bean>
         
         <bean id="requester" class="com.OfficeBuilding.Domain.Requester" scope="prototype">
-            <property name="request" ref="maintenanceRequest"/>
         </bean>
         <bean id="staff" class="com.OfficeBuilding.Domain.Staff" scope="prototype">
-        <property name="">
         </bean>
         
         <!---Facade Package-->
