@@ -11,42 +11,45 @@ import java.util.Date;
  *
  * @author nickpredey
  */
-public class InspectionForm implements InspectionFormInterface{
+public class InspectionForm implements InspectionFormInterface {
 
-    private Date inspectionDate;
+    private int inspectionDate;
     private int inspectorID;
 
     private String inspectionNotes;
-    public InspectionForm(){}
-    
 
-    public InspectionForm(int inspectionDate, int inspectorID,
-            String inspectionNotes) {
-        this.inspectionDate = new Date(inspectionDate);
-        this.inspectorID = inspectorID;
-        this.inspectionNotes = inspectionNotes;
+    public InspectionForm() {
+//        this.inspectionDate = inspectionDate;
+//        this.inspectorID = inspectorID;
+//        this.inspectionNotes = inspectionNotes;
     }
 
-    public void setInspectionDate(Date value) {
+    @Override
+    public void setInspectionDate(int value) {
         inspectionDate = value;
     }
 
+    @Override
     public void setInspectorID(int value) {
         inspectorID = value;
     }
 
+    @Override
     public void setInspectionNotes(String value) {
         inspectionNotes = value;
     }
 
-    public Date getInspectionDate() {
+    @Override
+    public int getInspectionDate() {
         return inspectionDate;
     }
 
+    @Override
     public int getInspectorID() {
         return inspectorID;
     }
 
+    @Override
     public String getInspectionNotes() {
         return inspectionNotes;
     }

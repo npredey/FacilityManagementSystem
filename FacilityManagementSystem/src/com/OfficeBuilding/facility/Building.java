@@ -7,14 +7,13 @@ package com.OfficeBuilding.facility;
 
 import com.OfficeBuilding.Domain.IFacilityDomain;
 import com.OfficeBuilding.FacilityMaintenance.FacilityMaintenance;
+import com.OfficeBuilding.FacilityMaintenance.IFacilityMaintenance;
 import com.OfficeBuilding.FacilityUse.FacilityUse;
 import com.OfficeBuilding.FacilityUse.IFacilityUse;
 import com.OfficeBuilding.Inspection.FacilityInspection;
+import com.OfficeBuilding.Inspection.IFacilityInspection;
 import com.OfficeBuilding.Inspection.InspectionLog;
-import com.OfficeBuilding.Inspection.InspectorVisitor;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
+import com.OfficeBuilding.Inspection.InspectionLogInterface;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -25,10 +24,10 @@ import java.util.logging.Logger;
  */
 public class Building implements IFacility {
 
-    private FacilityMaintenance maintenance;
-    private FacilityDetail detail;
-    public List<IFacility> facilities;
-    public InspectionLog inspectionLog;
+    private IFacilityMaintenance maintenance;
+    private IfacilityDetail detail;
+    private List<IFacility> facilities;
+    private InspectionLogInterface inspectionLog;
 
     public List<IFacility> getFacilities() {
         return facilities;
@@ -46,35 +45,31 @@ public class Building implements IFacility {
     private FacilityInspection inspection;
     private IFacilityUse usage;
 
-    /**
-     *
-     * @param units
-     */
-    public Building(final Unit... units) {
-        facilities = new ArrayList<>(Arrays.asList(units));
-        this.detail = new FacilityDetail(-1, 0, null, null);
-        getCapacity();
-        this.inspectionLog = new InspectionLog();
-        this.maintenance = new FacilityMaintenance();
-        this.inspection = new FacilityInspection();
-        usage = new FacilityUse(800, 1700);
+    public Building() {
+//        facilities = new ArrayList<>();
+//        this.detail = new FacilityDetail();
+//        getCapacity();
+//        this.inspectionLog = new InspectionLog();
+//        this.maintenance = new FacilityMaintenance();
+//        this.inspection = new FacilityInspection();
+//        usage = new FacilityUse(800, 1700);
 
     }
 
-    public InspectionLog getInspectionLog() {
+    public InspectionLogInterface getInspectionLog() {
         return inspectionLog;
     }
 
-    public void setInspectionLog(InspectionLog inspectionLog) {
+    public void setInspectionLog(InspectionLogInterface inspectionLog) {
         this.inspectionLog = inspectionLog;
     }
 
-    private void addNewFacilityDetail(FacilityDetail d) {
+    private void addNewFacilityDetail(IfacilityDetail d) {
         detail = d;
     }
 
     @Override
-    public FacilityMaintenance getMaintenance() {
+    public IFacilityMaintenance getMaintenance() {
         return maintenance;
     }
 
@@ -121,21 +116,21 @@ public class Building implements IFacility {
     }
 
     @Override
-    public FacilityDetail getFacilityDetail() {
+    public IfacilityDetail getFacilityDetail() {
         return detail;
     }
 
     @Override
-    public FacilityInspection getInspection() {
+    public IFacilityInspection getInspection() {
         return inspection;
     }
 
     @Override
-    public void addNewDetail(FacilityDetail anyDetail) {
+    public void addNewDetail(IfacilityDetail anyDetail) {
         addNewFacilityDetail(anyDetail);
     }
 
-    public FacilityDetail getDetail() {
+    public IfacilityDetail getDetail() {
         return detail;
     }
 
@@ -150,7 +145,7 @@ public class Building implements IFacility {
     }
 
     @Override
-    public InspectionLog getInspections() {
+    public InspectionLogInterface getInspections() {
         return inspectionLog;
 
     }
@@ -166,12 +161,11 @@ public class Building implements IFacility {
 
     @Override
     public int requestAvailableCapacity() {
-        int availableCapacity = getCapacity() - getUserNumber();
-        return availableCapacity;
+        return getCapacity() - getUserNumber();
     }
 
     @Override
-    public FacilityDetail getFacilityInformation() {
+    public IfacilityDetail getFacilityInformation() {
         return detail;
     }
 

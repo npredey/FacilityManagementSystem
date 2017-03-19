@@ -18,14 +18,13 @@ public class Location implements ILocation {
     private int zipCode;
     private String country;
 
-    public Location(String streetName, String streetNumber, String city, String state,
-            int zipCode, String country) {
-        this.streetName = streetName;
-        this.streetNumber = streetNumber;
-        this.city = city;
-        this.state = state;
-        this.zipCode = zipCode;
-        this.country = country;
+    public Location() {
+//        this.streetName = streetName;
+//        this.streetNumber = streetNumber;
+//        this.city = city;
+//        this.state = state;
+//        this.zipCode = zipCode;
+//        this.country = country;
     }
 
     @Override

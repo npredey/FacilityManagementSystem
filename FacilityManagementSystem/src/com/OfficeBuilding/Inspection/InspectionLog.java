@@ -6,27 +6,31 @@
 package com.OfficeBuilding.Inspection;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
  * @author nickpredey
  */
-public class InspectionLog implements InspectionLogInterface{
+public class InspectionLog implements InspectionLogInterface {
 
-    private ArrayList<InspectionFormInterface> inspections;
+    private List<InspectionFormInterface> inspections;
 
     public InspectionLog() {
-        this.inspections = new ArrayList<>();
+        //this.inspections = new ArrayList<>();
     }
 
-    public void setInspections(ArrayList<InspectionFormInterface> value) {
+    @Override
+    public void setInspections(List<InspectionFormInterface> value) {
         inspections = value;
     }
 
-    public ArrayList<InspectionFormInterface> getInspections() {
+    @Override
+    public List<InspectionFormInterface> getInspections() {
         return inspections;
     }
 
+    @Override
     public void addForm(InspectionFormInterface form) {
         inspections.add(form);
     }

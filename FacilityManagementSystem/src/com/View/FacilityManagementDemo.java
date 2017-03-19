@@ -17,6 +17,8 @@ import com.OfficeBuilding.facility.IFacility;
 import com.OfficeBuilding.facility.Location;
 import com.OfficeBuilding.facility.Unit;
 import java.text.ParseException;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class FacilityManagementDemo {
 
@@ -50,6 +52,8 @@ public class FacilityManagementDemo {
         MaintenanceLog maintenanceLog = new MaintenanceLog();
         Location facilityLocation = new Location(testStreetName, testStreetNumber,
                 testCity, testState, testZipCode, testCountry);
+
+        ApplicationContext context = new ClassPathXmlApplicationContext("META-INF/app-context.xml");
 
         FacilityBudget facilityBudgetBuilding = new FacilityBudget(testSavings0, testOperatingBudget0);
         FacilityBudget facilityBudgetUnit1 = new FacilityBudget(testSavings1, testOperatingBudget1);

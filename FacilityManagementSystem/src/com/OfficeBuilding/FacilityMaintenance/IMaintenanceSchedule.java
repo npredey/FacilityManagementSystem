@@ -13,7 +13,11 @@ import java.util.Date;
  */
 public interface IMaintenanceSchedule {
 
-    void setTimeOfMaintenance(Date value);
+    void setTimeOfMaintenance(int value);
 
-    Date getTimeOfMaintenance();
+    int getTimeOfMaintenance();
+
+    IMaintenanceRequest getRequest();
+
+    void setRequest(IMaintenanceRequest request);
 }

@@ -7,10 +7,13 @@ package com.OfficeBuilding.facility;
 
 import com.OfficeBuilding.Domain.IFacilityDomain;
 import com.OfficeBuilding.FacilityMaintenance.FacilityMaintenance;
+import com.OfficeBuilding.FacilityMaintenance.IFacilityMaintenance;
 import com.OfficeBuilding.FacilityMaintenance.MaintenanceRequest;
 import com.OfficeBuilding.FacilityUse.IFacilityUse;
 import com.OfficeBuilding.Inspection.FacilityInspection;
+import com.OfficeBuilding.Inspection.IFacilityInspection;
 import com.OfficeBuilding.Inspection.InspectionLog;
+import com.OfficeBuilding.Inspection.InspectionLogInterface;
 import java.util.List;
 
 /**
@@ -27,17 +30,17 @@ public interface IFacility {
 
     int getCapacity();
 
-    FacilityDetail getFacilityDetail();
+    IfacilityDetail getFacilityDetail();
 
-    void addNewDetail(FacilityDetail anyDetail);
+    void addNewDetail(IfacilityDetail anyDetail);
 
     void accept(IFacilityDomain domain);
 
-    FacilityMaintenance getMaintenance();
+    IFacilityMaintenance getMaintenance();
 
-    FacilityInspection getInspection();
+    IFacilityInspection getInspection();
 
-    InspectionLog getInspections();
+    InspectionLogInterface getInspections();
 
     int getUserNumber();
 
@@ -45,7 +48,7 @@ public interface IFacility {
 
     int requestAvailableCapacity();
 
-    FacilityDetail getFacilityInformation();
+    IfacilityDetail getFacilityInformation();
 
     String listFacilities();
 

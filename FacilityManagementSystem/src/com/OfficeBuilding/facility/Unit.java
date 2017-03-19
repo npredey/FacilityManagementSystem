@@ -12,7 +12,7 @@ import com.OfficeBuilding.FacilityUse.FacilityUse;
 import com.OfficeBuilding.FacilityUse.IFacilityUse;
 import com.OfficeBuilding.Inspection.FacilityInspection;
 import com.OfficeBuilding.Inspection.InspectionLog;
-import com.OfficeBuilding.Inspection.InspectorVisitor;
+import com.OfficeBuilding.Inspection.InspectionLogInterface;
 import java.util.List;
 import java.util.Objects;
 
@@ -28,11 +28,11 @@ public class Unit implements IFacility {
     private IFacilityUse usage;
     private InspectionLog inspectionLog;
 
-    public Unit(FacilityDetail detail) {
-        this.detail = detail;
-        this.maintenance = new FacilityMaintenance();
-        this.inspection = new FacilityInspection();
-        usage = new FacilityUse(800, 1700);
+    public Unit() {
+//        this.detail = detail;
+//        this.maintenance = new FacilityMaintenance();
+//        this.inspection = new FacilityInspection();
+//        usage = new FacilityUse(800, 1700);
     }
 
     @Override
@@ -82,7 +82,7 @@ public class Unit implements IFacility {
     }
 
     @Override
-    public void addNewDetail(FacilityDetail anyDetail) {
+    public void addNewDetail(IfacilityDetail anyDetail) {
         addNewUnitDetail(detail);
     }
 
@@ -96,7 +96,7 @@ public class Unit implements IFacility {
         return maintenance;
     }
 
-    public FacilityDetail getDetail() {
+    public IfacilityDetail getDetail() {
         return detail;
     }
 
@@ -143,11 +143,12 @@ public class Unit implements IFacility {
     }
 
     @Override
-    public InspectionLog getInspections() {
+    public InspectionLogInterface getInspections() {
         return inspectionLog;
 
     }
 
+    @Override
     public int getUserNumber() {
         int size = usage.getActualUsage();
 
@@ -161,7 +162,7 @@ public class Unit implements IFacility {
     }
 
     @Override
-    public FacilityDetail getFacilityInformation() {
+    public IfacilityDetail getFacilityInformation() {
         return detail;
     }
 

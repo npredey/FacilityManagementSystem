@@ -17,7 +17,7 @@ public class MaintenanceLog implements IMaintenanceLog {
     public List<IMaintenanceOrder> orders;
 
     public MaintenanceLog() {
-        this.orders = new ArrayList<>();
+        //this.orders = new ArrayList<>();
     }
 
     /**

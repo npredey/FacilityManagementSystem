@@ -8,6 +8,7 @@ package com.OfficeBuilding.FacilityMaintenance;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  *
@@ -20,6 +21,9 @@ public class FacilityMaintenance implements IFacilityMaintenance {
     private List<IMaintenanceRequest> requestQueue;
     private List<IMaintenanceOrder> orders;
     private List<IMaintenanceSchedule> schedules;
+
+    private List<String> problems;
+    private HashMap<String, Integer> problemOccurences;
 
     private IMaintenanceLog log;
 
@@ -34,10 +38,10 @@ public class FacilityMaintenance implements IFacilityMaintenance {
     }
 
     public FacilityMaintenance() {
-        this.log = new MaintenanceLog();
-        this.requestQueue = new ArrayList<>();
-        this.orders = new ArrayList<>();
-        this.schedules = new ArrayList<>();
+//        this.log = new MaintenanceLog();
+//        this.requestQueue = new ArrayList<>();
+//        this.orders = new ArrayList<>();
+//        this.schedules = new ArrayList<>();
     }
 
     @Override
@@ -79,7 +83,6 @@ public class FacilityMaintenance implements IFacilityMaintenance {
 
     @Override
     public double calcFacilityProblemRate() {
-        List<String> problems = new ArrayList<>();
         requestQueue.stream().forEach((mr) -> {
             problems.add(mr.getProblem());
         });
@@ -157,7 +160,6 @@ public class FacilityMaintenance implements IFacilityMaintenance {
 
     @Override
     public String listFacilityProblems() {
-        HashMap<String, Integer> problemOccurences = new HashMap<>();
         for (IMaintenanceOrder l : log.getLogs()) {
             if (problemOccurences.containsKey(l.getRequest().getProblem())) {
                 problemOccurences.put(l.getRequest().getProblem(), problemOccurences.get(l.getRequest().getProblem()) + 1);

@@ -1,5 +1,6 @@
 package com.OfficeBuilding.Facade;
 
+import static UtilityFunctions.UtilFunctions.getApplicationContext;
 import com.OfficeBuilding.Domain.IFacilityDomain;
 import com.OfficeBuilding.Domain.Requester;
 import com.OfficeBuilding.Domain.Staff;
@@ -10,29 +11,37 @@ import com.OfficeBuilding.FacilityMaintenance.MaintenanceOrder;
 import com.OfficeBuilding.FacilityMaintenance.MaintenanceRequest;
 
 import java.util.HashMap;
+import org.springframework.context.ApplicationContext;
 
 /**
  * Created by Nathnael on 2/19/2017. Concrete maintenance class
  */
 public class FacilityMaintenanceConcrete implements FacilityMaintenanceFacade {
 
-    IFacility facility;
+    private IFacility facility;
+    private HashMap<String, Integer> problemOccurences;
 
-    public FacilityMaintenanceConcrete(IFacility facility) {
-        this.facility = facility;
+    public FacilityMaintenanceConcrete() {
+        //this.facility = facility;
         //provide input
     }
 
     @Override
     public void makeFacilityMaintRequest() {
-        IFacilityDomain requester = new Requester("Chong chong xi");
+        ApplicationContext context = getApplicationContext();
+        IFacilityDomain requester = (IFacilityDomain) context.getBean("requester");
+        requester.setStaffName("Chong chong xi");
+        //IFacilityDomain requester = new Requester("Chong chong xi");
         facility.accept(requester);
 
     }
 
     @Override
     public void scheduleMaintenance() {
-        IFacilityDomain scheduler = new Staff("John Smith");
+        ApplicationContext context = getApplicationContext();
+        IFacilityDomain scheduler = (IFacilityDomain) context.getBean("staff");
+        scheduler.setStaffName("John Smith");
+        //IFacilityDomain scheduler = new Staff("John Smith");
         facility.accept(scheduler);
     }
 
@@ -78,7 +87,6 @@ public class FacilityMaintenanceConcrete implements FacilityMaintenanceFacade {
 
     @Override
     public String listFacilityProblems() {
-        HashMap<String, Integer> problemOccurences = new HashMap<>();
         for (IMaintenanceOrder l : facility.getMaintenance().getLog().getLogs()) {
             if (problemOccurences.containsKey(l.getRequest().getProblem())) {
                 problemOccurences.put(l.getRequest().getProblem(), problemOccurences.get(l.getRequest().getProblem()) + 1);

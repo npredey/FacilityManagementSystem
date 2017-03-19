@@ -5,8 +5,10 @@
  */
 package com.OfficeBuilding.Domain;
 
+import static UtilityFunctions.UtilFunctions.getApplicationContext;
 import com.OfficeBuilding.FacilityMaintenance.FacilityMaintenance;
 import com.OfficeBuilding.FacilityMaintenance.IFacilityMaintenance;
+import com.OfficeBuilding.FacilityMaintenance.IMaintenanceCost;
 import com.OfficeBuilding.FacilityMaintenance.IMaintenanceOrder;
 import com.OfficeBuilding.FacilityMaintenance.IMaintenanceRequest;
 import com.OfficeBuilding.FacilityMaintenance.IMaintenanceSchedule;
@@ -19,6 +21,8 @@ import com.OfficeBuilding.facility.Building;
 import com.OfficeBuilding.facility.Unit;
 import java.util.ArrayList;
 import java.util.List;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 /**
  *
@@ -28,14 +32,16 @@ public class Staff implements IFacilityDomain {
 
     private String staffName;
 
-    public Staff(String staffName) {
-        this.staffName = staffName;
+    public Staff() {
+        //this.staffName = staffName;
     }
 
+    @Override
     public String getStaffName() {
         return staffName;
     }
 
+    @Override
     public void setStaffName(String staffName) {
         this.staffName = staffName;
     }
@@ -45,8 +51,11 @@ public class Staff implements IFacilityDomain {
         return 1200;
     }
 
-    private MaintenanceCost getMaintenanceCost() {
-        return new MaintenanceCost(10.0);//to be changed
+    private IMaintenanceCost getMaintenanceCost() {
+        ApplicationContext context = getApplicationContext();
+        IMaintenanceCost cost = (IMaintenanceCost) context.getBean("maintenanceCost");
+        cost.setDollarAmount(10.0);
+        return cost;//to be changed
     }
 
     /**
@@ -56,15 +65,23 @@ public class Staff implements IFacilityDomain {
      */
     @Override
     public void visitBuilding(Building building) {
-
+        ApplicationContext context = getApplicationContext();
         building.getFacilities().stream().map((facility) -> facility.getMaintenance()).forEach((maintain) -> {
+
             IMaintenanceRequest mr = maintain.getMaintenanceRequest();
-            MaintenanceSchedule ms = new MaintenanceSchedule(getTimeofMaintenance(), mr);
+            IMaintenanceSchedule ms = (IMaintenanceSchedule) context.getBean("maintenanceSchedule");
+            ms.setTimeOfMaintenance(getTimeofMaintenance());
+            ms.setRequest(mr);
+            //MaintenanceSchedule ms = new MaintenanceSchedule(getTimeofMaintenance(), mr);
             maintain.scheduleRequest(ms);
             building.getMaintenance().scheduleRequest(ms);
             getMaintenanceCost();
 
-            IMaintenanceOrder order = new MaintenanceOrder(getMaintenanceCost(), mr);
+            IMaintenanceOrder order = (MaintenanceOrder) context.getBean("maintenanceOrder");
+            order.setCost(getMaintenanceCost());
+            order.setRequest(mr);
+
+            //IMaintenanceOrder order = new MaintenanceOrder(getMaintenanceCost(), mr);
             maintain.addOrderToLog(order);
             building.getMaintenance().addOrderToLog(order);
         });
@@ -78,14 +95,22 @@ public class Staff implements IFacilityDomain {
      */
     @Override
     public void visitUnit(Unit unit) {
+        ApplicationContext context = getApplicationContext();
         FacilityMaintenance maintain = unit.getMaintenance();
         IMaintenanceRequest mr = maintain.getMaintenanceRequest();
-        IMaintenanceSchedule ms = new MaintenanceSchedule(getTimeofMaintenance(), mr);
+        IMaintenanceSchedule ms = (IMaintenanceSchedule) context.getBean("maintenanceSchedule");
+        ms.setTimeOfMaintenance(getTimeofMaintenance());
+        ms.setRequest(mr);
+        //IMaintenanceSchedule ms = new MaintenanceSchedule(getTimeofMaintenance(), mr);
         maintain.scheduleRequest(ms);
 
         getMaintenanceCost();
 
-        MaintenanceOrder order = new MaintenanceOrder(getMaintenanceCost(), mr);
+        IMaintenanceOrder order = (IMaintenanceOrder) context.getBean("maintenanceOrder");
+        order.setCost(getMaintenanceCost());
+        order.setRequest(mr);
+
+        //MaintenanceOrder order = new MaintenanceOrder(getMaintenanceCost(), mr);
         maintain.addOrderToLog(order);
 
     }

@@ -6,7 +6,6 @@
 package com.OfficeBuilding.FacilityUse;
 
 import java.util.ArrayList;
-import java.util.Date;
 
 /**
  *
@@ -18,10 +17,10 @@ public class FacilityUse implements IFacilityUse {
     private int endTime;
     private ArrayList<IFacilityUser> users;
 
-    public FacilityUse(int startTime, int endTime) {
-        this.startTime = startTime;
-        this.endTime = endTime;
-        this.users = new ArrayList<>();
+    public FacilityUse() {
+//        this.startTime = startTime;
+//        this.endTime = endTime;
+//        this.users = new ArrayList<>();
     }
 
     @Override

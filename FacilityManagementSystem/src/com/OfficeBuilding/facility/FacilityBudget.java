@@ -9,28 +9,32 @@ package com.OfficeBuilding.facility;
  *
  * @author nickpredey
  */
-public class FacilityBudget implements IFacilityBudget{
+public class FacilityBudget implements IFacilityBudget {
 
     private double savings;
     private double operatingBudget;
 
-    public FacilityBudget(double savings, double operatingBudget) {
-        this.savings = savings;
-        this.operatingBudget = operatingBudget;
+    public FacilityBudget() {
+//        this.savings = savings;
+//        this.operatingBudget = operatingBudget;
     }
 
+    @Override
     public void setOperatingBudget(double value) {
         operatingBudget = value;
     }
 
+    @Override
     public void setSavings(double value) {
         savings = value;
     }
 
+    @Override
     public double getOperatingBudget() {
         return operatingBudget;
     }
 
+    @Override
     public double getSavings() {
         return savings;
     }

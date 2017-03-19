@@ -12,18 +12,19 @@ import java.util.Date;
  * @author Nathnael
  */
 public interface InspectionFormInterface {
-    void setInspectionDate(Date value);
+
+    void setInspectionDate(int value);
 
     void setInspectorID(int value);
 
     void setInspectionNotes(String value);
 
-    Date getInspectionDate();
+    int getInspectionDate();
 
     int getInspectorID();
 
     String getInspectionNotes();
 
     String toString();
-    
+
 }

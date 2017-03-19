@@ -14,11 +14,19 @@ import java.util.List;
  */
 public class FacilityInspection implements IFacilityInspection {
 
-    List<InspectionFormInterface> forms;
-    InspectionLogInterface log;
+    private List<InspectionFormInterface> forms;
+    private InspectionLogInterface log;
+
+    public List<InspectionFormInterface> getForms() {
+        return forms;
+    }
+
+    public void setForms(List<InspectionFormInterface> forms) {
+        this.forms = forms;
+    }
 
     public FacilityInspection() {
-        forms = new ArrayList<>();
+        //forms = new ArrayList<>();
     }
 
     @Override

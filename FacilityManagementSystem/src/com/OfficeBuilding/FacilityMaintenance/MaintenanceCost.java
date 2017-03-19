@@ -7,8 +7,8 @@ public class MaintenanceCost implements IMaintenanceCost {
 
     private double dollarAmount;
 
-    public MaintenanceCost(double dollarAmount) {
-        this.dollarAmount = dollarAmount;
+    public MaintenanceCost() {
+        //this.dollarAmount = dollarAmount;
     }
 
     /**

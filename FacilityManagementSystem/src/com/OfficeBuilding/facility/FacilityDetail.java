@@ -19,6 +19,7 @@ public class FacilityDetail implements IfacilityDetail {
     public FacilityDetail() {
     }
 
+    @Override
     public void setAddress(ILocation value) {
         address = value;
     }

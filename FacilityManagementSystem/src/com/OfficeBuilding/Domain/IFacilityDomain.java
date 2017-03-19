@@ -19,4 +19,8 @@ public interface IFacilityDomain {
 
     void visitUnit(Unit unit);
 
+    public String getStaffName();
+
+    public void setStaffName(String staffName);
+
 }

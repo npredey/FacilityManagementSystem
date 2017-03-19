@@ -15,11 +15,10 @@ public class MaintenanceRequest implements IMaintenanceRequest {
     private String maintenanceRequester;
     private String problem;
 
-    public MaintenanceRequest(int maintenancePeriod, String maintenanceRequester,
-            String problem) {
-        this.maintenancePeriod = maintenancePeriod;
-        this.maintenanceRequester = maintenanceRequester;
-        this.problem = problem;
+    public MaintenanceRequest() {
+//        this.maintenancePeriod = maintenancePeriod;
+//        this.maintenanceRequester = maintenanceRequester;
+//        this.problem = problem;
     }
 
     /**

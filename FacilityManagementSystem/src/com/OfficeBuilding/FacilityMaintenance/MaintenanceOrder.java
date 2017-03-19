@@ -14,9 +14,9 @@ public class MaintenanceOrder implements IMaintenanceOrder {
     private IMaintenanceCost cost;
     private IMaintenanceRequest request;
 
-    public MaintenanceOrder(IMaintenanceCost cost, IMaintenanceRequest request) {
-        this.cost = cost;
-        this.request = request;
+    public MaintenanceOrder() {
+//        this.cost = cost;
+//        this.request = request;
     }
 
     /**

@@ -13,12 +13,22 @@ import java.util.Date;
  */
 public class MaintenanceSchedule implements IMaintenanceSchedule {
 
-    private Date timeOfMaintenance;
+    private int timeOfMaintenance;
 
     private IMaintenanceRequest request;
 
-    public MaintenanceSchedule(int timeOfMaintenance, IMaintenanceRequest request) {
-        this.timeOfMaintenance = new Date(timeOfMaintenance);
+    public MaintenanceSchedule() {
+//        this.timeOfMaintenance = timeOfMaintenance;
+//        this.request = request;
+    }
+
+    @Override
+    public IMaintenanceRequest getRequest() {
+        return request;
+    }
+
+    @Override
+    public void setRequest(IMaintenanceRequest request) {
         this.request = request;
     }
 
@@ -28,7 +38,7 @@ public class MaintenanceSchedule implements IMaintenanceSchedule {
      * @param value
      */
     @Override
-    public void setTimeOfMaintenance(Date value) {
+    public void setTimeOfMaintenance(int value) {
         timeOfMaintenance = value;
     }
 
@@ -38,7 +48,7 @@ public class MaintenanceSchedule implements IMaintenanceSchedule {
      * @return
      */
     @Override
-    public Date getTimeOfMaintenance() {
+    public int getTimeOfMaintenance() {
         return timeOfMaintenance;
     }
 }

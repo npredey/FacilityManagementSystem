@@ -5,10 +5,12 @@
  */
 package com.OfficeBuilding.Domain;
 
+import static UtilityFunctions.UtilFunctions.getApplicationContext;
 import com.OfficeBuilding.FacilityMaintenance.FacilityMaintenance;
 import com.OfficeBuilding.FacilityMaintenance.MaintenanceRequest;
 import com.OfficeBuilding.facility.Building;
 import com.OfficeBuilding.facility.Unit;
+import org.springframework.context.ApplicationContext;
 
 /**
  *
@@ -18,14 +20,16 @@ public class Requester implements IFacilityDomain {
 
     private String staffName;
 
-    public Requester(String staffName) {
-        this.staffName = staffName;
+    public Requester() {
+        //this.staffName = staffName;
     }
 
+    @Override
     public String getStaffName() {
         return staffName;
     }
 
+    @Override
     public void setStaffName(String staffName) {
         this.staffName = staffName;
     }
@@ -47,8 +51,13 @@ public class Requester implements IFacilityDomain {
      */
     @Override
     public void visitBuilding(Building building) {
+        ApplicationContext context = getApplicationContext();
         building.getFacilities().stream().map((facility) -> facility.getMaintenance()).forEach((maintain) -> {
-            MaintenanceRequest request = new MaintenanceRequest(getMaintenancePeriod(), staffName, getProblem());
+            MaintenanceRequest request = (MaintenanceRequest) context.getBean("maintenanceRequest");
+            request.setMaintenancePeriod(getMaintenancePeriod());
+            request.setMaintenanceRequester(staffName);
+            request.setProblem(getProblem());
+            //MaintenanceRequest request = new MaintenanceRequest(getMaintenancePeriod(), staffName, getProblem());
             maintain.addMaintenanceRequest(request);
             building.getMaintenance().addMaintenanceRequest(request);
             System.out.println("Made request from requester: " + staffName);
@@ -63,8 +72,13 @@ public class Requester implements IFacilityDomain {
      */
     @Override
     public void visitUnit(Unit unit) {
+        ApplicationContext context = getApplicationContext();
         FacilityMaintenance maintain = unit.getMaintenance();
-        MaintenanceRequest request = new MaintenanceRequest(getMaintenancePeriod(), staffName, getProblem());
+        MaintenanceRequest request = (MaintenanceRequest) context.getBean("maintenanceRequest");
+        request.setMaintenancePeriod(getMaintenancePeriod());
+        request.setMaintenanceRequester(staffName);
+        request.setProblem(getProblem());
+        //MaintenanceRequest request = new MaintenanceRequest(getMaintenancePeriod(), staffName, getProblem());
         maintain.addMaintenanceRequest(request);
 
     }

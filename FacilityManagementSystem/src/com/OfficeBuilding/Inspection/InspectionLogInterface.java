@@ -6,16 +6,18 @@
 package com.OfficeBuilding.Inspection;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
  * @author Nathnael
  */
 public interface InspectionLogInterface {
-    public void setInspections(ArrayList<InspectionFormInterface> value);
 
-    public ArrayList<InspectionFormInterface> getInspections();
+    public void setInspections(List<InspectionFormInterface> value);
+
+    public List<InspectionFormInterface> getInspections();
 
     public void addForm(InspectionFormInterface form);
-    
+
 }
