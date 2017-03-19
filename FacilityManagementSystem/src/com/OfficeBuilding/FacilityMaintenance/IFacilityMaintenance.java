@@ -13,13 +13,11 @@ import java.util.List;
  */
 public interface IFacilityMaintenance {
 
-    void addMaintenanceRequest(MaintenanceRequest request);
-
-    void createMaintenanceSchedule();
+    void addMaintenanceRequest(IMaintenanceRequest request);
 
     int getMaintenanceCost();
 
-    MaintenanceRequest getMaintenanceRequest();
+    IMaintenanceRequest getMaintenanceRequest();
 
     List<String> getFacilityProblems(); //pass in a request object
 
@@ -27,15 +25,27 @@ public interface IFacilityMaintenance {
 
     int getFacilityDownTime();
 
-    void scheduleRequest(MaintenanceSchedule ms);
+    void scheduleRequest(IMaintenanceSchedule ms);
 
-    MaintenanceLog getLog();
+    IMaintenanceLog getLog();
 
-    List<MaintenanceRequest> getRequestQueue();
+    List<IMaintenanceRequest> getRequestQueue();
 
     String listMaintenance();
 
     String listMaintenanceRequests();
 
     String listFacilityProblems();
+
+    void setRequestQueue(List<IMaintenanceRequest> requestQueue);
+
+    List<IMaintenanceOrder> getOrders();
+
+    void setOrders(List<IMaintenanceOrder> orders);
+
+    List<IMaintenanceSchedule> getSchedules();
+
+    void setSchedules(List<IMaintenanceSchedule> schedules);
+
+    void addOrderToLog(IMaintenanceOrder or);
 }

@@ -17,17 +17,19 @@ public class FacilityMaintenance implements IFacilityMaintenance {
 
     private final static double NUM_DAYS_PER_YEAR = 365.0;
 
-    private List<MaintenanceRequest> requestQueue;
-    private List<MaintenanceOrder> orders;
-    private List<MaintenanceSchedule> schedules;
+    private List<IMaintenanceRequest> requestQueue;
+    private List<IMaintenanceOrder> orders;
+    private List<IMaintenanceSchedule> schedules;
 
-    private MaintenanceLog log;
+    private IMaintenanceLog log;
 
-    public MaintenanceLog getLog() {
+    @Override
+    public IMaintenanceLog getLog() {
         return log;
     }
 
-    public void addOrderToLog(MaintenanceOrder or) {
+    @Override
+    public void addOrderToLog(IMaintenanceOrder or) {
         log.addToLog(or);
     }
 
@@ -39,7 +41,7 @@ public class FacilityMaintenance implements IFacilityMaintenance {
     }
 
     @Override
-    public void addMaintenanceRequest(MaintenanceRequest request) {
+    public void addMaintenanceRequest(IMaintenanceRequest request) {
         System.out.println("Request queue before added request: " + requestQueue.size());
         requestQueue.add(request);
         System.out.println("Request queue after added request: " + requestQueue.size());
@@ -49,7 +51,7 @@ public class FacilityMaintenance implements IFacilityMaintenance {
     @Override
     public int getMaintenanceCost() {
         int cost = 0;
-        for (MaintenanceOrder l : log.getLogs()) {
+        for (IMaintenanceOrder l : log.getLogs()) {
             cost += l.getCost().getDollarAmount();
 
         }
@@ -57,9 +59,9 @@ public class FacilityMaintenance implements IFacilityMaintenance {
     }
 
     @Override
-    public MaintenanceRequest getMaintenanceRequest() {
+    public IMaintenanceRequest getMaintenanceRequest() {
         if (!requestQueue.isEmpty()) {
-            MaintenanceRequest mr = requestQueue.get(0);
+            IMaintenanceRequest mr = requestQueue.get(0);
             requestQueue.remove(mr);
             return mr;
         }
@@ -69,18 +71,18 @@ public class FacilityMaintenance implements IFacilityMaintenance {
     @Override
     public List<String> getFacilityProblems() {
         List<String> problems = new ArrayList<>();
-        for (MaintenanceRequest mr : requestQueue) {
+        requestQueue.stream().forEach((mr) -> {
             problems.add(mr.getProblem());
-        }
+        });
         return problems;
     }
 
     @Override
     public double calcFacilityProblemRate() {
         List<String> problems = new ArrayList<>();
-        for (MaintenanceRequest mr : requestQueue) {
+        requestQueue.stream().forEach((mr) -> {
             problems.add(mr.getProblem());
-        }
+        });
         double problemRate = problems.size() / NUM_DAYS_PER_YEAR;
         return problemRate;
     }
@@ -88,39 +90,43 @@ public class FacilityMaintenance implements IFacilityMaintenance {
     @Override
     public int getFacilityDownTime() {
         int time = 0;
-        for (MaintenanceOrder mO : log.getLogs()) {
-            time += mO.getRequest().getMaintenancePeriod();
-        }
+        time = log.getLogs().stream().map((mO) -> mO.getRequest().getMaintenancePeriod()).reduce(time, Integer::sum);
         return time;
 
     }
 
     @Override
-    public void scheduleRequest(MaintenanceSchedule ms) {
+    public void scheduleRequest(IMaintenanceSchedule ms) {
         schedules.add(ms);
     }
 
-    public List<MaintenanceRequest> getRequestQueue() {
+    @Override
+    public List<IMaintenanceRequest> getRequestQueue() {
         return requestQueue;
     }
 
-    public void setRequestQueue(List<MaintenanceRequest> requestQueue) {
+    @Override
+    public void setRequestQueue(List<IMaintenanceRequest> requestQueue) {
         this.requestQueue = requestQueue;
     }
 
-    public List<MaintenanceOrder> getOrders() {
+    @Override
+    public List<IMaintenanceOrder> getOrders() {
         return orders;
     }
 
-    public void setOrders(List<MaintenanceOrder> orders) {
+    @Override
+    public void setOrders(List<IMaintenanceOrder> orders) {
         this.orders = orders;
     }
 
-    public List<MaintenanceSchedule> getSchedules() {
+    @Override
+    public List<IMaintenanceSchedule> getSchedules() {
         return schedules;
     }
 
-    public void setSchedules(List<MaintenanceSchedule> schedules) {
+    @Override
+    public void setSchedules(List<IMaintenanceSchedule> schedules) {
         this.schedules = schedules;
     }
 
@@ -140,7 +146,7 @@ public class FacilityMaintenance implements IFacilityMaintenance {
     @Override
     public String listMaintenanceRequests() {
         String output = "";
-        for (MaintenanceRequest l : requestQueue) {
+        for (IMaintenanceRequest l : requestQueue) {
             output += "A problem of  " + l.getProblem() + " requested by " + l.getMaintenanceRequester() + " is under review";
             output += "\n";
 
@@ -152,7 +158,7 @@ public class FacilityMaintenance implements IFacilityMaintenance {
     @Override
     public String listFacilityProblems() {
         HashMap<String, Integer> problemOccurences = new HashMap<>();
-        for (MaintenanceOrder l : log.getLogs()) {
+        for (IMaintenanceOrder l : log.getLogs()) {
             if (problemOccurences.containsKey(l.getRequest().getProblem())) {
                 problemOccurences.put(l.getRequest().getProblem(), problemOccurences.get(l.getRequest().getProblem()) + 1);
             } else {
@@ -168,10 +174,5 @@ public class FacilityMaintenance implements IFacilityMaintenance {
         }
         return output;
 
-    }
-
-    @Override
-    public void createMaintenanceSchedule() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

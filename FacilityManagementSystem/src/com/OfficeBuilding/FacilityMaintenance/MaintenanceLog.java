@@ -12,7 +12,7 @@ import java.util.List;
  *
  * @author nickpredey
  */
-public class MaintenanceLog {
+public class MaintenanceLog implements IMaintenanceLog {
 
     public List<MaintenanceOrder> orders;
 
@@ -20,10 +20,22 @@ public class MaintenanceLog {
         this.orders = new ArrayList<>();
     }
 
+    /**
+     * Return this list of maintenance logs.
+     *
+     * @return
+     */
+    @Override
     public List<MaintenanceOrder> getLogs() {
         return orders;
     }
 
+    /**
+     * Add a maintenance order object to the maintenance log.
+     *
+     * @param order
+     */
+    @Override
     public void addToLog(MaintenanceOrder order) {
         orders.add(order);
     }
