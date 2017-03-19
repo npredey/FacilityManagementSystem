@@ -7,6 +7,7 @@ package com.OfficeBuilding.Domain;
 
 import static UtilityFunctions.UtilFunctions.getApplicationContext;
 import com.OfficeBuilding.FacilityMaintenance.FacilityMaintenance;
+import com.OfficeBuilding.FacilityMaintenance.IMaintenanceRequest;
 import com.OfficeBuilding.FacilityMaintenance.MaintenanceRequest;
 import com.OfficeBuilding.facility.Building;
 import com.OfficeBuilding.facility.Unit;
@@ -53,7 +54,7 @@ public class Requester implements IFacilityDomain {
     public void visitBuilding(Building building) {
         ApplicationContext context = getApplicationContext();
         building.getFacilities().stream().map((facility) -> facility.getMaintenance()).forEach((maintain) -> {
-            MaintenanceRequest request = (MaintenanceRequest) context.getBean("maintenanceRequest");
+            IMaintenanceRequest request = (IMaintenanceRequest) context.getBean("maintenanceRequest");
             request.setMaintenancePeriod(getMaintenancePeriod());
             request.setMaintenanceRequester(staffName);
             request.setProblem(getProblem());
@@ -74,7 +75,7 @@ public class Requester implements IFacilityDomain {
     public void visitUnit(Unit unit) {
         ApplicationContext context = getApplicationContext();
         FacilityMaintenance maintain = unit.getMaintenance();
-        MaintenanceRequest request = (MaintenanceRequest) context.getBean("maintenanceRequest");
+        IMaintenanceRequest request = (IMaintenanceRequest) context.getBean("maintenanceRequest");
         request.setMaintenancePeriod(getMaintenancePeriod());
         request.setMaintenanceRequester(staffName);
         request.setProblem(getProblem());

@@ -2,6 +2,7 @@ package com.OfficeBuilding.Domain;
 
 import static UtilityFunctions.UtilFunctions.getApplicationContext;
 import com.OfficeBuilding.Inspection.InspectionForm;
+import com.OfficeBuilding.Inspection.InspectionFormInterface;
 import com.OfficeBuilding.facility.Building;
 import com.OfficeBuilding.facility.Unit;
 import org.springframework.context.ApplicationContext;
@@ -31,7 +32,7 @@ public class Inspector implements IFacilityDomain {
     public void visitBuilding(Building build) {
         ApplicationContext context = getApplicationContext();
         build.getFacilities().stream().forEach((f) -> {
-            InspectionForm form = (InspectionForm) context.getBean("inspectionForm");
+            InspectionFormInterface form = (InspectionFormInterface) context.getBean("inspectionForm");
             int inspectionDate = getInspectionDate();
             String inspectionNote = getInspectionNote();
             form.setInspectionDate(inspectionDate);
@@ -73,7 +74,7 @@ public class Inspector implements IFacilityDomain {
         ApplicationContext context = getApplicationContext();
         int inspectionDate = getInspectionDate();
         String inspectionNote = getInspectionNote();
-        InspectionForm form = (InspectionForm) context.getBean("inspectionForm");
+        InspectionFormInterface form = (InspectionFormInterface) context.getBean("inspectionForm");
         form.setInspectionDate(inspectionDate);
         form.setInspectionNotes(inspectionNote);
         //InspectionForm form = new InspectionForm(inspectionDate, inspectorId, inspectionNote);

@@ -5,14 +5,21 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 
-	<description>Wiring the dependencies for the Online book Store Application.</description>
+	<description>Wiring the dependencies for the Facility Management System.</description>
 
 	<context:component-scan base-package="com" />
         
         <!--Domain Package-->
-        <bean id="inspectorDomain" class="com.OfficeBuilding.Domain.Inspector" scope="prototype"/>
-        <bean id="requester" class="com.OfficeBuilding.Domain.Requester" scope="prototype"/>
-        <bean id="staff" class="com.OfficeBuilding.Domain.Staff" scope="prototype"/>
+        <bean id="inspector" class="com.OfficeBuilding.Domain.Inspector" scope="prototype">
+            <property>name="form" ref="inspectionForm"</property>
+        </bean>
+        
+        <bean id="requester" class="com.OfficeBuilding.Domain.Requester" scope="prototype">
+            <property>name="request" ref="maintenanceRequest"</property>
+        </bean>
+        <bean id="staff" class="com.OfficeBuilding.Domain.Staff" scope="prototype">
+        <property name="">
+        </bean>
         
         <!---Facade Package-->
         <bean id="facilityMaintenanceConcrete" 
@@ -56,9 +63,6 @@
               scope="prototype"/>
         <bean id="inspectionLog" 
               class="com.OfficeBuilding.Inspection.InspectionLog" 
-              scope="prototype"/>
-        <bean id="inspector" 
-              class="com.OfficeBuilding.Inspection.Inspector" 
               scope="prototype"/>
         
         <!--Facility Package-->
