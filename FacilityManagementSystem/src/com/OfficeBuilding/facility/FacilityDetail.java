@@ -9,22 +9,17 @@ package com.OfficeBuilding.facility;
  *
  * @author nickpredey
  */
-public class FacilityDetail {
+public class FacilityDetail implements IfacilityDetail{
 
     private int facilityID;
     private int capacity;
-    private FacilityBudget facilityBudget;
-    private Location address;
+    private IFacilityBudget facilityBudget;
+    private ILocation address;
 
-    public FacilityDetail(int facilityID, int facilityCapacity, FacilityBudget budget,
-            Location location) {
-        this.facilityID = facilityID;
-        this.capacity = facilityCapacity;
-        this.facilityBudget = budget;
-        this.address = location;
+    public FacilityDetail() {
     }
 
-    public void setAddress(Location value) {
+    public void setAddress(ILocation value) {
         address = value;
     }
 
@@ -32,7 +27,7 @@ public class FacilityDetail {
         capacity = value;
     }
 
-    public void setFacilityBudget(FacilityBudget value) {
+    public void setFacilityBudget(IFacilityBudget value) {
         facilityBudget = value;
     }
 
@@ -40,7 +35,7 @@ public class FacilityDetail {
         facilityID = value;
     }
 
-    public Location getAddress() {
+    public ILocation getAddress() {
         return address;
     }
 
@@ -48,7 +43,7 @@ public class FacilityDetail {
         return capacity;
     }
 
-    public FacilityBudget getFacilityBudget() {
+    public IFacilityBudget getFacilityBudget() {
         return facilityBudget;
     }
 

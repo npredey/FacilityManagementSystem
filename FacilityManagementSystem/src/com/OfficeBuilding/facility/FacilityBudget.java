@@ -9,7 +9,7 @@ package com.OfficeBuilding.facility;
  *
  * @author nickpredey
  */
-public class FacilityBudget {
+public class FacilityBudget implements IFacilityBudget{
 
     private double savings;
     private double operatingBudget;

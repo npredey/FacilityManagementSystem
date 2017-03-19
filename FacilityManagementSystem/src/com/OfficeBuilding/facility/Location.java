@@ -9,7 +9,7 @@ package com.OfficeBuilding.facility;
  *
  * @author nickpredey
  */
-public class Location {
+public class Location implements ILocation{
 
     private String streetName;
     private String streetNumber;
