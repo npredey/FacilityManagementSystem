@@ -7,6 +7,7 @@ package com.OfficeBuilding.FacilityUse;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  *
@@ -61,10 +62,12 @@ public class FacilityUse implements IFacilityUse {
         return users;
     }
 
+    @Override
     public void setStartTime(int startTime) {
         this.startTime = startTime;
     }
 
+    @Override
     public void setEndTime(int endTime) {
         this.endTime = endTime;
     }
@@ -88,4 +91,38 @@ public class FacilityUse implements IFacilityUse {
         }).anyMatch((u) -> (u.getEntryTime() >= time1 && u.getEntryTime() <= time2));
 
     }
+
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 61 * hash + this.startTime;
+        hash = 61 * hash + this.endTime;
+        hash = 61 * hash + Objects.hashCode(this.users);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final FacilityUse other = (FacilityUse) obj;
+        if (this.startTime != other.startTime) {
+            return false;
+        }
+        if (this.endTime != other.endTime) {
+            return false;
+        }
+        if (!Objects.equals(this.users, other.users)) {
+            return false;
+        }
+        return true;
+    }
+
 }

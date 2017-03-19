@@ -2,15 +2,12 @@ package com.OfficeBuilding.Facade;
 
 import static UtilityFunctions.UtilFunctions.getApplicationContext;
 import com.OfficeBuilding.Domain.IFacilityDomain;
-import com.OfficeBuilding.Domain.Requester;
-import com.OfficeBuilding.Domain.Staff;
 import com.OfficeBuilding.FacilityMaintenance.IMaintenanceOrder;
 import com.OfficeBuilding.FacilityMaintenance.IMaintenanceRequest;
 import com.OfficeBuilding.facility.IFacility;
-import com.OfficeBuilding.FacilityMaintenance.MaintenanceOrder;
-import com.OfficeBuilding.FacilityMaintenance.MaintenanceRequest;
 
 import java.util.HashMap;
+import java.util.Objects;
 import org.springframework.context.ApplicationContext;
 
 /**
@@ -25,11 +22,22 @@ public class FacilityMaintenanceConcrete implements FacilityMaintenanceFacade {
         //this.facility = facility;
         //provide input
     }
-    public IFacility getFacility(){
+
+    public HashMap<String, Integer> getProblemOccurences() {
+        return problemOccurences;
+    }
+
+    public void setProblemOccurences(HashMap<String, Integer> problemOccurences) {
+        this.problemOccurences = problemOccurences;
+    }
+
+    @Override
+    public IFacility getFacility() {
         return facility;
     }
-    
-    public void setFacility(IFacility facility){
+
+    @Override
+    public void setFacility(IFacility facility) {
         this.facility = facility;
     }
 
@@ -110,4 +118,34 @@ public class FacilityMaintenanceConcrete implements FacilityMaintenanceFacade {
         }
         return output;
     }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 47 * hash + Objects.hashCode(this.facility);
+        hash = 47 * hash + Objects.hashCode(this.problemOccurences);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final FacilityMaintenanceConcrete other = (FacilityMaintenanceConcrete) obj;
+        if (!Objects.equals(this.facility, other.facility)) {
+            return false;
+        }
+        if (!Objects.equals(this.problemOccurences, other.problemOccurences)) {
+            return false;
+        }
+        return true;
+    }
+
 }

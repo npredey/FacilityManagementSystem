@@ -5,6 +5,8 @@
  */
 package com.OfficeBuilding.facility;
 
+import java.util.Objects;
+
 /**
  *
  * @author nickpredey
@@ -62,6 +64,43 @@ public class FacilityDetail implements IfacilityDetail {
     @Override
     public String toString() {
         return "FacilityDetail{" + "facilityID=" + facilityID + ", capacity=" + capacity + ", facilityBudget=" + facilityBudget.toString() + ", address=" + address.toString() + '}';
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 73 * hash + this.facilityID;
+        hash = 73 * hash + this.capacity;
+        hash = 73 * hash + Objects.hashCode(this.facilityBudget);
+        hash = 73 * hash + Objects.hashCode(this.address);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final FacilityDetail other = (FacilityDetail) obj;
+        if (this.facilityID != other.facilityID) {
+            return false;
+        }
+        if (this.capacity != other.capacity) {
+            return false;
+        }
+        if (!Objects.equals(this.facilityBudget, other.facilityBudget)) {
+            return false;
+        }
+        if (!Objects.equals(this.address, other.address)) {
+            return false;
+        }
+        return true;
     }
 
 }

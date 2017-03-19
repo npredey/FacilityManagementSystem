@@ -5,6 +5,8 @@
  */
 package com.OfficeBuilding.facility;
 
+import java.util.Objects;
+
 /**
  *
  * @author nickpredey
@@ -90,6 +92,51 @@ public class Location implements ILocation {
     @Override
     public String toString() {
         return "Location{" + "streetName=" + streetName + ", streetNumber=" + streetNumber + ", city=" + city + ", state=" + state + ", zipCode=" + zipCode + ", country=" + country + '}';
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 67 * hash + Objects.hashCode(this.streetName);
+        hash = 67 * hash + Objects.hashCode(this.streetNumber);
+        hash = 67 * hash + Objects.hashCode(this.city);
+        hash = 67 * hash + Objects.hashCode(this.state);
+        hash = 67 * hash + this.zipCode;
+        hash = 67 * hash + Objects.hashCode(this.country);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Location other = (Location) obj;
+        if (this.zipCode != other.zipCode) {
+            return false;
+        }
+        if (!Objects.equals(this.streetName, other.streetName)) {
+            return false;
+        }
+        if (!Objects.equals(this.streetNumber, other.streetNumber)) {
+            return false;
+        }
+        if (!Objects.equals(this.city, other.city)) {
+            return false;
+        }
+        if (!Objects.equals(this.state, other.state)) {
+            return false;
+        }
+        if (!Objects.equals(this.country, other.country)) {
+            return false;
+        }
+        return true;
     }
 
 }

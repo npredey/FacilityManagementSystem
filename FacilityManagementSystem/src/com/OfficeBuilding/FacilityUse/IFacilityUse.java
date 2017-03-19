@@ -5,24 +5,23 @@
  */
 package com.OfficeBuilding.FacilityUse;
 
-import com.OfficeBuilding.Inspection.InspectionLog;
-
 /**
  *
  * @author nickpredey
  */
 public interface IFacilityUse {
 
-    public double getUsageRate();
+    double getUsageRate();
 
-    public int getActualUsage();
+    int getActualUsage();
 
-    public void vacateFacility();
+    void vacateFacility();
 
-    public void addUserToFacility(IFacilityUser user);
+    void addUserToFacility(IFacilityUser user);
 
     boolean isInUseDuringInterval(int time1, int time2);
-    
+
     void setStartTime(int startTime);
+
     void setEndTime(int endTime);
 }

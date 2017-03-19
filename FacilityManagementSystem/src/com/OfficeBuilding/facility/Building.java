@@ -15,6 +15,7 @@ import com.OfficeBuilding.Inspection.IFacilityInspection;
 import com.OfficeBuilding.Inspection.InspectionLog;
 import com.OfficeBuilding.Inspection.InspectionLogInterface;
 import java.util.List;
+import java.util.Objects;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -42,7 +43,7 @@ public class Building implements IFacility {
         return usage;
     }
 
-    private FacilityInspection inspection;
+    private IFacilityInspection inspection;
     private IFacilityUse usage;
 
     public Building() {
@@ -91,6 +92,22 @@ public class Building implements IFacility {
     @Override
     public void removeFacility(IFacility anyFacility) {
         facilities.remove(anyFacility);
+    }
+
+    public void setMaintenance(IFacilityMaintenance maintenance) {
+        this.maintenance = maintenance;
+    }
+
+    public void setDetail(IfacilityDetail detail) {
+        this.detail = detail;
+    }
+
+    public void setInspection(IFacilityInspection inspection) {
+        this.inspection = inspection;
+    }
+
+    public void setUsage(IFacilityUse usage) {
+        this.usage = usage;
     }
 
     @Override
@@ -177,6 +194,51 @@ public class Building implements IFacility {
             f += "\n";
         }
         return f;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 59 * hash + Objects.hashCode(this.maintenance);
+        hash = 59 * hash + Objects.hashCode(this.detail);
+        hash = 59 * hash + Objects.hashCode(this.facilities);
+        hash = 59 * hash + Objects.hashCode(this.inspectionLog);
+        hash = 59 * hash + Objects.hashCode(this.inspection);
+        hash = 59 * hash + Objects.hashCode(this.usage);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Building other = (Building) obj;
+        if (!Objects.equals(this.maintenance, other.maintenance)) {
+            return false;
+        }
+        if (!Objects.equals(this.detail, other.detail)) {
+            return false;
+        }
+        if (!Objects.equals(this.facilities, other.facilities)) {
+            return false;
+        }
+        if (!Objects.equals(this.inspectionLog, other.inspectionLog)) {
+            return false;
+        }
+        if (!Objects.equals(this.inspection, other.inspection)) {
+            return false;
+        }
+        if (!Objects.equals(this.usage, other.usage)) {
+            return false;
+        }
+        return true;
     }
 
 }

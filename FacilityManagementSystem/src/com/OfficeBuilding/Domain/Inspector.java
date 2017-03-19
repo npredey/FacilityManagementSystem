@@ -5,6 +5,7 @@ import com.OfficeBuilding.Inspection.InspectionForm;
 import com.OfficeBuilding.Inspection.InspectionFormInterface;
 import com.OfficeBuilding.facility.Building;
 import com.OfficeBuilding.facility.Unit;
+import java.util.Objects;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -79,6 +80,36 @@ public class Inspector implements IFacilityDomain {
         form.setInspectionNotes(inspectionNote);
         //InspectionForm form = new InspectionForm(inspectionDate, inspectorId, inspectionNote);
         unit.getInspection().inspect(form);
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 17 * hash + Objects.hashCode(this.staffName);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Inspector other = (Inspector) obj;
+        if (!Objects.equals(this.staffName, other.staffName)) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "Inspector{" + "staffName=" + staffName + '}';
     }
 
 }

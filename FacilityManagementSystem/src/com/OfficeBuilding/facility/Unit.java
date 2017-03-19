@@ -6,16 +6,10 @@
 package com.OfficeBuilding.facility;
 
 import com.OfficeBuilding.Domain.IFacilityDomain;
-import com.OfficeBuilding.FacilityMaintenance.FacilityMaintenance;
 import com.OfficeBuilding.FacilityMaintenance.IFacilityMaintenance;
-import com.OfficeBuilding.FacilityMaintenance.MaintenanceLog;
-import com.OfficeBuilding.FacilityUse.FacilityUse;
 import com.OfficeBuilding.FacilityUse.IFacilityUse;
-import com.OfficeBuilding.Inspection.FacilityInspection;
 import com.OfficeBuilding.Inspection.IFacilityInspection;
-import com.OfficeBuilding.Inspection.InspectionLog;
 import com.OfficeBuilding.Inspection.InspectionLogInterface;
-import java.util.List;
 import java.util.Objects;
 
 /**
@@ -35,6 +29,14 @@ public class Unit implements IFacility {
 //        this.maintenance = new FacilityMaintenance();
 //        this.inspection = new FacilityInspection();
 //        usage = new FacilityUse(800, 1700);
+    }
+
+    public void setMaintenance(IFacilityMaintenance maintenance) {
+        this.maintenance = maintenance;
+    }
+
+    public void setInspection(IFacilityInspection inspection) {
+        this.inspection = inspection;
     }
 
     @Override
@@ -176,6 +178,11 @@ public class Unit implements IFacility {
         f += "\n";
 
         return f;
+    }
+
+    @Override
+    public String toString() {
+        return "Unit{" + "detail=" + detail + ", maintenance=" + maintenance + ", inspection=" + inspection + ", usage=" + usage + ", inspectionLog=" + inspectionLog + '}';
     }
 
 }

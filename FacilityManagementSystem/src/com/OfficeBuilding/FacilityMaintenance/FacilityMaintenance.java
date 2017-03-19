@@ -8,7 +8,7 @@ package com.OfficeBuilding.FacilityMaintenance;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.stream.Collectors;
+import java.util.Objects;
 
 /**
  *
@@ -26,6 +26,30 @@ public class FacilityMaintenance implements IFacilityMaintenance {
     private HashMap<String, Integer> problemOccurences;
 
     private IMaintenanceLog log;
+
+    public static double getNUM_DAYS_PER_YEAR() {
+        return NUM_DAYS_PER_YEAR;
+    }
+
+    public void setLog(IMaintenanceLog log) {
+        this.log = log;
+    }
+
+    public List<String> getProblems() {
+        return problems;
+    }
+
+    public void setProblems(List<String> problems) {
+        this.problems = problems;
+    }
+
+    public HashMap<String, Integer> getProblemOccurences() {
+        return problemOccurences;
+    }
+
+    public void setProblemOccurences(HashMap<String, Integer> problemOccurences) {
+        this.problemOccurences = problemOccurences;
+    }
 
     @Override
     public IMaintenanceLog getLog() {
@@ -177,4 +201,50 @@ public class FacilityMaintenance implements IFacilityMaintenance {
         return output;
 
     }
+
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 47 * hash + Objects.hashCode(this.requestQueue);
+        hash = 47 * hash + Objects.hashCode(this.orders);
+        hash = 47 * hash + Objects.hashCode(this.schedules);
+        hash = 47 * hash + Objects.hashCode(this.problems);
+        hash = 47 * hash + Objects.hashCode(this.problemOccurences);
+        hash = 47 * hash + Objects.hashCode(this.log);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final FacilityMaintenance other = (FacilityMaintenance) obj;
+        if (!Objects.equals(this.requestQueue, other.requestQueue)) {
+            return false;
+        }
+        if (!Objects.equals(this.orders, other.orders)) {
+            return false;
+        }
+        if (!Objects.equals(this.schedules, other.schedules)) {
+            return false;
+        }
+        if (!Objects.equals(this.problems, other.problems)) {
+            return false;
+        }
+        if (!Objects.equals(this.problemOccurences, other.problemOccurences)) {
+            return false;
+        }
+        if (!Objects.equals(this.log, other.log)) {
+            return false;
+        }
+        return true;
+    }
+
 }

@@ -1,30 +1,18 @@
 package com.View;
 
 import com.OfficeBuilding.Domain.IFacilityDomain;
-import com.OfficeBuilding.Domain.Inspector;
-import com.OfficeBuilding.Domain.Staff;
-import com.OfficeBuilding.Facade.FacilityMaintenanceConcrete;
 import com.OfficeBuilding.Facade.FacilityMaintenanceFacade;
 import com.OfficeBuilding.FacilityMaintenance.MaintenanceLog;
-import com.OfficeBuilding.FacilityUse.FacilityUse;
-import com.OfficeBuilding.FacilityUse.FacilityUser;
 import com.OfficeBuilding.FacilityUse.IFacilityUse;
-import com.OfficeBuilding.Inspection.InspectionForm;
-import com.OfficeBuilding.facility.Building;
-import com.OfficeBuilding.facility.FacilityBudget;
-import com.OfficeBuilding.facility.FacilityDetail;
 import com.OfficeBuilding.facility.IFacility;
-import com.OfficeBuilding.facility.Location;
 import com.OfficeBuilding.facility.Unit;
 import java.text.ParseException;
 import UtilityFunctions.UtilFunctions;
 import com.OfficeBuilding.FacilityUse.IFacilityUser;
-import com.OfficeBuilding.Inspection.InspectionFormInterface;
 import com.OfficeBuilding.facility.IFacilityBudget;
 import com.OfficeBuilding.facility.ILocation;
 import com.OfficeBuilding.facility.IfacilityDetail;
 import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class FacilityManagementDemo {
 
@@ -57,84 +45,79 @@ public class FacilityManagementDemo {
     public static void main(String[] args) throws ParseException {
         MaintenanceLog maintenanceLog = new MaintenanceLog();
         ApplicationContext context = UtilFunctions.getApplicationContext();
-        
-        ILocation facilityLocation = (ILocation)context.getBean("location");
+
+        ILocation facilityLocation = (ILocation) context.getBean("location");
         facilityLocation.setCity(testCity);
         facilityLocation.setCountry(testCountry);
         facilityLocation.setState(testState);
         facilityLocation.setStreetName(testStreetName);
         facilityLocation.setStreetNumber(testStreetNumber);
         facilityLocation.setZipCode(testZipCode);
-        
-        
 
-        IFacilityBudget facilityBudgetBuilding = (IFacilityBudget)context.getBean("facilityBudget");
+        IFacilityBudget facilityBudgetBuilding = (IFacilityBudget) context.getBean("facilityBudget");
         facilityBudgetBuilding.setOperatingBudget(testOperatingBudget0);
         facilityBudgetBuilding.setSavings(testSavings0);
         //new FacilityBudget(testSavings0, testOperatingBudget0);
-        
-        IFacilityBudget facilityBudgetUnit1 = (IFacilityBudget)context.getBean("facilityBudget");
+
+        IFacilityBudget facilityBudgetUnit1 = (IFacilityBudget) context.getBean("facilityBudget");
         facilityBudgetBuilding.setOperatingBudget(testOperatingBudget1);
         facilityBudgetBuilding.setSavings(testSavings1);
-        
-        IFacilityBudget facilityBudgetUnit2 = (IFacilityBudget)context.getBean("facilityBudget");
+
+        IFacilityBudget facilityBudgetUnit2 = (IFacilityBudget) context.getBean("facilityBudget");
         facilityBudgetBuilding.setOperatingBudget(testOperatingBudget2);
         facilityBudgetBuilding.setSavings(testSavings2);
-        
-        IFacilityBudget facilityBudgetNewUnit = (IFacilityBudget)context.getBean("facilityBudget");
+
+        IFacilityBudget facilityBudgetNewUnit = (IFacilityBudget) context.getBean("facilityBudget");
         facilityBudgetBuilding.setOperatingBudget(testOperatingBudget3);
         facilityBudgetBuilding.setSavings(testSavings3);
-        
 
-        
-        IfacilityDetail detailDemoBuilding = (IfacilityDetail)context.getBean("facilityDetail");
+        IfacilityDetail detailDemoBuilding = (IfacilityDetail) context.getBean("facilityDetail");
         detailDemoBuilding.setAddress(facilityLocation);
         detailDemoBuilding.setCapacity(-1);
         detailDemoBuilding.setFacilityBudget(facilityBudgetBuilding);
         detailDemoBuilding.setFacilityID(0);
-        
-        IfacilityDetail detailDemoUnit1 = (IfacilityDetail)context.getBean("facilityDetail");
+
+        IfacilityDetail detailDemoUnit1 = (IfacilityDetail) context.getBean("facilityDetail");
         detailDemoBuilding.setAddress(facilityLocation);
         detailDemoBuilding.setCapacity(capacityUnit1);
         detailDemoBuilding.setFacilityBudget(facilityBudgetUnit1);
         detailDemoBuilding.setFacilityID(1);
-        
-        IfacilityDetail detailDemoUnit2 = (IfacilityDetail)context.getBean("facilityDetail");
+
+        IfacilityDetail detailDemoUnit2 = (IfacilityDetail) context.getBean("facilityDetail");
         detailDemoBuilding.setAddress(facilityLocation);
         detailDemoBuilding.setCapacity(capacityUnit2);
         detailDemoBuilding.setFacilityBudget(facilityBudgetUnit2);
         detailDemoBuilding.setFacilityID(2);
-        
-        
-        IfacilityDetail detailTestNewUnit = (IfacilityDetail)context.getBean("facilityDetail");
+
+        IfacilityDetail detailTestNewUnit = (IfacilityDetail) context.getBean("facilityDetail");
         detailDemoBuilding.setAddress(facilityLocation);
         detailDemoBuilding.setCapacity(capacityUnit3);
         detailDemoBuilding.setFacilityBudget(facilityBudgetNewUnit);
         detailDemoBuilding.setFacilityID(3);
         //FacilityDetail detailTestNewUnit = new FacilityDetail(3, capacityUnit3, facilityBudgetNewUnit, facilityLocation);
 
-        Unit unit1 = ((Unit)context.getBean("unit"));
-        Unit unit2 = (Unit)context.getBean("unit");
+        Unit unit1 = ((Unit) context.getBean("unit"));
+        Unit unit2 = (Unit) context.getBean("unit");
         unit1.addNewDetail(detailDemoUnit1);
         unit2.addNewDetail(detailDemoUnit2);
         //Unit[] units = {unit1,unit2 /*new Unit(detailDemoUnit2)*/};
-        IFacility facility = (IFacility)context.getBean("facility");
+        IFacility facility = (IFacility) context.getBean("facility");
         facility.addFacility(unit1);//new Building(units);
         facility.addFacility(unit2);
         facility.addNewDetail(detailDemoBuilding);
-        
+
         System.out.println("Initial capacity (should be 250): " + facility.getCapacity());
         System.out.println("Requesting available capacity...: " + facility.requestAvailableCapacity());
         System.out.println("Printing facility information: " + facility.getFacilityInformation());
         System.out.println("List of facilities: \n" + facility.listFacilities());
 
-        IFacilityDomain staff = (IFacilityDomain)context.getBean("staff");
+        IFacilityDomain staff = (IFacilityDomain) context.getBean("staff");
         staff.setStaffName(testStaffName);//;new Staff(testStaffName);
         IFacilityUse facilityUse = facility.getUsage();
         facilityUse.setStartTime(900);
         facilityUse.setEndTime(1900);//new FacilityUse(900, 1900);
 
-        IFacility newUnit = (IFacility)context.getBean("unit");
+        IFacility newUnit = (IFacility) context.getBean("unit");
         newUnit.addNewDetail(detailTestNewUnit);//;new Unit(detailTestNewUnit);
         facility.addFacility(newUnit);
         System.out.println("Capacity after new unit (new unit cannot be added): " + facility.getCapacity());
@@ -169,42 +152,41 @@ public class FacilityManagementDemo {
         System.out.println(maintenance.listFacilityProblems());
 
         //check inspection
-        IFacilityDomain inspector = (IFacilityDomain)context.getBean("inspectorDomain");
+        IFacilityDomain inspector = (IFacilityDomain) context.getBean("inspectorDomain");
         inspector.setStaffName("Mr. X");// new Inspector(12);
         facility.accept(inspector);
         facility.accept(inspector);
         facility.accept(inspector);
 
-        for (InspectionFormInterface il : facility.getInspections().getInspections()) {
+        facility.getInspections().getInspections().stream().forEach((il) -> {
             System.out.println("Inspector ID: " + il.getInspectorID());
-        }
+        });
 
         //call the rest of the methods
         //test for facility use
         IFacilityUse use = facility.getUsage();//new FacilityUse(800, 1700);
-        
-        IFacilityUser user1 = (IFacilityUser)context.getBean("facilityUser");
+
+        IFacilityUser user1 = (IFacilityUser) context.getBean("facilityUser");
         user1.setUserID(1);
         user1.setName("jorge castro");
         user1.setEntryTime(800);
-        
-        IFacilityUser user2 = (IFacilityUser)context.getBean("facilityUser");
+
+        IFacilityUser user2 = (IFacilityUser) context.getBean("facilityUser");
         user1.setUserID(2);
         user1.setName("james miller");
         user1.setEntryTime(800);
-        IFacilityUser user3 = (IFacilityUser)context.getBean("facilityUser");
+        IFacilityUser user3 = (IFacilityUser) context.getBean("facilityUser");
         user1.setUserID(3);
         user1.setName("Yi Lee");
         user1.setEntryTime(800);
-        IFacilityUser user4 = (IFacilityUser)context.getBean("facilityUser");
+        IFacilityUser user4 = (IFacilityUser) context.getBean("facilityUser");
         user1.setUserID(4);
         user1.setName("ho kai chiang");
         user1.setEntryTime(800);
-        IFacilityUser user5 = (IFacilityUser)context.getBean("facilityUser");
+        IFacilityUser user5 = (IFacilityUser) context.getBean("facilityUser");
         user1.setUserID(5);
         user1.setName("jian liu");
         user1.setEntryTime(800);
-        
 
         use.addUserToFacility(user1);
         use.addUserToFacility(user2);

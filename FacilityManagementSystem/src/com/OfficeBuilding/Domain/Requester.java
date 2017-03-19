@@ -7,10 +7,12 @@ package com.OfficeBuilding.Domain;
 
 import static UtilityFunctions.UtilFunctions.getApplicationContext;
 import com.OfficeBuilding.FacilityMaintenance.FacilityMaintenance;
+import com.OfficeBuilding.FacilityMaintenance.IFacilityMaintenance;
 import com.OfficeBuilding.FacilityMaintenance.IMaintenanceRequest;
 import com.OfficeBuilding.FacilityMaintenance.MaintenanceRequest;
 import com.OfficeBuilding.facility.Building;
 import com.OfficeBuilding.facility.Unit;
+import java.util.Objects;
 import org.springframework.context.ApplicationContext;
 
 /**
@@ -74,7 +76,7 @@ public class Requester implements IFacilityDomain {
     @Override
     public void visitUnit(Unit unit) {
         ApplicationContext context = getApplicationContext();
-        FacilityMaintenance maintain = unit.getMaintenance();
+        IFacilityMaintenance maintain = unit.getMaintenance();
         IMaintenanceRequest request = (IMaintenanceRequest) context.getBean("maintenanceRequest");
         request.setMaintenancePeriod(getMaintenancePeriod());
         request.setMaintenanceRequester(staffName);
@@ -82,6 +84,36 @@ public class Requester implements IFacilityDomain {
         //MaintenanceRequest request = new MaintenanceRequest(getMaintenancePeriod(), staffName, getProblem());
         maintain.addMaintenanceRequest(request);
 
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 97 * hash + Objects.hashCode(this.staffName);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Requester other = (Requester) obj;
+        if (!Objects.equals(this.staffName, other.staffName)) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "Requester{" + "staffName=" + staffName + '}';
     }
 
 }

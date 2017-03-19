@@ -5,12 +5,7 @@
  */
 package com.OfficeBuilding.FacilityUse;
 
-import com.OfficeBuilding.facility.Building;
-import java.text.ParseException;
-import java.util.Date;
-import java.lang.Exception;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.util.Objects;
 
 /**
  *
@@ -77,4 +72,47 @@ public class FacilityUser implements IFacilityUser {
     public int getUserID() {
         return userID;
     }
+
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 89 * hash + this.entryTime;
+        hash = 89 * hash + this.exitTime;
+        hash = 89 * hash + this.userID;
+        hash = 89 * hash + Objects.hashCode(this.name);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final FacilityUser other = (FacilityUser) obj;
+        if (this.entryTime != other.entryTime) {
+            return false;
+        }
+        if (this.exitTime != other.exitTime) {
+            return false;
+        }
+        if (this.userID != other.userID) {
+            return false;
+        }
+        if (!Objects.equals(this.name, other.name)) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "FacilityUser{" + "entryTime=" + entryTime + ", exitTime=" + exitTime + ", userID=" + userID + ", name=" + name + '}';
+    }
+
 }

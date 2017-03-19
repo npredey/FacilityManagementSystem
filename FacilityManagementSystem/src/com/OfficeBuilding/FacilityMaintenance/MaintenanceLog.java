@@ -5,8 +5,8 @@
  */
 package com.OfficeBuilding.FacilityMaintenance;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  *
@@ -18,6 +18,14 @@ public class MaintenanceLog implements IMaintenanceLog {
 
     public MaintenanceLog() {
         //this.orders = new ArrayList<>();
+    }
+
+    public List<IMaintenanceOrder> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(List<IMaintenanceOrder> orders) {
+        this.orders = orders;
     }
 
     /**
@@ -39,4 +47,35 @@ public class MaintenanceLog implements IMaintenanceLog {
     public void addToLog(IMaintenanceOrder order) {
         orders.add(order);
     }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 59 * hash + Objects.hashCode(this.orders);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final MaintenanceLog other = (MaintenanceLog) obj;
+        if (!Objects.equals(this.orders, other.orders)) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "MaintenanceLog{" + "orders=" + orders + '}';
+    }
+
 }

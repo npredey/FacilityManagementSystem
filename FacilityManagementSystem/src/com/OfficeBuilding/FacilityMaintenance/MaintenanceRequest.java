@@ -5,6 +5,8 @@
  */
 package com.OfficeBuilding.FacilityMaintenance;
 
+import java.util.Objects;
+
 /**
  *
  * @author nickpredey
@@ -81,6 +83,44 @@ public class MaintenanceRequest implements IMaintenanceRequest {
     @Override
     public String getProblem() {
         return problem;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 47 * hash + this.maintenancePeriod;
+        hash = 47 * hash + Objects.hashCode(this.maintenanceRequester);
+        hash = 47 * hash + Objects.hashCode(this.problem);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final MaintenanceRequest other = (MaintenanceRequest) obj;
+        if (this.maintenancePeriod != other.maintenancePeriod) {
+            return false;
+        }
+        if (!Objects.equals(this.maintenanceRequester, other.maintenanceRequester)) {
+            return false;
+        }
+        if (!Objects.equals(this.problem, other.problem)) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "MaintenanceRequest{" + "maintenancePeriod=" + maintenancePeriod + ", maintenanceRequester=" + maintenanceRequester + ", problem=" + problem + '}';
     }
 
 }

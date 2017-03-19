@@ -5,7 +5,7 @@
  */
 package com.OfficeBuilding.Inspection;
 
-import java.util.Date;
+import java.util.Objects;
 
 /**
  *
@@ -58,6 +58,39 @@ public class InspectionForm implements InspectionFormInterface {
     public String toString() {
         return "InspectionForm{" + "inspectionDate=" + inspectionDate + ", "
                 + "inspectorID=" + inspectorID + ", inspectionNotes=" + inspectionNotes + '}';
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 67 * hash + this.inspectionDate;
+        hash = 67 * hash + this.inspectorID;
+        hash = 67 * hash + Objects.hashCode(this.inspectionNotes);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final InspectionForm other = (InspectionForm) obj;
+        if (this.inspectionDate != other.inspectionDate) {
+            return false;
+        }
+        if (this.inspectorID != other.inspectorID) {
+            return false;
+        }
+        if (!Objects.equals(this.inspectionNotes, other.inspectionNotes)) {
+            return false;
+        }
+        return true;
     }
 
 }

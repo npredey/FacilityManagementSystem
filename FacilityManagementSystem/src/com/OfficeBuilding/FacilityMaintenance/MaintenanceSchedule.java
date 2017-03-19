@@ -5,7 +5,7 @@
  */
 package com.OfficeBuilding.FacilityMaintenance;
 
-import java.util.Date;
+import java.util.Objects;
 
 /**
  *
@@ -51,4 +51,39 @@ public class MaintenanceSchedule implements IMaintenanceSchedule {
     public int getTimeOfMaintenance() {
         return timeOfMaintenance;
     }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 13 * hash + this.timeOfMaintenance;
+        hash = 13 * hash + Objects.hashCode(this.request);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final MaintenanceSchedule other = (MaintenanceSchedule) obj;
+        if (this.timeOfMaintenance != other.timeOfMaintenance) {
+            return false;
+        }
+        if (!Objects.equals(this.request, other.request)) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "MaintenanceSchedule{" + "timeOfMaintenance=" + timeOfMaintenance + ", request=" + request + '}';
+    }
+
 }
