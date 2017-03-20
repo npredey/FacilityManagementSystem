@@ -12,3 +12,6 @@ Based on the specification provided for a Facility Management System:
     – Discover other objects that facilitate implementing responsibilities.
     – Make available all client interfaces/services specified in the specification document
     (Facility, Facility Use, and Facility Maintenance Client Interfaces). 
+
+In part two of the project, we changed the object dependency and collaboration management from directly
+instantiating to Dependency Injection container (Spring). This is located in the app_context.xml file.
