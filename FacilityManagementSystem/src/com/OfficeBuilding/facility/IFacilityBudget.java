@@ -19,6 +19,7 @@ public interface IFacilityBudget {
 
     double getSavings();
 
+    @Override
     String toString();
 
 }
